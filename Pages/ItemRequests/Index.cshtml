@@ -1,0 +1,48 @@
+﻿@page
+@model HonorSystem.Pages.ItemRequests.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Itemrequest[0].IsSupplied)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Itemrequest[0].Item)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Itemrequest[0].Player)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Itemrequest) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSupplied)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item.IdItem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Player.IdMembers)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.IdItemRequest">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.IdItemRequest">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.IdItemRequest">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

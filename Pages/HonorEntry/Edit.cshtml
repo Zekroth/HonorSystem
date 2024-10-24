@@ -1,0 +1,60 @@
+﻿@page
+@model HonorSystem.Pages.HonorEntry.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Honorentry</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Honorentry.IdHonorEntry" />
+            <div class="form-group">
+                <label asp-for="Honorentry.EntryDate" class="control-label"></label>
+                <input asp-for="Honorentry.EntryDate" class="form-control" />
+                <span asp-validation-for="Honorentry.EntryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Honorentry.AssignedPoints" class="control-label"></label>
+                <input asp-for="Honorentry.AssignedPoints" class="form-control" />
+                <span asp-validation-for="Honorentry.AssignedPoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Honorentry.Description" class="control-label"></label>
+                <input asp-for="Honorentry.Description" class="form-control" />
+                <span asp-validation-for="Honorentry.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Honorentry.ExpirationDate" class="control-label"></label>
+                <input asp-for="Honorentry.ExpirationDate" class="form-control" />
+                <span asp-validation-for="Honorentry.ExpirationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Honorentry.HonorEntryTypeId" class="control-label"></label>
+                <select asp-for="Honorentry.HonorEntryTypeId" class="form-control" asp-items="ViewBag.HonorEntryTypeId"></select>
+                <span asp-validation-for="Honorentry.HonorEntryTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Honorentry.PlayerId" class="control-label"></label>
+                <select asp-for="Honorentry.PlayerId" class="form-control" asp-items="ViewBag.PlayerId"></select>
+                <span asp-validation-for="Honorentry.PlayerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

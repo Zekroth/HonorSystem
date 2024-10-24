@@ -1,0 +1,60 @@
+﻿@page
+@model HonorSystem.Pages.HonorEntryTypes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Honorentrytype[0].Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Honorentrytype[0].DefaultPoints)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Honorentrytype[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Honorentrytype[0].ExpirationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Honorentrytype[0].HonorEntryTypecol)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Honorentrytype) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DefaultPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpirationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HonorEntryTypecol)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.IdHonorEntryType">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.IdHonorEntryType">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.IdHonorEntryType">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

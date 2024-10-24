@@ -1,0 +1,50 @@
+﻿@page
+@model HonorSystem.Pages.Bosses.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Boss</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Boss.IdBoss" />
+            <div class="form-group">
+                <label asp-for="Boss.BossName" class="control-label"></label>
+                <input asp-for="Boss.BossName" class="form-control" />
+                <span asp-validation-for="Boss.BossName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boss.IsField" class="control-label"></label>
+                <input asp-for="Boss.IsField" class="form-control" />
+                <span asp-validation-for="Boss.IsField" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boss.IsArch" class="control-label"></label>
+                <input asp-for="Boss.IsArch" class="form-control" />
+                <span asp-validation-for="Boss.IsArch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boss.IsGuild" class="control-label"></label>
+                <input asp-for="Boss.IsGuild" class="form-control" />
+                <span asp-validation-for="Boss.IsGuild" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

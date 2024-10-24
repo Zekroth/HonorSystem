@@ -1,0 +1,54 @@
+﻿@page
+@model HonorSystem.Pages.HonorEntryTypes.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Honorentrytype</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Honorentrytype.Type" class="control-label"></label>
+                <input asp-for="Honorentrytype.Type" class="form-control" />
+                <span asp-validation-for="Honorentrytype.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Honorentrytype.DefaultPoints" class="control-label"></label>
+                <input asp-for="Honorentrytype.DefaultPoints" class="form-control" />
+                <span asp-validation-for="Honorentrytype.DefaultPoints" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Honorentrytype.Description" class="control-label"></label>
+                <input asp-for="Honorentrytype.Description" class="form-control" />
+                <span asp-validation-for="Honorentrytype.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Honorentrytype.ExpirationDate" class="control-label"></label>
+                <input asp-for="Honorentrytype.ExpirationDate" class="form-control" />
+                <span asp-validation-for="Honorentrytype.ExpirationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Honorentrytype.HonorEntryTypecol" class="control-label"></label>
+                <input asp-for="Honorentrytype.HonorEntryTypecol" class="form-control" />
+                <span asp-validation-for="Honorentrytype.HonorEntryTypecol" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

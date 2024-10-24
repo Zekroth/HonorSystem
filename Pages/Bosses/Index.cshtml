@@ -1,0 +1,54 @@
+﻿@page
+@model HonorSystem.Pages.Bosses.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Boss[0].BossName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boss[0].IsField)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boss[0].IsArch)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boss[0].IsGuild)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Boss) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BossName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsField)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsArch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsGuild)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.IdBoss">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.IdBoss">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.IdBoss">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
