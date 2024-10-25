@@ -15,7 +15,7 @@ public partial class Leftiteminguildstorage
 
     public int IdHonorEntry { get; set; }
 
-    public virtual Honorentry IdHonorEntryNavigation { get; set; } = null!;
+    public virtual Honorentry? IdHonorEntryNavigation { get; set; } = null;
 
-    public virtual Item IdItemNavigation { get; set; } = null!;
+    public virtual Item? IdItemNavigation { get; set; } = null;
 }

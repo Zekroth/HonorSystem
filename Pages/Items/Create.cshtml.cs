@@ -31,7 +31,7 @@ namespace HonorSystem.Pages.Items
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Items == null || Item == null)
+            if (!ModelState.IsValid || _context.Items == null || Item == null)
             {
                 return Page();
             }
