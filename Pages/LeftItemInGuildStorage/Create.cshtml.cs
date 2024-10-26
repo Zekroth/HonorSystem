@@ -20,8 +20,8 @@ namespace HonorSystem.Pages.LeftItemInGuildStorage
 
         public IActionResult OnGet()
         {
-        ViewData["IdHonorEntry"] = new SelectList(_context.Honorentries, "IdHonorEntry", "IdHonorEntry");
-        ViewData["IdItem"] = new SelectList(_context.Items, "IdItem", "IdItem");
+        ViewData["IdHonorEntry"] = new SelectList(_context.Honorentries, "IdHonorEntry", "EntryDate");
+        ViewData["IdItem"] = new SelectList(_context.Items, "IdItem", "ItemName");
             return Page();
         }
 

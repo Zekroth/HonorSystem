@@ -20,8 +20,8 @@ namespace HonorSystem.Pages.HonorEntry
 
         public IActionResult OnGet()
         {
-        ViewData["HonorEntryTypeId"] = new SelectList(_context.Honorentrytypes, "IdHonorEntryType", "IdHonorEntryType");
-        ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "IdMembers");
+            ViewData["HonorEntryTypeId"] = new SelectList(_context.Honorentrytypes, "IdHonorEntryType", "Type");
+            ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "Name");
             return Page();
         }
 
