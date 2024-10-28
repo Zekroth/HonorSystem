@@ -1,4 +1,5 @@
 ﻿@page
+@using HonorSystem.sakila
 @model HonorSystem.Pages.HonorEntry.CreateModel
 
 @{
@@ -25,12 +26,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Honorentry.ExpirationDate" class="control-label"></label>
-                <input asp-for="Honorentry.ExpirationDate" class="form-control" />
+                <input asp-for="Honorentry.ExpirationDate" class="form-control"/>
                 <span asp-validation-for="Honorentry.ExpirationDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Honorentry.HonorEntryTypeId" class="control-label"></label>
-                <select asp-for="Honorentry.HonorEntryTypeId" class ="form-control" asp-items="ViewBag.HonorEntryTypeId"></select>
+                <select asp-for="Honorentry.HonorEntryTypeId" class ="form-control" asp-items="ViewBag.HonorEntryTypeId" onchange="onChange()"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Honorentry.PlayerId" class="control-label"></label>
@@ -47,6 +48,61 @@
     <a asp-page="Index">Back to List</a>
 </div>
 
+<script>
+    // Honorentry_AssignedPoints
+    // Honorentry_Description
+    // Honorentry_ExpirationDate
+    // 
+    var honorEntryTypeList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.HonorEntryTypes)) || [];
+
+    function onChange() {
+        var selectedHonorList = honorEntryTypeList.find((x) => {
+            if (x.IdHonorEntryType == document.getElementById("Honorentry_HonorEntryTypeId").value)
+                return true;
+            return false;
+        });
+
+        if (selectedHonorList == null) {
+            console.log("HonorEntryType " + document.getElementById("Honorentry_HonorEntryTypeId").value + " is undefined");
+            return;
+        }
+    
+        document.getElementById("Honorentry_AssignedPoints").value = selectedHonorList.DefaultPoints;
+        document.getElementById("Honorentry_Description").value = selectedHonorList.Description;
+
+        if (selectedHonorList.Expiration == 0) {
+            document.getElementById("Honorentry_ExpirationDate").value = null;
+        } else {
+            var ms = Date.now();
+
+            if (document.getElementById("Honorentry_ExpirationDate").value == '') {
+                var newDate = new Date();
+                document.getElementById("Honorentry_ExpirationDate").value = newDate.getFullYear() + "-" + String(newDate.getMonth()).padStart(2, '0') + "-" + String(newDate.getDay()).padStart(2, '0') + "T" + String(newDate.getHours()).padStart(2, '0') + ":" + String(newDate.getMinutes()).padStart(2, '0');
+            } else {
+                var newDate = new Date();
+                newDate.setMilliseconds(newDate.getMilliseconds() + (selectedHonorList.Expiration) * 1000 * 60 * 60 * 24);
+                document.getElementById("Honorentry_ExpirationDate").value = newDate.getFullYear() + "-" + String(newDate.getMonth()).padStart(2, '0') + "-" + String(newDate.getDay()).padStart(2, '0') + "T" + String(newDate.getHours()).padStart(2, '0') + ":" + String(newDate.getMinutes()).padStart(2, '0');
+            }
+        }
+
+        
+    }
+
+    window.onload = onChange();
+</script>
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        List<Honorentrytype> honorEntryTypes = ViewBag.HonorEntryTypes;
+
+        if (honorEntryTypes == null || honorEntryTypes?.Count == 0)
+        {
+            // TODO: Throw error
+        }
+
+
+    }
+
+    
 }

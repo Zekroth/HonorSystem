@@ -13,9 +13,7 @@ public partial class Honorentrytype
 
     public string? Description { get; set; }
 
-    public DateTime? ExpirationDate { get; set; }
-
-    public string? HonorEntryTypecol { get; set; }
+    public int Expiration { get; set; }
 
     public virtual ICollection<Honorentry> Honorentries { get; set; } = new List<Honorentry>();
 }

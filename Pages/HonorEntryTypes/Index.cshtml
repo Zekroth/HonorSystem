@@ -23,10 +23,7 @@
                 @Html.DisplayNameFor(model => model.Honorentrytype[0].Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Honorentrytype[0].ExpirationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Honorentrytype[0].HonorEntryTypecol)
+                @Html.DisplayNameFor(model => model.Honorentrytype[0].Expiration)
             </th>
             <th></th>
         </tr>
@@ -44,10 +41,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExpirationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HonorEntryTypecol)
+                    @Html.DisplayFor(modelItem => item.Expiration)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.IdHonorEntryType">Edit</a> |

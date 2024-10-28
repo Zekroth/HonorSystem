@@ -22,6 +22,7 @@ namespace HonorSystem.Pages.HonorEntry
         {
             ViewData["HonorEntryTypeId"] = new SelectList(_context.Honorentrytypes, "IdHonorEntryType", "Type");
             ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "Name");
+            ViewData["HonorEntryTypes"] = _context.Honorentrytypes.ToList() ;
             return Page();
         }
 
@@ -32,7 +33,7 @@ namespace HonorSystem.Pages.HonorEntry
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Honorentries == null || Honorentry == null)
+            if (!ModelState.IsValid || _context.Honorentries == null ||    Honorentry == null)
             {
                 return Page();
             }

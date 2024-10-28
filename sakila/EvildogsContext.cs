@@ -86,8 +86,6 @@ public partial class EvildogsContext : DbContext
 
             entity.Property(e => e.IdHonorEntryType).HasColumnName("idHonorEntryType");
             entity.Property(e => e.Description).HasMaxLength(300);
-            entity.Property(e => e.ExpirationDate).HasColumnType("datetime");
-            entity.Property(e => e.HonorEntryTypecol).HasMaxLength(45);
             entity.Property(e => e.Type).HasMaxLength(45);
         });
 
