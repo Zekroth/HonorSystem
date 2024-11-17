@@ -20,7 +20,7 @@ namespace HonorSystem.Pages.Items
 
         public IActionResult OnGet()
         {
-        ViewData["IdBoss"] = new SelectList(_context.Bosses, "IdBoss", "IdBoss");
+        ViewData["IdBoss"] = new SelectList(_context.Bosses, "IdBoss", "BossName");
             return Page();
         }
 

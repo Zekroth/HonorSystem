@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HonorSystem.sakila;
+using HonorSystem.ViewModels;
 
 namespace HonorSystem.Controllers
 {
@@ -69,6 +70,50 @@ namespace HonorSystem.Controllers
             ViewData["HonorEntryTypeId"] = new SelectList(_context.Honorentrytypes, "IdHonorEntryType", "IdHonorEntryType", honorentry.HonorEntryTypeId);
             ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "IdMembers", honorentry.PlayerId);
             return View(honorentry);
+        }
+
+        // GET: HonorEntries/BulkInsert
+        public IActionResult BulkInsert()
+        {
+            var viewModel = new BulkInsertViewModel();
+            viewModel.EntryDate = DateTime.Now;
+            viewModel.ExpirationDate = DateTime.Now.AddDays(7);
+
+            // Prepara le SelectList per i dropdown
+            ViewData["HonorEntryTypeId"] = new SelectList(_context.Honorentrytypes, "IdHonorEntryType", "Type");
+            ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "Name");
+            ViewData["HonorEntryTypes"] = _context.Honorentrytypes.ToList();
+
+            return View(viewModel);
+        }
+
+        // POST: HonorEntries/BulkInsert
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> BulkInsert(BulkInsertViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (var entry in viewModel.PlayerId)
+                {
+                    // FIXME: Fixare validità entry
+                    if (entry != null && entry != -1 && entry != 0) // Controllo basico per evitare voci vuote
+                    {
+                        var honor = viewModel.GetHonorentry;
+                        honor.PlayerId = entry;
+                        _context.Honorentries.Add(honor);
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Se ci sono errori, ripopola le SelectList
+            ViewData["HonorEntryTypeId"] = new SelectList(_context.Honorentrytypes, "IdHonorEntryType", "IdHonorEntryType");
+            ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "IdMembers");
+
+            return View(viewModel);
         }
 
         // GET: HonorEntries/Edit/5
@@ -169,5 +214,9 @@ namespace HonorSystem.Controllers
         {
           return (_context.Honorentries?.Any(e => e.IdHonorEntry == id)).GetValueOrDefault();
         }
+
+
     }
+
+
 }

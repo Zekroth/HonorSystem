@@ -30,25 +30,25 @@
     </thead>
     <tbody>
 @foreach (var item in Model.Honorentrytype) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DefaultPoints)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Expiration)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.IdHonorEntryType">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.IdHonorEntryType">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.IdHonorEntryType">Delete</a>
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefaultPoints)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+                @Html.DisplayFor(modelItem => item.Expiration)
+        </td>
+        <td>
+            <a asp-page="./Edit" asp-route-id="@item.IdHonorEntryType">Edit</a> |
+            <a asp-page="./Details" asp-route-id="@item.IdHonorEntryType">Details</a> |
+            <a asp-page="./Delete" asp-route-id="@item.IdHonorEntryType">Delete</a>
+        </td>
+    </tr>
 }
     </tbody>
 </table>

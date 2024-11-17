@@ -66,7 +66,7 @@
             console.log("HonorEntryType " + document.getElementById("Honorentry_HonorEntryTypeId").value + " is undefined");
             return;
         }
-    
+
         document.getElementById("Honorentry_AssignedPoints").value = selectedHonorList.DefaultPoints;
         document.getElementById("Honorentry_Description").value = selectedHonorList.Description;
 
@@ -74,18 +74,14 @@
             document.getElementById("Honorentry_ExpirationDate").value = null;
         } else {
             var ms = Date.now();
-
             if (document.getElementById("Honorentry_ExpirationDate").value == '') {
-                var newDate = new Date();
-                document.getElementById("Honorentry_ExpirationDate").value = newDate.getFullYear() + "-" + String(newDate.getMonth()).padStart(2, '0') + "-" + String(newDate.getDay()).padStart(2, '0') + "T" + String(newDate.getHours()).padStart(2, '0') + ":" + String(newDate.getMinutes()).padStart(2, '0');
+                var newDate = addDaysToDate(ms, selectedHonorList.Expiration);
+                document.getElementById("Honorentry_ExpirationDate").value = newDate.toISOString().substr(0, 16);
             } else {
-                var newDate = new Date();
-                newDate.setMilliseconds(newDate.getMilliseconds() + (selectedHonorList.Expiration) * 1000 * 60 * 60 * 24);
-                document.getElementById("Honorentry_ExpirationDate").value = newDate.getFullYear() + "-" + String(newDate.getMonth()).padStart(2, '0') + "-" + String(newDate.getDay()).padStart(2, '0') + "T" + String(newDate.getHours()).padStart(2, '0') + ":" + String(newDate.getMinutes()).padStart(2, '0');
+                var newDate = addDaysToDate(document.getElementById("Honorentry_ExpirationDate").value, selectedHonorList.Expiration);
+                document.getElementById("Honorentry_ExpirationDate").value = newDate.toISOString().substr(0, 16);
             }
         }
-
-        
     }
 
     window.onload = onChange();

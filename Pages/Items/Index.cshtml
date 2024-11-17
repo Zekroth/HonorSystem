@@ -2,41 +2,63 @@
 @model HonorSystem.Pages.Items.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Items";
 }
 
-<h1>Index</h1>
+<h1>Items</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Item[0].ItemName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Item[0].IdBossNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Item) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItemName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdBossNavigation.BossName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.IdItem">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.IdItem">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.IdItem">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="table-responsive">
+    <table id="itemTable" class="display table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    Boss Name
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Item) {
+                <tr>
+                    <td>
+                        @item.IdItem
+                    </td>
+                    <td>
+                        @item.ItemName
+                    </td>
+                    <td>
+                        @item.IdBossNavigation.BossName
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.IdItem">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.IdItem">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.IdItem">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+<script>
+    
+    window.onload = function() {
+        $('#itemTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true
+        });
+    };
+</script>

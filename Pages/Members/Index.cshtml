@@ -2,65 +2,81 @@
 @model HonorSystem.Pages.Members.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Members";
 }
 
-<h1>Index</h1>
+<h1>Members</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].CharacterName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].SecondaryCharacterName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].JoinDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Member[0].IsStillInGuild)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Member) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CharacterName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SecondaryCharacterName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.JoinDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsStillInGuild)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.IdMembers">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.IdMembers">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.IdMembers">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="table-responsive">
+    <table id="memberTable" class="display table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Nome Giocatore
+                </th>
+                <th>
+                    Nome Personaggio Prima Gilda
+                </th>
+                <th>
+                    Nome Personaggio Seconda Gilda
+                </th>
+                <th>
+                    Data ingresso gilda
+                </th>
+                <th>
+                    È attivo
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Member) {
+                <tr>
+                    <td>
+                        @item.IdMembers
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.CharacterName
+                    </td>
+                    <td>
+                        @item.SecondaryCharacterName
+                    </td>
+                    <td>
+                        @item.JoinDate
+                    </td>
+                    <td>
+                        @((item.IsActive == 1) ? "Si" : "No")
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.IdMembers">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.IdMembers">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.IdMembers">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+<script>
+    
+    window.onload = function() {
+        $('#memberTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true
+        });
+    };
+</script>

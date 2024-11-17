@@ -5,62 +5,83 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>HonorEntry</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
+    <a asp-page="BulkInsert">Bulk Insert </a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Honorentry[0].EntryDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Honorentry[0].AssignedPoints)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Honorentry[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Honorentry[0].ExpirationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Honorentry[0].HonorEntryType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Honorentry[0].Player)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Honorentry) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EntryDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AssignedPoints)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpirationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HonorEntryType.IdHonorEntryType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Player.IdMembers)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.IdHonorEntry">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.IdHonorEntry">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.IdHonorEntry">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div class="table-responsive">
+    <table id="honorEntryTable" class="display table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Nome Giocatore
+                </th>
+                <th>
+                    Punti Assegnati
+                </th>
+                <th>
+                    Data Inserimento
+                </th>
+                <th>
+                    Data Scadenza
+                </th>
+                <th>
+                    Descrizione
+                </th>
+                <th>
+                    Tipo HonorEntry
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Honorentry) {
+                <tr>
+                    <td>
+                        @item.IdHonorEntry
+                    </td>
+                    <td>
+                        @item.Player?.Name
+                    </td>
+                    <td>
+                        @item.AssignedPoints
+                    </td>
+                    <td>
+                        @item.EntryDate
+                    </td>
+                    <td>
+                        @item.ExpirationDate
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        @item.HonorEntryType?.Type
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.IdHonorEntry">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.IdHonorEntry">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.IdHonorEntry">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<script>
+    
+    window.onload = function() {
+        $('#honorEntryTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true
+        });
+    };
+</script>

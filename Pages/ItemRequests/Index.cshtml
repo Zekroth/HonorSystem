@@ -1,48 +1,43 @@
 ﻿@page
 @model HonorSystem.Pages.ItemRequests.IndexModel
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Item Requests";
 }
 
-<h1>Index</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Itemrequest[0].IsSupplied)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Itemrequest[0].Item)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Itemrequest[0].Player)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Itemrequest) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsSupplied)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Item.ItemName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Player.Name)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.IdItemRequest">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.IdItemRequest">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.IdItemRequest">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h2>Item Requests</h2>
+
+<div class="table-responsive">
+    <table id="itemRequestTable" class="display table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Is Supplied</th>
+                <th>Item</th>
+                <th>Player</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Itemrequest)
+            {
+                <tr>
+                    <td>@item.IdItemRequest</td>
+                    <td>@item.IsSupplied</td>
+                    <td>@item.Item?.ItemName</td>
+                    <td>@item.Player?.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    
+    window.onload = function() {
+        $('#itemRequestTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true
+        });
+    };
+</script>

@@ -35,8 +35,8 @@ namespace HonorSystem.Pages.ItemRequests
                 return NotFound();
             }
             Itemrequest = itemrequest;
-           ViewData["ItemId"] = new SelectList(_context.Items, "IdItem", "IdItem");
-           ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "IdMembers");
+           ViewData["ItemId"] = new SelectList(_context.Items, "IdItem", "ItemName");
+           ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "Name");
             return Page();
         }
 
