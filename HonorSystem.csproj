@@ -24,9 +24,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
-    <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.8" />
-    <PackageReference Include="MySqlConnector" Version="2.3.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+    <PackageReference Include="MySql.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="MySqlConnector" Version="2.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="7.3.1" />
   </ItemGroup>
 
 </Project>

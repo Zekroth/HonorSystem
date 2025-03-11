@@ -1,5 +1,6 @@
 using HonorSystem.sakila;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,13 @@ builder.Services.AddControllers(options =>
 {
     options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
 });
+
+// Add Swagger services
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,6 +35,18 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Enable middleware to serve generated Swagger as a JSON endpoint.
+app.UseSwagger();
+
+// Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+// specifying the Swagger JSON endpoint.
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    c.RoutePrefix = string.Empty; // Serve the Swagger UI at the app's root
+});
+
 app.MapRazorPages();
+app.MapControllers();
 
 app.Run();
