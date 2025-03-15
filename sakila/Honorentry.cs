@@ -22,9 +22,9 @@ public partial class Honorentry
 
     public int PlayerId { get; set; }
 
-    public virtual Honorentrytype? HonorEntryType { get; set; } = null;
+    public virtual Honorentrytype? HonorEntryType { get; set; }
 
     public virtual ICollection<Leftiteminguildstorage> Leftiteminguildstorages { get; set; } = new List<Leftiteminguildstorage>();
 
-    public virtual Member? Player { get; set; } = null;
+    public virtual Member Player { get; set; } = null!;
 }

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace HonorSystem.sakila;
 
 public partial class Leftiteminguildstorage
 {
-    [Key]
     public int Id { get; set; }
 
     public DateTime DropDate { get; set; }
@@ -17,7 +15,11 @@ public partial class Leftiteminguildstorage
 
     public int IdHonorEntry { get; set; }
 
-    public virtual Honorentry? IdHonorEntryNavigation { get; set; } = null;
+    public DateTime? DistributedDate { get; set; }
 
-    public virtual Item? IdItemNavigation { get; set; } = null;
+    public virtual Honorentry IdHonorEntryNavigation { get; set; } = null!;
+
+    public virtual Item IdItemNavigation { get; set; } = null!;
+
+    public virtual Member IdNavigation { get; set; } = null!;
 }

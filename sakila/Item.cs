@@ -11,7 +11,7 @@ public partial class Item
 
     public int IdBoss { get; set; }
 
-    public virtual Boss? IdBossNavigation { get; set; } = null;
+    public virtual Boss IdBossNavigation { get; set; } = null!;
 
     public virtual ICollection<Itemrequest> Itemrequests { get; set; } = new List<Itemrequest>();
 

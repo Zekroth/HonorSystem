@@ -32,6 +32,17 @@ namespace HonorSystem.ApiControllers
             return Ok(items);
         }
 
+        // GET: api/ItemRequestsApi
+        [HttpGet]
+        [Route("GetAllItemRequests")]
+        public async Task<ActionResult<IEnumerable<Itemrequest>>> GetItemrequests()
+        {
+            var items = await _context.Itemrequests
+                .ToListAsync();
+
+            return Ok(items);
+        }
+
         // GET: api/ItemRequestsApi/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Itemrequest>> GetItemrequest(int id)

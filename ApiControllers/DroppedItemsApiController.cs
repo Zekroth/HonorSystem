@@ -31,6 +31,41 @@ namespace HonorSystem.ApiControllers
 
             return Ok(items);
         }
+        // GET: api/GetAllDroppedItems
+        [HttpGet]
+        [Route("GetAllDroppedItems")]
+        public async Task<ActionResult<IEnumerable<Leftiteminguildstorage>>> GetAllDroppedItems()
+        {
+            var items = await _context.Leftiteminguildstorages
+                .ToListAsync();
+
+            return Ok(items);
+        }
+
+        // GET: api/AvailableDroppedItemsApi
+        [HttpGet]
+        [Route("AvailableDroppedItems")]
+        public async Task<ActionResult<IEnumerable<Leftiteminguildstorage>>> AvailableDroppedItems([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            List<Leftiteminguildstorage> items;
+
+            if (pageNumber == 0 && pageSize == 0)
+            {
+                items = await _context.Leftiteminguildstorages
+                    .Where(_context => _context.DistributedDate == null)
+                    .ToListAsync();
+            } else
+            {
+                items = await _context.Leftiteminguildstorages
+                    .Where(_context => _context.DistributedDate == null)
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
+            }
+
+            return Ok(items);
+        }
+
 
         // GET: api/DroppedItemsApi/5
         [HttpGet("{id}")]
