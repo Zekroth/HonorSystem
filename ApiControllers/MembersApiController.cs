@@ -88,6 +88,38 @@ namespace HonorSystem.ApiControllers
             return CreatedAtAction("GetMember", new { id = member.IdMembers }, member);
         }
 
+        /// <summary>
+        ///     POST: api/MembersApi
+        /// </summary>
+        /// <param name="member"></param>
+        /// <remarks>USAGE: Only pass Member with EITHER the Name parameter OR the SecondaryCharacterName parameter</remarks>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("RegisterFromDiscord")]
+        public async Task<ActionResult<Member>> RegisterFromDiscord(Member member)
+        {
+            var e = _context.Members.Where(x => x.Name == member.Name);
+
+            if ((member.Name != null && member.Name != ""))
+            {
+                if (e.Count() == 1)
+                {
+                    if (e.First() != member)
+                        _context.Entry(member);
+                    else
+                        return StatusCode(304);
+                }
+            }
+            else
+            {
+                _context.Members.Add(member);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetMember", new { id = member.IdMembers }, member);
+        }
+
         // DELETE: api/MembersApi/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMember(int id)
