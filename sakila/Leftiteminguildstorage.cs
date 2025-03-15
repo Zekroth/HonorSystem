@@ -17,9 +17,11 @@ public partial class Leftiteminguildstorage
 
     public DateTime? DistributedDate { get; set; }
 
+    public int? DistributedTo { get; set; }
+
+    public virtual Member? DistributedToNavigation { get; set; }
+
     public virtual Honorentry IdHonorEntryNavigation { get; set; } = null!;
 
     public virtual Item IdItemNavigation { get; set; } = null!;
-
-    public virtual Member IdNavigation { get; set; } = null!;
 }

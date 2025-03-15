@@ -23,5 +23,5 @@ public partial class Member
 
     public virtual ICollection<Itemrequest> Itemrequests { get; set; } = new List<Itemrequest>();
 
-    public virtual Leftiteminguildstorage? Leftiteminguildstorage { get; set; }
+    public virtual ICollection<Leftiteminguildstorage> Leftiteminguildstorages { get; set; } = new List<Leftiteminguildstorage>();
 }

@@ -230,20 +230,20 @@ public partial class ZerodropContext : DbContext
 
             entity.ToTable("leftiteminguildstorage");
 
+            entity.HasIndex(e => e.DistributedTo, "DropAssignee_idx");
+
             entity.HasIndex(e => e.IdHonorEntry, "HonorEtry_ItemLeftInStorage_idx");
 
             entity.HasIndex(e => e.IdItem, "ItemId_idx");
 
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
             entity.Property(e => e.DistributedDate).HasColumnType("datetime");
             entity.Property(e => e.DropDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .HasColumnType("datetime");
 
-            entity.HasOne(d => d.IdNavigation).WithOne(p => p.Leftiteminguildstorage)
-                .HasForeignKey<Leftiteminguildstorage>(d => d.Id)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("DistributedTo");
+            entity.HasOne(d => d.DistributedToNavigation).WithMany(p => p.Leftiteminguildstorages)
+                .HasForeignKey(d => d.DistributedTo)
+                .HasConstraintName("DropAssignee");
 
             entity.HasOne(d => d.IdHonorEntryNavigation).WithMany(p => p.Leftiteminguildstorages)
                 .HasForeignKey(d => d.IdHonorEntry)
