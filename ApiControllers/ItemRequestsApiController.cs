@@ -11,52 +11,52 @@ namespace HonorSystem.ApiControllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MembersApiController : ControllerBase
+    public class ItemRequestsApiController : ControllerBase
     {
         private readonly EvildogsContext _context;
 
-        public MembersApiController(EvildogsContext context)
+        public ItemRequestsApiController(EvildogsContext context)
         {
             _context = context;
         }
 
-        // GET: api/MembersApi
+        // GET: api/ItemRequestsApi
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Member>>> GetMembers([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Itemrequest>>> GetItemrequests([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            var members = await _context.Members
+            var items = await _context.Itemrequests
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
 
-            return Ok(members);
+            return Ok(items);
         }
 
-        // GET: api/MembersApi/5
+        // GET: api/ItemRequestsApi/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Member>> GetMember(int id)
+        public async Task<ActionResult<Itemrequest>> GetItemrequest(int id)
         {
-            var member = await _context.Members.FindAsync(id);
+            var itemrequest = await _context.Itemrequests.FindAsync(id);
 
-            if (member == null)
+            if (itemrequest == null)
             {
                 return NotFound();
             }
 
-            return member;
+            return itemrequest;
         }
 
-        // PUT: api/MembersApi/5
+        // PUT: api/ItemRequestsApi/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMember(int id, Member member)
+        public async Task<IActionResult> PutItemrequest(int id, Itemrequest itemrequest)
         {
-            if (id != member.IdMembers)
+            if (id != itemrequest.IdItemRequest)
             {
                 return BadRequest();
             }
 
-            _context.Entry(member).State = EntityState.Modified;
+            _context.Entry(itemrequest).State = EntityState.Modified;
 
             try
             {
@@ -64,7 +64,7 @@ namespace HonorSystem.ApiControllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MemberExists(id))
+                if (!ItemrequestExists(id))
                 {
                     return NotFound();
                 }
@@ -77,36 +77,36 @@ namespace HonorSystem.ApiControllers
             return NoContent();
         }
 
-        // POST: api/MembersApi
+        // POST: api/ItemRequestsApi
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Member>> PostMember(Member member)
+        public async Task<ActionResult<Itemrequest>> PostItemrequest(Itemrequest itemrequest)
         {
-            _context.Members.Add(member);
+            _context.Itemrequests.Add(itemrequest);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMember", new { id = member.IdMembers }, member);
+            return CreatedAtAction("GetItemrequest", new { id = itemrequest.IdItemRequest }, itemrequest);
         }
 
-        // DELETE: api/MembersApi/5
+        // DELETE: api/ItemRequestsApi/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMember(int id)
+        public async Task<IActionResult> DeleteItemrequest(int id)
         {
-            var member = await _context.Members.FindAsync(id);
-            if (member == null)
+            var itemrequest = await _context.Itemrequests.FindAsync(id);
+            if (itemrequest == null)
             {
                 return NotFound();
             }
 
-            _context.Members.Remove(member);
+            _context.Itemrequests.Remove(itemrequest);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool MemberExists(int id)
+        private bool ItemrequestExists(int id)
         {
-            return _context.Members.Any(e => e.IdMembers == id);
+            return _context.Itemrequests.Any(e => e.IdItemRequest == id);
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace HonorSystem.sakila;
 
 public partial class Leftiteminguildstorage
 {
+    [Key]
     public int Id { get; set; }
 
     public DateTime DropDate { get; set; }

@@ -14,16 +14,17 @@ namespace HonorSystem.ApiControllers
     [Route("api/[controller]")]
     public class HonorentryApiController : ControllerBase
     {
-        
-
         [HttpGet]
         [SwaggerOperation(Summary = "Gets all honor entries")]
         [SwaggerResponse(StatusCodes.Status200OK, "Returns all honor entries")]
-        public ActionResult<IEnumerable<Honorentry>> GetAll()
+        public ActionResult<IEnumerable<Honorentry>> GetAll([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             using (var context = new EvildogsContext())
             {
-                var honorEntries = context.Honorentries.ToList();
+                var honorEntries = context.Honorentries
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
                 return Ok(honorEntries);
             }
         }

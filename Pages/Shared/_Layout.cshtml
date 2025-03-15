@@ -19,37 +19,49 @@
 
 
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">HonorSystem</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+<body style="display:flex;">
+    <!--Main Navigation-->
+    <header style="margin-top:10vh;">
+        <!-- Sidebar -->
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" >
+            <div class="position-sticky">
+                <div class="list-group list-group-flush mx-3 mt-4">
+                    <a href="/Members" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                        <i class="fas fa-users fa-fw me-3"></i><span>Members</span>
+                    </a>
+                    <a href="/Items" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Items</span>
+                    </a>
+                    <a href="/ItemRequests" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-hand fa-fw me-3"></i><span>Item Requests</span>
+                    </a>
+                    <a href="/HonorEntry" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-calculator fa-fw me-3"></i><span>Honor Entries</span>
+                    </a>
+                    <a href="/HonorEntryTypes" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-calculator fa-fw me-3"></i><span>Honor Entry Types</span>
+                    </a>
+                    <a href="/LeftItemInGuildStorage" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-calculator fa-fw me-3"></i><span>Dropped Items</span>
+                    </a>
                 </div>
             </div>
         </nav>
+        <!-- Sidebar -->
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <!--Main Navigation-->
+    <!--Main layout-->
+    <main style="margin-top: 58px;">
+        <div class="container pt-4">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </main>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - HonorSystem - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2025 - HonorSystem - <a href="/swagger">Swagger</a>
         </div>
     </footer>
 
