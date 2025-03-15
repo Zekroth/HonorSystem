@@ -1,12 +1,16 @@
 using HonorSystem.sakila;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<EvildogsContext>();
+builder.Services.AddDbContext<EvildogsContext>(options =>
+{
+    options.UseMySQL(builder.Configuration.GetConnectionString(name: "ZeroDropDB"));
+});
 builder.Services.AddControllers(options =>
 {
     options.ModelMetadataDetailsProviders.Add(new SystemTextJsonValidationMetadataProvider());
