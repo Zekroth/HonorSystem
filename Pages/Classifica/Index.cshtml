@@ -1,0 +1,58 @@
+﻿@page
+@model HonorSystem.Pages.Classifica.IndexModel
+
+@{
+    ViewData["Title"] = "Classifica";
+}
+
+<h1>Classifica</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<div class="table-responsive">
+    <table id="tableClassifica" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Classificas[0].Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Classificas[0].TotalePunti)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Classificas)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalePunti)
+                    </td>
+                    <td>
+                        <a asp-page="Edit" asp-route-id="@item.Name">Edit</a> |
+                        <a asp-page="Details" asp-route-id="@item.Name">Details</a> |
+                        <a asp-page="Delete" asp-route-id="@item.Name">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+<script>
+    window.onload = function() {
+        $('#tableClassifica').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true
+        });
+    };
+</script>
