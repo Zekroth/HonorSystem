@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HonorSystem.sakila;
 
-namespace HonorSystem.Pages.LeftItemInGuildStorage
+namespace HonorSystem.Pages.Classifica
 {
     public class IndexModel : PageModel
     {
@@ -18,16 +18,13 @@ namespace HonorSystem.Pages.LeftItemInGuildStorage
             _context = context;
         }
 
-        public IList<Leftiteminguildstorage> Leftiteminguildstorage { get;set; } = default!;
+        public IList<HonorSystem.sakila.Classifica> Classificas { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Leftiteminguildstorages != null)
+            if (_context.Classificas != null)
             {
-                Leftiteminguildstorage = await _context.Leftiteminguildstorages
-                    .Include(l => l.IdHonorEntryNavigation)
-                    .Include(l => l.IdItemNavigation)
-                    .ToListAsync();
+                Classificas = await _context.Classificas.ToListAsync();
             }
         }
     }

@@ -13,7 +13,7 @@ public partial class Itemrequest
 
     public int PlayerId { get; set; }
 
-    public virtual Item Item { get; set; } = null!;
+    public virtual Item? Item { get; set; }
 
-    public virtual Member Player { get; set; } = null!;
+    public virtual Member? Player { get; set; }
 }

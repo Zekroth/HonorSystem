@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HonorSystem.sakila;
 
-namespace HonorSystem.Pages.LeftItemInGuildStorage
+namespace HonorSystem.Pages.Droppeditemsrequests
 {
     public class IndexModel : PageModel
     {
@@ -18,17 +18,15 @@ namespace HonorSystem.Pages.LeftItemInGuildStorage
             _context = context;
         }
 
-        public IList<Leftiteminguildstorage> Leftiteminguildstorage { get;set; } = default!;
+        public IList<Droppeditemsrequest> DIRequest { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Leftiteminguildstorages != null)
-            {
-                Leftiteminguildstorage = await _context.Leftiteminguildstorages
-                    .Include(l => l.IdHonorEntryNavigation)
-                    .Include(l => l.IdItemNavigation)
-                    .ToListAsync();
-            }
+            DIRequest = await _context.Droppeditemsrequests
+                .Include(d => d.IdLeftItemInGuildStorageNavigation)
+                .Include(d => d.IdMemberNavigation)
+                .Include(d => d.IdLeftItemInGuildStorageNavigation.IdItemNavigation)
+                .ToListAsync();
         }
     }
 }
