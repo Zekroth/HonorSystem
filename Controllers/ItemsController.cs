@@ -11,9 +11,9 @@ namespace HonorSystem.Controllers
 {
     public class ItemsController : Controller
     {
-        private readonly EvildogsContext _context;
+        private readonly ZerodropContext _context;
 
-        public ItemsController(EvildogsContext context)
+        public ItemsController(ZerodropContext context)
         {
             _context = context;
         }
@@ -21,8 +21,8 @@ namespace HonorSystem.Controllers
         // GET: Items
         public async Task<IActionResult> Index()
         {
-            var evildogsContext = _context.Items.Include(i => i.IdBossNavigation);
-            return View(await evildogsContext.ToListAsync());
+            var ZerodropContext = _context.Items.Include(i => i.IdBossNavigation);
+            return View(await ZerodropContext.ToListAsync());
         }
 
         // GET: Items/Details/5
@@ -64,7 +64,7 @@ namespace HonorSystem.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdBoss"] = new SelectList(_context.Bosses, "IdBoss", "IdBoss", item.IdBoss);
+            ViewData["IdBoss"] = new SelectList(_context.Bosses, "IdBoss", "BossName", item.IdBoss);
             return View(item);
         }
 
@@ -147,7 +147,7 @@ namespace HonorSystem.Controllers
         {
             if (_context.Items == null)
             {
-                return Problem("Entity set 'EvildogsContext.Items'  is null.");
+                return Problem("Entity set 'ZerodropContext.Items'  is null.");
             }
             var item = await _context.Items.FindAsync(id);
             if (item != null)

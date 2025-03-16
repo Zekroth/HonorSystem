@@ -12,9 +12,9 @@ namespace HonorSystem.Pages.HonorEntry
 {
     public class EditModel : PageModel
     {
-        private readonly HonorSystem.sakila.EvildogsContext _context;
+        private readonly HonorSystem.sakila.ZerodropContext _context;
 
-        public EditModel(HonorSystem.sakila.EvildogsContext context)
+        public EditModel(HonorSystem.sakila.ZerodropContext context)
         {
             _context = context;
         }

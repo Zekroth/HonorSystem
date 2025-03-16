@@ -13,12 +13,12 @@ namespace HonorSystem.Pages.HonorEntry
 {
     public class BulkInsertModel : PageModel
     {
-        private readonly EvildogsContext _context;
+        private readonly ZerodropContext _context;
 
         [BindProperty]
         public BulkInsertViewModel BulkInsertViewModel { get; set; } = new BulkInsertViewModel();
 
-        public BulkInsertModel(HonorSystem.sakila.EvildogsContext context)
+        public BulkInsertModel(HonorSystem.sakila.ZerodropContext context)
         {
             _context = context;
         }

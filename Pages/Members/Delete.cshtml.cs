@@ -11,9 +11,9 @@ namespace HonorSystem.Pages.Members
 {
     public class DeleteModel : PageModel
     {
-        private readonly HonorSystem.sakila.EvildogsContext _context;
+        private readonly HonorSystem.sakila.ZerodropContext _context;
 
-        public DeleteModel(HonorSystem.sakila.EvildogsContext context)
+        public DeleteModel(HonorSystem.sakila.ZerodropContext context)
         {
             _context = context;
         }

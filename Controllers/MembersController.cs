@@ -11,9 +11,9 @@ namespace HonorSystem.Controllers
 {
     public class MembersController : Controller
     {
-        private readonly EvildogsContext _context;
+        private readonly ZerodropContext _context;
 
-        public MembersController(EvildogsContext context)
+        public MembersController(ZerodropContext context)
         {
             _context = context;
         }
@@ -23,7 +23,7 @@ namespace HonorSystem.Controllers
         {
               return _context.Members != null ? 
                           View(await _context.Members.ToListAsync()) :
-                          Problem("Entity set 'EvildogsContext.Members'  is null.");
+                          Problem("Entity set 'ZerodropContext.Members'  is null.");
         }
 
         // GET: Members/Details/5
@@ -142,7 +142,7 @@ namespace HonorSystem.Controllers
         {
             if (_context.Members == null)
             {
-                return Problem("Entity set 'EvildogsContext.Members'  is null.");
+                return Problem("Entity set 'ZerodropContext.Members'  is null.");
             }
             var member = await _context.Members.FindAsync(id);
             if (member != null)

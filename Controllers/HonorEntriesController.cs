@@ -12,9 +12,9 @@ namespace HonorSystem.Controllers
 {
     public class HonorEntriesController : Controller
     {
-        private readonly EvildogsContext _context;
+        private readonly ZerodropContext _context;
 
-        public HonorEntriesController(EvildogsContext context)
+        public HonorEntriesController(ZerodropContext context)
         {
             _context = context;
         }
@@ -22,8 +22,8 @@ namespace HonorSystem.Controllers
         // GET: HonorEntries
         public async Task<IActionResult> Index()
         {
-            var evildogsContext = _context.Honorentries.Include(h => h.HonorEntryType).Include(h => h.Player);
-            return View(await evildogsContext.ToListAsync());
+            var ZerodropContext = _context.Honorentries.Include(h => h.HonorEntryType).Include(h => h.Player);
+            return View(await ZerodropContext.ToListAsync());
         }
 
         // GET: HonorEntries/Details/5
@@ -198,7 +198,7 @@ namespace HonorSystem.Controllers
         {
             if (_context.Honorentries == null)
             {
-                return Problem("Entity set 'EvildogsContext.Honorentries'  is null.");
+                return Problem("Entity set 'ZerodropContext.Honorentries'  is null.");
             }
             var honorentry = await _context.Honorentries.FindAsync(id);
             if (honorentry != null)

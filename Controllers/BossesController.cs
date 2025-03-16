@@ -11,9 +11,9 @@ namespace HonorSystem.Controllers
 {
     public class BossesController : Controller
     {
-        private readonly EvildogsContext _context;
+        private readonly ZerodropContext _context;
 
-        public BossesController(EvildogsContext context)
+        public BossesController(ZerodropContext context)
         {
             _context = context;
         }
@@ -23,7 +23,7 @@ namespace HonorSystem.Controllers
         {
               return _context.Bosses != null ? 
                           View(await _context.Bosses.ToListAsync()) :
-                          Problem("Entity set 'EvildogsContext.Bosses'  is null.");
+                          Problem("Entity set 'ZerodropContext.Bosses'  is null.");
         }
 
         // GET: Bosses/Details/5
@@ -142,7 +142,7 @@ namespace HonorSystem.Controllers
         {
             if (_context.Bosses == null)
             {
-                return Problem("Entity set 'EvildogsContext.Bosses'  is null.");
+                return Problem("Entity set 'ZerodropContext.Bosses'  is null.");
             }
             var boss = await _context.Bosses.FindAsync(id);
             if (boss != null)

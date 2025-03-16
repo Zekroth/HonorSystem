@@ -13,9 +13,9 @@ namespace HonorSystem.ApiControllers
     [ApiController]
     public class MembersApiController : ControllerBase
     {
-        private readonly EvildogsContext _context;
+        private readonly ZerodropContext _context;
 
-        public MembersApiController(EvildogsContext context)
+        public MembersApiController(ZerodropContext context)
         {
             _context = context;
         }

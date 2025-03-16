@@ -11,9 +11,9 @@ namespace HonorSystem.Controllers
 {
     public class ItemRequestsController : Controller
     {
-        private readonly EvildogsContext _context;
+        private readonly ZerodropContext _context;
 
-        public ItemRequestsController(EvildogsContext context)
+        public ItemRequestsController(ZerodropContext context)
         {
             _context = context;
         }
@@ -21,8 +21,8 @@ namespace HonorSystem.Controllers
         // GET: ItemRequests
         public async Task<IActionResult> Index()
         {
-            var evildogsContext = _context.Itemrequests.Include(i => i.Item).Include(i => i.Player);
-            return View(await evildogsContext.ToListAsync());
+            var ZerodropContext = _context.Itemrequests.Include(i => i.Item).Include(i => i.Player);
+            return View(await ZerodropContext.ToListAsync());
         }
 
         // GET: ItemRequests/Details/5
@@ -153,7 +153,7 @@ namespace HonorSystem.Controllers
         {
             if (_context.Itemrequests == null)
             {
-                return Problem("Entity set 'EvildogsContext.Itemrequests'  is null.");
+                return Problem("Entity set 'ZerodropContext.Itemrequests'  is null.");
             }
             var itemrequest = await _context.Itemrequests.FindAsync(id);
             if (itemrequest != null)

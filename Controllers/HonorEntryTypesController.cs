@@ -11,9 +11,9 @@ namespace HonorSystem.Controllers
 {
     public class HonorEntryTypesController : Controller
     {
-        private readonly EvildogsContext _context;
+        private readonly ZerodropContext _context;
 
-        public HonorEntryTypesController(EvildogsContext context)
+        public HonorEntryTypesController(ZerodropContext context)
         {
             _context = context;
         }
@@ -23,7 +23,7 @@ namespace HonorSystem.Controllers
         {
               return _context.Honorentrytypes != null ? 
                           View(await _context.Honorentrytypes.ToListAsync()) :
-                          Problem("Entity set 'EvildogsContext.Honorentrytypes'  is null.");
+                          Problem("Entity set 'ZerodropContext.Honorentrytypes'  is null.");
         }
 
         // GET: HonorEntryTypes/Details/5
@@ -142,7 +142,7 @@ namespace HonorSystem.Controllers
         {
             if (_context.Honorentrytypes == null)
             {
-                return Problem("Entity set 'EvildogsContext.Honorentrytypes'  is null.");
+                return Problem("Entity set 'ZerodropContext.Honorentrytypes'  is null.");
             }
             var honorentrytype = await _context.Honorentrytypes.FindAsync(id);
             if (honorentrytype != null)

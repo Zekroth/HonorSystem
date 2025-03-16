@@ -11,9 +11,9 @@ namespace HonorSystem.Pages.HonorEntryTypes
 {
     public class CreateModel : PageModel
     {
-        private readonly HonorSystem.sakila.EvildogsContext _context;
+        private readonly HonorSystem.sakila.ZerodropContext _context;
 
-        public CreateModel(HonorSystem.sakila.EvildogsContext context)
+        public CreateModel(HonorSystem.sakila.ZerodropContext context)
         {
             _context = context;
         }

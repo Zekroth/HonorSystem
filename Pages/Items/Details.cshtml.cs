@@ -11,9 +11,9 @@ namespace HonorSystem.Pages.Items
 {
     public class DetailsModel : PageModel
     {
-        private readonly HonorSystem.sakila.EvildogsContext _context;
+        private readonly HonorSystem.sakila.ZerodropContext _context;
 
-        public DetailsModel(HonorSystem.sakila.EvildogsContext context)
+        public DetailsModel(HonorSystem.sakila.ZerodropContext context)
         {
             _context = context;
         }

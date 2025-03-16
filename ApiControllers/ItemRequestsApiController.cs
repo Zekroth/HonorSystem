@@ -13,9 +13,9 @@ namespace HonorSystem.ApiControllers
     [ApiController]
     public class ItemRequestsApiController : ControllerBase
     {
-        private readonly EvildogsContext _context;
+        private readonly ZerodropContext _context;
 
-        public ItemRequestsApiController(EvildogsContext context)
+        public ItemRequestsApiController(ZerodropContext context)
         {
             _context = context;
         }

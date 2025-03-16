@@ -11,9 +11,9 @@ namespace HonorSystem.Controllers
 {
     public class LeftItemInGuildStorageController : Controller
     {
-        private readonly EvildogsContext _context;
+        private readonly ZerodropContext _context;
 
-        public LeftItemInGuildStorageController(EvildogsContext context)
+        public LeftItemInGuildStorageController(ZerodropContext context)
         {
             _context = context;
         }
@@ -21,8 +21,8 @@ namespace HonorSystem.Controllers
         // GET: LeftItemInGuildStorage
         public async Task<IActionResult> Index()
         {
-            var evildogsContext = _context.Leftiteminguildstorages.Include(l => l.IdHonorEntryNavigation).Include(l => l.IdItemNavigation);
-            return View(await evildogsContext.ToListAsync());
+            var ZerodropContext = _context.Leftiteminguildstorages.Include(l => l.IdHonorEntryNavigation).Include(l => l.IdItemNavigation);
+            return View(await ZerodropContext.ToListAsync());
         }
 
         // GET: LeftItemInGuildStorage/Details/5
@@ -153,7 +153,7 @@ namespace HonorSystem.Controllers
         {
             if (_context.Leftiteminguildstorages == null)
             {
-                return Problem("Entity set 'EvildogsContext.Leftiteminguildstorages'  is null.");
+                return Problem("Entity set 'ZerodropContext.Leftiteminguildstorages'  is null.");
             }
             var leftiteminguildstorage = await _context.Leftiteminguildstorages.FindAsync(id);
             if (leftiteminguildstorage != null)

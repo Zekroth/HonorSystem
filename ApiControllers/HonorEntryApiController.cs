@@ -19,7 +19,7 @@ namespace HonorSystem.ApiControllers
         [SwaggerResponse(StatusCodes.Status200OK, "Returns all honor entries")]
         public ActionResult<IEnumerable<Honorentry>> GetAll([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            using (var context = new EvildogsContext())
+            using (var context = new ZerodropContext())
             {
                 var honorEntries = context.Honorentries
                     .Skip((pageNumber - 1) * pageSize)
@@ -35,7 +35,7 @@ namespace HonorSystem.ApiControllers
         [SwaggerResponse(StatusCodes.Status404NotFound, "Honor entry not found")]
         public ActionResult<Honorentry> GetById(int id)
         {
-            using (var context = new EvildogsContext())
+            using (var context = new ZerodropContext())
             {
                 var honorEntry = context.Honorentries.Find(id);
                 if (honorEntry == null)
@@ -51,7 +51,7 @@ namespace HonorSystem.ApiControllers
         [SwaggerResponse(StatusCodes.Status201Created, "Honor entry created successfully")]
         public ActionResult<Honorentry> Create([FromBody] Honorentry honorEntry)
         {
-            using (var context = new EvildogsContext())
+            using (var context = new ZerodropContext())
             {
                 context.Honorentries.Add(honorEntry);
                 context.SaveChanges();
@@ -70,7 +70,7 @@ namespace HonorSystem.ApiControllers
                 return BadRequest();
             }
 
-            using (var context = new EvildogsContext())
+            using (var context = new ZerodropContext())
             {
                 var existingEntry = context.Honorentries.Find(id);
                 if (existingEntry == null)
@@ -90,7 +90,7 @@ namespace HonorSystem.ApiControllers
         [SwaggerResponse(StatusCodes.Status404NotFound, "Honor entry not found")]
         public IActionResult Delete(int id)
         {
-            using (var context = new EvildogsContext())
+            using (var context = new ZerodropContext())
             {
                 var honorEntry = context.Honorentries.Find(id);
                 if (honorEntry == null)

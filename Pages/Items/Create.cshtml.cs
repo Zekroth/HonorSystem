@@ -11,24 +11,22 @@ namespace HonorSystem.Pages.Items
 {
     public class CreateModel : PageModel
     {
-        private readonly HonorSystem.sakila.EvildogsContext _context;
+        private readonly HonorSystem.sakila.ZerodropContext _context;
 
-        public CreateModel(HonorSystem.sakila.EvildogsContext context)
+        public CreateModel(HonorSystem.sakila.ZerodropContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
-        ViewData["IdBoss"] = new SelectList(_context.Bosses, "IdBoss", "BossName");
+            ViewData["IdBoss"] = new SelectList(_context.Bosses, "IdBoss", "BossName");
             return Page();
         }
 
         [BindProperty]
         public Item Item { get; set; } = default!;
         
-
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid || _context.Items == null || Item == null)

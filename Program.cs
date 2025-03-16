@@ -9,7 +9,7 @@ builder.WebHost.UseUrls("http://localhost:5000"/*, "http://148.113.42.214:80"*/)
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<EvildogsContext>(options =>
+builder.Services.AddDbContext<ZerodropContext>(options =>
 {
     options.UseMySQL(builder.Configuration.GetConnectionString(name: "ZeroDropDB"));
 });
