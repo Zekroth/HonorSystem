@@ -15,26 +15,25 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Item.IdItem" />
             <div class="form-group">
-                <label asp-for="Item.ItemName" class="control-label"></label>
+                <label asp-for="Item.ItemName" class="control-label">Item</label>
                 <input asp-for="Item.ItemName" class="form-control" />
                 <span asp-validation-for="Item.ItemName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Item.IdBoss" class="control-label"></label>
+                <label asp-for="Item.IdBoss" class="control-label">Boss</label>
                 <select asp-for="Item.IdBoss" class="form-control" asp-items="ViewBag.IdBoss"></select>
                 <span asp-validation-for="Item.IdBoss" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Salva" class="btn btn-primary" />
+                <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

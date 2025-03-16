@@ -5,51 +5,92 @@
     ViewData["Title"] = "Index";
 }
 
+<script>
+    window.onload = function () {
+        $('#memberTable').DataTable({
+            "paging": true,  // Attiva la paginazione
+            "searching": true,  // Abilita la ricerca
+            "ordering": true,  // Abilita l'ordinamento
+            "pageLength": 25,  // Imposta il numero di righe per pagina (puoi cambiare questo valore)
+            "lengthMenu": [5, 10, 25, 50, 100],  // Opzioni per le righe per pagina (es. 5, 10, 25, 50, 100)
+            "pagingType": "full_numbers",  // Tipo di paginazione (numeri completi)
+            "language": {
+                "lengthMenu": "",
+                "info": "",
+                "search": "Cerca:"
+            }
+        });
+    };
+</script>
+
+
 <h1>Index</h1>
 
 <div class="form-group">
     <a asp-page="Create" class="btn btn-primary">Crea HonorEntryType</a>
 </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Honorentrytype[0].Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Honorentrytype[0].DefaultPoints)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Honorentrytype[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Honorentrytype[0].Expiration)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Honorentrytype) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DefaultPoints)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-                @Html.DisplayFor(modelItem => item.Expiration)
-        </td>
-        <td>
-            <a asp-page="./Edit" asp-route-id="@item.IdHonorEntryType">Edit</a> |
-            <a asp-page="./Details" asp-route-id="@item.IdHonorEntryType">Details</a> |
-            <a asp-page="./Delete" asp-route-id="@item.IdHonorEntryType">Delete</a>
-        </td>
-    </tr>
-}
-    </tbody>
-</table>
+<div class="table-responsive">
+    <table id="honorEntryTable" class="display table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Honorentrytype[0].Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Honorentrytype[0].DefaultPoints)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Honorentrytype[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Honorentrytype[0].Expiration)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Honorentrytype)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DefaultPoints)
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                    <td>
+                        @item.Expiration
+                    </td>
+                    <td style="width: auto;">
+                        <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.IdHonorEntryType"
+                            data-bs-toggle="tooltip" title="Modifica"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-page="./Details" class="btn btn-secondary" asp-route-id="@item.IdHonorEntryType"
+                            data-bs-toggle="tooltip" title="Dettagli"><i class="bi bi-eye"></i></a>
+                        <a asp-page="./Delete" class="btn btn-danger" asp-route-id="@item.IdHonorEntryType"
+                            data-bs-toggle="tooltip" title="Elimina"><i class="bi bi-trash-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+<script>
+    window.onload = function () {
+        $('#itemTable').DataTable({
+            "paging": true,  // Attiva la paginazione
+            "searching": true,  // Abilita la ricerca
+            "ordering": true,  // Abilita l'ordinamento
+            "pageLength": 25,  // Imposta il numero di righe per pagina (puoi cambiare questo valore)
+            "lengthMenu": [5, 10, 25, 50, 100],  // Opzioni per le righe per pagina (es. 5, 10, 25, 50, 100)
+            "pagingType": "full_numbers",  // Tipo di paginazione (numeri completi)
+            "language": {
+                "lengthMenu": "",
+                "info": "",
+                "search": "Cerca:"
+            }
+        });
+    };
+</script>

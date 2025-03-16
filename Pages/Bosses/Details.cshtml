@@ -5,39 +5,26 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Dettagli Boss</h1>
 
 <div>
-    <h4>Boss</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Boss.BossName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Boss.BossName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Boss.IsField)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Boss.IsField)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Boss.IsArch)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Boss.IsArch)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Boss.IsGuild)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Boss.IsGuild)
-        </dd>
-    </dl>
+    <dt class="col-md-4 fw-bold">Boss</dt>
+    <dd class="col-md-8">@Html.DisplayFor(model => model.Boss.BossName)</dd>
+
+    <dt class="col-md-4 fw-bold">Field Boss</dt>
+    <dd class="col-md-8">@(Model.Boss.IsField == 1 ? "Sì" : "No")</dd>
+
+    <dt class="col-md-4 fw-bold">Arch Boss</dt>
+    <dd class="col-md-8">@(Model.Boss.IsArch == 1 ? "Sì" : "No")</dd>
+
+    <dt class="col-md-4 fw-bold">Guild Boss</dt>
+    <dd class="col-md-8">@(Model.Boss.IsGuild == 1 ? "Sì" : "No")</dd>
+</dl>
+
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Boss?.IdBoss">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@Model.Boss?.IdBoss">Salva</a>
+    <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left-circle"></i></a>
 </div>

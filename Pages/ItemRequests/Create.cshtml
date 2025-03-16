@@ -14,7 +14,7 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Itemrequest.IsSupplied" class="control-label"></label>
+                <label asp-for="Itemrequest.IsSupplied" class="control-label">Disponibile</label>
                 <input asp-for="Itemrequest.IsSupplied" class="form-control" />
                 <span asp-validation-for="Itemrequest.IsSupplied" class="text-danger"></span>
             </div>
@@ -27,8 +27,8 @@
                 <select asp-for="Itemrequest.PlayerId" class="form-control" asp-items="ViewBag.PlayerId"></select>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-page="Index" class="btn btn-danger">Torna alla Lista</a>
+                <input type="submit" value="Salva" class="btn btn-primary" />
+                <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
             </div>
         </form>
     </div>

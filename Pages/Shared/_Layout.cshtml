@@ -15,6 +15,59 @@
     <!-- Load CSS for DataTables -->
     <link rel="stylesheet" href="~/css/dataTables.min.css" />
 
+    <!-- Icone bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <!-- Tooltips -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        });
+    </script>
+
+    <!-- Gestione light/dark mode -->
+    <script>
+        if (localStorage.getItem("darkMode") === "enabled") {
+            document.documentElement.classList.add("dark-mode");
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleButton = document.getElementById("darkModeToggle");
+            const body = document.documentElement;
+            const sidebar = document.getElementById("sidebarMenu");
+
+            // Controlla se l'utente ha già una preferenza salvata
+            if (localStorage.getItem("darkMode") === "enabled") {
+                body.classList.add("dark-mode");
+                sidebar.classList.remove("bg-white");
+                sidebar.classList.add("bg-dark");
+                toggleButton.textContent = "☀️";
+            }
+
+            toggleButton.addEventListener("click", function () {
+                body.classList.toggle("dark-mode");
+
+                if (body.classList.contains("dark-mode")) {
+                    localStorage.setItem("darkMode", "enabled");
+                    sidebar.classList.remove("bg-white");
+                    sidebar.classList.add("bg-dark");
+                    toggleButton.textContent = "☀️";
+                } else {
+                    localStorage.setItem("darkMode", "disabled");
+                    sidebar.classList.remove("bg-dark");
+                    sidebar.classList.add("bg-white");
+                    toggleButton.textContent = "🌙";
+                }
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/dataTables.min.js"></script>
@@ -22,28 +75,37 @@
 </head>
 
 <body style="display:flex;">
+
     <!--Main Navigation-->
     <header style="margin-top:10vh;">
+
         <!-- Sidebar -->
-        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse" style="margin: 10px; border-radius: 10px;">
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse custom-shadow"
+            style="margin: 10px; border-radius: 10px;">
+
             <div class="position-sticky" style="margin: 10px;">
+
+                <div class="d-flex justify-content-center">
+                    <button id="darkModeToggle" style="margin-top: 5px;" class="btn btn-dark">🌙
+                    </button>
+                </div>
+
                 <div class="list-group list-group-flush mx-3 mt-4">
-                    <button id="darkModeToggle" style="margin-bottom: 10px; margin-top: 10px;" class="btn btn-dark">🌙 Dark Mode</button>
-                    <a href="/Members" style="margin-bottom: 10px;"
+                    <a href="/Members" style="margin-bottom: 10px; border-radius: 10px;"
                         class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-                        <i class="fas fa-users fa-fw me-3"></i><span>Members</span>
+                        <i class="fas fa-users fa-fw me-3"></i><span>Membri</span>
                     </a>
                     <a href="/Items" style="margin-bottom: 10px;"
                         class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Items</span>
+                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Item</span>
                     </a>
                     <a href="/Bosses" style="margin-bottom: 10px;"
                         class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Bosses</span>
+                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Boss</span>
                     </a>
                     <a href="/ItemRequests" style="margin-bottom: 10px;"
                         class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-hand fa-fw me-3"></i><span>Item Requests</span>
+                        <i class="fas fa-hand fa-fw me-3"></i><span>Richieste Item</span>
                     </a>
                     <a href="/HonorEntry" style="margin-bottom: 10px;"
                         class="list-group-item list-group-item-action py-2 ripple">
@@ -53,10 +115,11 @@
                         class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fas fa-calculator fa-fw me-3"></i><span>Honor Entry Types</span>
                     </a>
-                    <a href="/LeftItemInGuildStorage" style="margin-bottom: 10px; border-radius: 10px;"
+                    <a href="/LeftItemInGuildStorage" style="margin-bottom: 10px;"
                         class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-calculator fa-fw me-3"></i><span>Dropped Items</span>
+                        <i class="fas fa-calculator fa-fw me-3"></i><span>Item Droppati</span>
                     </a>
+                    <a href=""></a>
                 </div>
             </div>
         </nav>
@@ -71,44 +134,15 @@
                 @RenderBody()
             </main>
         </div>
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2025 - HonorSystem - <a href="/swagger">Swagger</a>
-            </div>
-        </footer>
+
     </main>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - HonorSystem - <a href="/swagger">Swagger</a>
+        </div>
+    </footer>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-<script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const toggleButton = document.getElementById("darkModeToggle");
-            const body = document.body;
-            const sidebar = document.getElementById("sidebarMenu");
 
-            // Controlla se l'utente ha già una preferenza salvata
-            if (localStorage.getItem("darkMode") === "enabled") {
-                body.classList.add("dark-mode");
-                sidebar.classList.remove("bg-white"); // Rimuove il bianco
-                sidebar.classList.add("bg-dark"); // Aggiunge sfondo scuro
-                toggleButton.textContent = "☀️ Modalità Giorno";
-            }
-
-            toggleButton.addEventListener("click", function () {
-                body.classList.toggle("dark-mode");
-
-                if (body.classList.contains("dark-mode")) {
-                    localStorage.setItem("darkMode", "enabled");
-                    sidebar.classList.remove("bg-white");
-                    sidebar.classList.add("bg-dark");
-                    toggleButton.textContent = "☀️ Modalità Giorno";
-                } else {
-                    localStorage.setItem("darkMode", "disabled");
-                    sidebar.classList.remove("bg-dark");
-                    sidebar.classList.add("bg-white");
-                    toggleButton.textContent = "🌙 Modalità Notte";
-                }
-            });
-        });
-    </script>
 </html>
