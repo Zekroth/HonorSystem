@@ -1,0 +1,69 @@
+﻿@page
+@model HonorSystem.Pages.Droppeditemsrequests.IndexModel
+
+@{
+    ViewData["Title"] = "Dropped Items Requests";
+}
+
+<h1>Dropped Items Requests</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="table-responsive">
+    <table id="droppedItemsTable" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DIRequest[0].IdMemberNavigation.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DIRequest[0].RequestDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DIRequest[0].IdLeftItemInGuildStorageNavigation.IdItemNavigation.ItemName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DIRequest[0].Reason)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.DIRequest)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdMemberNavigation.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RequestDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdLeftItemInGuildStorageNavigation.IdItemNavigation.ItemName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Reason)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.IdDroppedItemsRequests">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.IdDroppedItemsRequests">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.IdDroppedItemsRequests">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+    window.onload = function() {
+        $('#droppedItemsTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true
+        });
+    };
+</script>
