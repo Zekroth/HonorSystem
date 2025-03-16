@@ -13,7 +13,7 @@ public partial class Leftiteminguildstorage
 
     public int IdItem { get; set; }
 
-    public int IdHonorEntry { get; set; }
+    public int? IdHonorEntry { get; set; }
 
     public DateTime? DistributedDate { get; set; }
 
