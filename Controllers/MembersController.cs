@@ -21,8 +21,11 @@ namespace HonorSystem.Controllers
         // GET: Members
         public async Task<IActionResult> Index()
         {
-              return _context.Members != null ? 
-                          View(await _context.Members.ToListAsync()) :
+            var members = _context.Members
+                .Where(x => x.IsStillInGuild == 1);
+            return members != null ? 
+                          View(await _context.Members
+                            .ToListAsync()) :
                           Problem("Entity set 'ZerodropContext.Members'  is null.");
         }
 
