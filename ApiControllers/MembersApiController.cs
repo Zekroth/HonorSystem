@@ -115,8 +115,13 @@ namespace HonorSystem.ApiControllers
             {
                 if (e.Count() == 1)
                 {
-                    if (e.First() != member)
-                        _context.Entry(member);
+                    if (e.First().CharacterName != member.CharacterName || e.First().SecondaryCharacterName != member.SecondaryCharacterName)
+                    {
+                        e.First().CharacterName = member.CharacterName;
+                        e.First().SecondaryCharacterName = member.SecondaryCharacterName ?? e.First().SecondaryCharacterName;
+
+                        _context.Entry(e.First()).State = EntityState.Modified;
+                    }
                     else
                         return StatusCode(304);
                 }
