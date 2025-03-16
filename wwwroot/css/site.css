@@ -20,3 +20,174 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+:root {
+  --bg-color: white;
+  --text-color: black;
+}
+
+.dark-mode {
+  --bg-color: #121212;
+  --text-color: white;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Cambia sfondo e testo della tabella */
+.dark-mode .table {
+  background-color: #1e1e1e !important; 
+  color: white !important;
+}
+
+/* Intestazioni della tabella */
+.dark-mode .table thead {
+  background-color: #292929 !important;
+  color: white !important;
+}
+
+/* Celle della tabella */
+.dark-mode .table th, 
+.dark-mode .table td {
+  border-color: #444 !important;
+  color: white !important;
+}
+
+/* Corregge le tabelle striped */
+.dark-mode .table-striped tbody tr:nth-of-type(odd) {
+  background-color: #252525 !important;
+}
+
+/* Effetto hover sulla riga */
+.dark-mode .table-hover tbody tr:hover {
+  background-color: #333 !important;
+}
+
+/* Corregge il contrasto delle tabelle con bordi */
+.dark-mode .table-bordered {
+  border: 1px solid #444 !important;
+}
+
+/* Rimuove il colore di sfondo bianco dei bordi interni */
+.dark-mode .table-bordered th, 
+.dark-mode .table-bordered td {
+  border: 1px solid #555 !important;
+}
+/* Forza lo sfondo e il colore del testo */
+.dark-mode .table {
+  background-color: #1e1e1e !important; 
+  color: white !important;
+}
+
+.dark-mode .table th, 
+.dark-mode .table td {
+  background-color: #1e1e1e !important; /* Sfondo scuro */
+  color: white !important; /* Testo bianco */
+  border-color: #444 !important;
+}
+
+/* Intestazioni della tabella */
+.dark-mode .table thead th {
+  background-color: #292929 !important;
+  color: white !important;
+}
+
+/* Riga alternata per .table-striped */
+.dark-mode .table-striped tbody tr:nth-of-type(odd) td {
+  background-color: #252525 !important;
+}
+
+/* Effetto hover */
+.dark-mode .table-hover tbody tr:hover td {
+  background-color: #555 !important;
+}
+
+.dark-mode #sidebarMenu {
+  background-color: #1e1e1e !important; /* Sfondo scuro */
+  color: white !important; /* Testo bianco */
+}
+
+.dark-mode #sidebarMenu a {
+  color: white !important; /* Link in bianco */
+}
+
+.dark-mode #sidebarMenu a:hover {
+  background-color: #292929 !important; /* Hover più scuro */
+}
+
+/* Cambia sfondo della sidebar in modalità notte */
+.dark-mode #sidebarMenu {
+  background-color: #1e1e1e !important;
+  color: white !important;
+}
+
+/* Colore dei link nella sidebar */
+.dark-mode #sidebarMenu a {
+  color: white !important;
+}
+
+/* Hover sui link */
+.dark-mode #sidebarMenu a:hover {
+  background-color: #292929 !important;
+}
+
+/* In modalità notte, cambiamo lo stile per i link nella sidebar */
+.dark-mode .list-group-item {
+  color: #ddd !important; /* Colore del testo del link */
+  background-color: #333 !important; /* Colore di sfondo del link */
+}
+
+/* Effetto hover per i link nella sidebar in modalità notte */
+.dark-mode .list-group-item:hover {
+  background-color: #444 !important; /* Colore di sfondo quando si passa sopra il link */
+  color: #fff !important; /* Colore del testo al passaggio del mouse */
+}
+
+/* Cambiamo anche il colore dei link nel footer, se necessario */
+.dark-mode .footer a {
+  color: #ddd !important; /* Colore dei link nel footer */
+}
+
+/* Cambiamo anche il colore dei link nel footer al passaggio del mouse */
+.dark-mode .footer a:hover {
+  color: #fff !important; /* Colore dei link nel footer quando si passa sopra */
+}
+
+/* Modifica del colore di tutti gli altri link nel body */
+.dark-mode a {
+  color: #ddd !important; /* Colore per tutti i link */
+}
+
+/* Colore dei link al passaggio del mouse in modalità notte */
+.dark-mode a:hover {
+  color: #fff !important; /* Colore dei link al passaggio del mouse */
+}
+
+/* Link generici (a href) con border-radius */
+a,
+.btn {
+    border-radius: 10px; /* Impostiamo il border-radius a 10px */
+}
+
+/* Hover degli <a> */
+a:hover,
+.btn:hover {
+    background-color: #555; /* Modifica il colore di sfondo al passaggio del mouse */
+    color: #fff;
+}
+
+/* Per i bottoni di Bootstrap */
+.btn {
+    background-color: #444; /* Impostiamo il colore di sfondo per i bottoni */
+    border-color: #444; /* Cambiamo il colore del bordo */
+    color: #ddd; /* Colore del testo del bottone */
+}
+
+/* Hover sui bottoni */
+.btn:hover {
+    background-color: #555; /* Colore di sfondo dei bottoni al passaggio del mouse */
+    border-color: #555; /* Colore del bordo al passaggio del mouse */
+}
