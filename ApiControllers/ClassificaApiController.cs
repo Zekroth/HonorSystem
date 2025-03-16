@@ -23,8 +23,7 @@ namespace HonorSystem.ApiControllers
 
         // GET: api/DroppedItemsApi
         [HttpGet]
-        [Route("DroppedItemsApi")]
-        public async Task<ActionResult<IEnumerable<Classifica>>> DroppedItemsApi([FromQuery] int pageNumber = 0, [FromQuery] int pageSize = 0)
+        public async Task<ActionResult<IEnumerable<Classifica>>> GetClassifica([FromQuery] int pageNumber = 0, [FromQuery] int pageSize = 0)
         {
             var items =
                 from Classifica in _context.Classificas

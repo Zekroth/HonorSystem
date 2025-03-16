@@ -120,13 +120,17 @@ namespace HonorSystem.ApiControllers
                     else
                         return StatusCode(304);
                 }
+                else
+                {
+                    _context.Members.Add(member);
+                }
             }
-            else
-            {
-                _context.Members.Add(member);
+            else {
+                return BadRequest();
             }
 
-            await _context.SaveChangesAsync();
+
+                await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetMember", new { id = member.IdMembers }, member);
         }
