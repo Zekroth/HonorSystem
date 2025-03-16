@@ -45,7 +45,7 @@ namespace HonorSystem.ApiControllers
         // GET: api/AvailableDroppedItemsApi
         [HttpGet]
         [Route("AvailableDroppedItems")]
-        public async Task<ActionResult<IEnumerable<Leftiteminguildstorage>>> AvailableDroppedItems([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Leftiteminguildstorage>>> AvailableDroppedItems([FromQuery] int pageNumber = 0, [FromQuery] int pageSize = 0)
         {
             List<Leftiteminguildstorage> items;
 
