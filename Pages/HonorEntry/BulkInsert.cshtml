@@ -15,38 +15,37 @@
     <div class="col-auto">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="BulkInsertViewModel.AssignedPoints" class="control-label"></label>
                 <input asp-for="BulkInsertViewModel.AssignedPoints" class="form-control" />
                 <span asp-validation-for="BulkInsertViewModel.AssignedPoints" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="BulkInsertViewModel.Description" class="control-label"></label>
                 <input asp-for="BulkInsertViewModel.Description" class="form-control" />
                 <span asp-validation-for="BulkInsertViewModel.Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="BulkInsertViewModel.ExpirationDate" class="control-label"></label>
                 <input asp-for="BulkInsertViewModel.ExpirationDate" class="form-control" />
                 <span asp-validation-for="BulkInsertViewModel.ExpirationDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="BulkInsertViewModel.HonorEntryTypeId" class="control-label"></label>
-                <select asp-for="BulkInsertViewModel.HonorEntryTypeId" class="form-control" asp-items="ViewBag.HonorEntryTypeId" onchange="onChange()"></select>
+                <select asp-for="BulkInsertViewModel.HonorEntryTypeId" class="form-control"
+                    asp-items="ViewBag.HonorEntryTypeId" onchange="onChange()"></select>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="BulkInsertViewModel.PlayerId" class="control-label"></label>
-                <select asp-for="BulkInsertViewModel.PlayerId" class="form-control" asp-items="ViewBag.PlayerId"></select>
+                <select asp-for="BulkInsertViewModel.PlayerId" class="form-control"
+                    asp-items="ViewBag.PlayerId"></select>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 10px;">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-page="Index" class="btn btn-danger">Torna alla Lista</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 <script>
@@ -64,7 +63,7 @@
             console.log("HonorEntryType " + document.getElementById("BulkInsertViewModel_HonorEntryTypeId").value + " is undefined");
             return;
         }
-    
+
         document.getElementById("BulkInsertViewModel_AssignedPoints").value = selectedHonorList.DefaultPoints;
         document.getElementById("BulkInsertViewModel_Description").value = selectedHonorList.Description;
 
@@ -98,5 +97,5 @@
 
     }
 
-    
+
 }

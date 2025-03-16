@@ -13,37 +13,36 @@
     <div class="col-auto">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="Boss.BossName" class="control-label"></label>
                 <input asp-for="Boss.BossName" class="form-control" />
                 <span asp-validation-for="Boss.BossName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="Boss.IsField" class="control-label"></label>
                 <input asp-for="Boss.IsField" class="form-control" />
                 <span asp-validation-for="Boss.IsField" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="Boss.IsArch" class="control-label"></label>
                 <input asp-for="Boss.IsArch" class="form-control" />
                 <span asp-validation-for="Boss.IsArch" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="Boss.IsGuild" class="control-label"></label>
                 <input asp-for="Boss.IsGuild" class="form-control" />
                 <span asp-validation-for="Boss.IsGuild" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-bottom: 10px;">
                 <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-page="Index" class="btn btn-danger">Torna alla Lista</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
