@@ -22,13 +22,20 @@ namespace HonorSystem.ApiControllers
 
         // GET: api/DroppedItemsApi
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Leftiteminguildstorage>>> GetLeftiteminguildstorages([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Leftiteminguildstorage>>> GetLeftiteminguildstorages([FromQuery] int pageNumber = 0, [FromQuery] int pageSize = 0)
         {
-            var items = await _context.Leftiteminguildstorages
+            var items = new List<Leftiteminguildstorage>();
+            if (pageNumber == 0 && pageSize == 0)
+            {
+                items = await _context.Leftiteminguildstorages
+                .ToListAsync();
+            } else
+            {
+                items = await _context.Leftiteminguildstorages
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
-
+            }
             return Ok(items);
         }
         // GET: api/GetAllDroppedItems
@@ -53,6 +60,7 @@ namespace HonorSystem.ApiControllers
             {
                 items = await _context.Leftiteminguildstorages
                     .Where(_context => _context.DistributedDate == null)
+                    .DefaultIfEmpty()
                     .ToListAsync();
             } else
             {

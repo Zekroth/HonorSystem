@@ -25,8 +25,9 @@ namespace HonorSystem.Pages.LeftItemInGuildStorage
             if (_context.Leftiteminguildstorages != null)
             {
                 Leftiteminguildstorage = await _context.Leftiteminguildstorages
-                .Include(l => l.IdHonorEntryNavigation)
-                .Include(l => l.IdItemNavigation).ToListAsync();
+                    .Include(l => l.IdHonorEntryNavigation)
+                    .Include(l => l.IdItemNavigation)
+                    .ToListAsync();
             }
         }
     }
