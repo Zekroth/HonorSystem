@@ -13,13 +13,15 @@ public partial class Leftiteminguildstorage
 
     public int IdItem { get; set; }
 
-    public int? IdHonorEntry { get; set; }
+    public int IdHonorEntry { get; set; }
 
     public DateTime? DistributedDate { get; set; }
 
     public int? DistributedTo { get; set; }
 
     public virtual Member? DistributedToNavigation { get; set; }
+
+    public virtual ICollection<Droppeditemsrequest> Droppeditemsrequests { get; set; } = new List<Droppeditemsrequest>();
 
     public virtual Honorentry? IdHonorEntryNavigation { get; set; }
 

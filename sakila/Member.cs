@@ -19,6 +19,8 @@ public partial class Member
 
     public sbyte IsStillInGuild { get; set; }
 
+    public virtual ICollection<Droppeditemsrequest> Droppeditemsrequests { get; set; } = new List<Droppeditemsrequest>();
+
     public virtual ICollection<Honorentry> Honorentries { get; set; } = new List<Honorentry>();
 
     public virtual ICollection<Itemrequest> Itemrequests { get; set; } = new List<Itemrequest>();
