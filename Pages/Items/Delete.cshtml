@@ -25,10 +25,10 @@
             @Html.DisplayFor(model => model.Item.IdBossNavigation.IdBoss)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Item.IdItem" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input type="submit" value="Elimina" class="btn btn-danger" />
+        <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
     </form>
 </div>

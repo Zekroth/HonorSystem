@@ -6,26 +6,24 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Crea un Honorentry</h1>
 
-<h4>Honorentry</h4>
-<hr />
 <div class="row">
     <div class="col-auto">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="Honorentry.AssignedPoints" class="control-label"></label>
+                <label asp-for="Honorentry.AssignedPoints" class="control-label">Punti Assegnati</label>
                 <input asp-for="Honorentry.AssignedPoints" class="form-control" />
                 <span asp-validation-for="Honorentry.AssignedPoints" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="Honorentry.Description" class="control-label"></label>
+                <label asp-for="Honorentry.Description" class="control-label">Descrizione</label>
                 <input asp-for="Honorentry.Description" class="form-control" />
                 <span asp-validation-for="Honorentry.Description" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="Honorentry.ExpirationDate" class="control-label"></label>
+                <label asp-for="Honorentry.ExpirationDate" class="control-label">Data di Scadenza</label>
                 <input asp-for="Honorentry.ExpirationDate" class="form-control"/>
                 <span asp-validation-for="Honorentry.ExpirationDate" class="text-danger"></span>
             </div>
@@ -34,27 +32,18 @@
                 <select asp-for="Honorentry.HonorEntryTypeId" class ="form-control" asp-items="ViewBag.HonorEntryTypeId" onchange="onChange()"></select>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="Honorentry.PlayerId" class="control-label"></label>
+                <label asp-for="Honorentry.PlayerId" class="control-label">Player</label>
                 <select asp-for="Honorentry.PlayerId" class ="form-control" asp-items="ViewBag.PlayerId"></select>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a asp-page="Index" class="btn btn-danger">Torna alla Lista</a>
+                <input type="submit" value="Salva" class="btn btn-primary" />
+                <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
             </div>
         </form>
     </div>
 </div>
 
-
-@* <div class="form-group" style="margin-top: 10px;">
-<a asp-page="Index" class="btn btn-danger">Torna alla Lista</a>
-</div> *@
-
 <script>
-    // Honorentry_AssignedPoints
-    // Honorentry_Description
-    // Honorentry_ExpirationDate
-    // 
     var honorEntryTypeList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.HonorEntryTypes)) || [];
 
     function onChange() {

@@ -15,36 +15,44 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Boss.IdBoss" />
             <div class="form-group">
-                <label asp-for="Boss.BossName" class="control-label"></label>
+                <label asp-for="Boss.BossName" class="control-label">Nome Boss</label>
                 <input asp-for="Boss.BossName" class="form-control" />
                 <span asp-validation-for="Boss.BossName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Boss.IsField" class="control-label"></label>
-                <input asp-for="Boss.IsField" class="form-control" />
+                <label asp-for="Boss.IsField" class="control-label">Field Boss</label>
+                <select asp-for="Boss.IsField" class="form-control">
+                    <option value="1">Sì</option>
+                    <option value="0">No</option>
+                </select>
                 <span asp-validation-for="Boss.IsField" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Boss.IsArch" class="control-label"></label>
-                <input asp-for="Boss.IsArch" class="form-control" />
+                <label asp-for="Boss.IsArch" class="control-label">Arch Boss</label>
+                <select asp-for="Boss.IsArch" class="form-control">
+                    <option value="1">Sì</option>
+                    <option value="0">No</option>
+                </select>
                 <span asp-validation-for="Boss.IsArch" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Boss.IsGuild" class="control-label"></label>
-                <input asp-for="Boss.IsGuild" class="form-control" />
+                <label asp-for="Boss.IsGuild" class="control-label">Guild Boss</label>
+                <select asp-for="Boss.IsGuild" class="form-control">
+                    <option value="1">Sì</option>
+                    <option value="0">No</option>
+                </select>
                 <span asp-validation-for="Boss.IsGuild" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Salva" class="btn btn-primary" />
+                <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left-circle"></i></a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

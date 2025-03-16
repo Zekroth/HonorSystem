@@ -7,7 +7,7 @@
 
 <h1>Edit</h1>
 
-<h4>Honorentrytype</h4>
+<h4>Honorentry type</h4>
 <hr />
 <div class="row">
     <div class="col-auto">
@@ -35,14 +35,11 @@
                 <span asp-validation-for="Honorentrytype.Expiration" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" class="btn btn-primary" value="Salva" class="btn btn-primary" />
+                <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="./Index">Back to List</a>
 </div>
 
 @section Scripts {

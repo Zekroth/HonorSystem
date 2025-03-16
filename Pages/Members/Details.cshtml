@@ -49,7 +49,8 @@
         </dd>
     </dl>
 </div>
+
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Member?.IdMembers">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@Model.Member?.IdMembers">Salva</a> 
+    <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
 </div>

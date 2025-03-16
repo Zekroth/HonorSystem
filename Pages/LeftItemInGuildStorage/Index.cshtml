@@ -11,26 +11,29 @@
     <a asp-page="Create" class="btn btn-primary">Crea Item</a>
 </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].DropDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].CurrentPriceInLucent)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].IdHonorEntryNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].IdItemNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
+<div class="table-responsive">
+    <table id="leftItemInGuildStorageTable" class="display table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].DropDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].CurrentPriceInLucent)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].IdHonorEntryNavigation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].IdItemNavigation)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
     <tbody>
-@foreach (var item in Model.Leftiteminguildstorage) {
+    @foreach (var item in Model.Leftiteminguildstorage)
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.DropDate)
@@ -42,14 +45,17 @@
                 @Html.DisplayFor(modelItem => item.IdHonorEntryNavigation.IdHonorEntry)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdItemNavigation.ItemName)
+                @Html.DisplayFor(modelItem => item.IdItemNavigation.IdItem)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.Id" data-bs-toggle="tooltip"
+                    title="Modifica"><i class="bi bi-pencil-square"></i></a>
+                <a asp-page="./Details" class="btn btn-secondary" asp-route-id="@item.Id" data-bs-toggle="tooltip"
+                    title="Dettagli"><i class="bi bi-eye"></i></a>
+                <a asp-page="./Delete" class="btn btn-danger" asp-route-id="@item.Id" data-bs-toggle="tooltip"
+                    title="Elimina"><i class="bi bi-trash-fill"></i></a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

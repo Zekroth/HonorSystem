@@ -8,9 +8,11 @@
 <h1>Delete</h1>
 
 <h3>Are you sure you want to delete this?</h3>
+
 <div>
     <h4>Member</h4>
     <hr />
+
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Member.Name)
@@ -49,10 +51,10 @@
             @Html.DisplayFor(model => model.Member.IsStillInGuild)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Member.IdMembers" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
     </form>
 </div>
