@@ -5,7 +5,30 @@
     ViewData["Title"] = "Members";
 }
 
-<h1>Membri</h1>
+<script>
+    var deleteModal = document.getElementById('deleteModal');
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Bottone che ha aperto il modale
+        var memberId = button.getAttribute('data-id');
+        var memberName = button.getAttribute('data-name');
+
+        // Aggiorna il modale con i dati corretti
+        document.getElementById("deleteMemberId").value = memberId;
+        document.getElementById("memberName").textContent = memberName;
+    });
+</script>
+
+<script>
+    window.onload = function () {
+        $('#memberTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true
+        });
+    };
+</script>
+
+<h1>Membri di Gilda</h1>
 
 <div class="form-group">
     <a asp-page="Create" class="btn btn-primary">Crea Membro</a>
@@ -15,45 +38,45 @@
     <table id="memberTable" class="display table table-striped table-bordered">
         <thead>
             <tr>
-                <th style="text-align: center;">
-                    ID
-                </th>
-                <th>
-                    Nome Giocatore
-                </th>
-                <th>
-                    Nome Personaggio Prima Gilda
-                </th>
-                <th>
-                    Nome Personaggio Seconda Gilda
-                </th>
-                <th>
-                    Data ingresso gilda
-                </th>
-                <th>
-                    È attivo
-                </th>
-                <th>
-                    È ancora in gilda
-                </th>
-                <th></th>
+                <th>#</th>
+                <th>Nome Giocatore</th>
+                <th>ID Discord 1° Account</th>
+                <th>ID Discord 2° Account</th>
+                <th>Data ingresso gilda</th>
+                <th>Attivo</th>
+                <th>In gilda</th>
+                <th>Admin</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.Member)
             {
+                int counter = Model.Member.IndexOf(item) + 1;
                 <tr>
-                    <td style="text-align: center;">
-                        @item.IdMembers
+                    <td style="text-align: center;">@counter</td>
+                    <td style="text-align: center;">@item.Name</td>
+                    <td style="width: auto; font-size: smaller; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">@item.CharacterName</td>
+                    <td style="width: auto; font-size: smaller; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">@item.SecondaryCharacterName</td>
+                    <td style="text-align: center;">@item.JoinDate?.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        @if (item.IsActive == 1)
+                        {
+                            <i class="bi bi-check-circle-fill" style="color: green;"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                        }
                     </td>
                     <td>
-                        @item.Name
-                    </td>
-                    <td>
-                        @item.CharacterName
-                    </td>
-                    <td>
-                        @item.SecondaryCharacterName
+                        @if (item.IsStillInGuild == 1)
+                        {
+                            <i class="bi bi-check-circle-fill" style="color: green;"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                        }
                     </td>
                     <td>
                         @item.JoinDate?.ToString("dd/MM/yyyy")
@@ -93,17 +116,4 @@
             }
         </tbody>
     </table>
-
 </div>
-
-
-<script>
-
-    window.onload = function() {
-        $('#memberTable').DataTable({
-            "paging": true,
-            "searching": true,
-            "ordering": true
-        });
-    };
-</script>

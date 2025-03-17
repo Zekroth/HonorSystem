@@ -14,7 +14,9 @@ body {
   margin-bottom: 60px;
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.9s, color 0.6s;
+  display: flex;
+  flex-direction: row;
 }
 
 :root {
@@ -27,6 +29,46 @@ body {
   --text-color: white;
 }
 
+/* Hover in modalità chiara */
+.list-group-item:hover {
+  background-color: #28a745 !important; /* Verde per hover */
+  color: white !important; /* Colore del testo per miglior contrasto */
+}
+
+/* Hover in modalità scura */
+.dark-mode .list-group-item:hover {
+  background-color: #28a745 !important; /* Verde per hover in modalità scura */
+  color: white !important; /* Colore del testo per miglior contrasto */
+}
+
+/* Stile di base per la modalità scura */
+.dark-mode .list-group-item {
+  background-color: #343a40 !important; /* Sfondo scuro per la modalità scura */
+  color: white !important; /* Colore del testo chiaro */
+}
+
+/* Stile di base per la modalità chiara */
+.list-group-item {
+  background-color: #ffffff !important; /* Sfondo chiaro per la modalità chiara */
+  color: black !important; /* Colore del testo scuro */
+}
+
+/* Stile per il link attivo in modalità chiara */
+.list-group-item.active {
+  background-color: #198754 !important; /* Verde per il link attivo in modalità chiara */
+  color: white !important; /* Colore del testo per miglior contrasto */
+  font-weight: bold !important; /* Testo in grassetto */
+  border-radius: 10px !important; /* Mantenere la forma arrotondata */
+}
+
+/* Stile per il link attivo in modalità scura */
+.dark-mode .list-group-item.active {
+  background-color: #198754 !important; /* Verde per il link attivo in modalità scura */
+  color: white !important; /* Colore del testo per miglior contrasto */
+  font-weight: bold !important; /* Testo in grassetto */
+  border-radius: 10px !important; /* Mantenere la forma arrotondata */
+}
+
 .btn:focus,
 .btn:active:focus,
 .btn-link.nav-link:focus,
@@ -35,150 +77,148 @@ body {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-/* Sidebar fissa e attaccata in alto */
+table.dataTable>thead .sorting::before,
+table.dataTable>thead .sorting_asc::before,
+table.dataTable>thead .sorting_desc::before,
+table.dataTable>thead .sorting_asc_disabled::before,
+table.dataTable>thead .sorting_desc_disabled::before,
+table.dataTable>thead .sorting::after,
+table.dataTable>thead .sorting_asc::after,
+table.dataTable>thead .sorting_desc::after,
+table.dataTable>thead .sorting_asc_disabled::after,
+table.dataTable>thead .sorting_desc_disabled::after {
+  right: 0 !important;
+  content: "" !important;
+}
+
+table.dataTable>thead>tr>th:not(.sorting_disabled),
+table.dataTable>thead>tr>td:not(.sorting_disabled),
+table.dataTable>thead>tr>th,
+table.dataTable>thead>tr>td {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
 #sidebarMenu {
-  height: 100vh; /* Occupa tutta l'altezza della pagina */
-  background-color: white; /* Assicura uno sfondo visibile */
+  height: 100vh;
+  background-color: white;
   padding-top: 10px;
 }
 
-/* Elimina il margine extra */
 #sidebarMenu .position-sticky {
   margin: 0;
 }
 
+footer {
+  flex-shrink: 0; /* Impedisce che il footer si ridimensioni */
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
 .footer-text {
-  font-size: 14px; /* Dimensione più elegante */
-  color: #6c757d; /* Grigio bootstrap */
+  font-size: 14px;
+  color: #6c757d;
   transition: color 0.3s ease-in-out;
 }
 
-/* Cambia colore in dark mode */
 .dark-mode .footer-text {
-  color: #bbb; /* Grigio chiaro per dark mode */
+  color: #bbb;
 }
 
-
-/* Tabelle generali (sia in modalità chiara che scura) */
 table {
-  width: 100%; /* Imposta la larghezza al 100% */
-  border-collapse: collapse; /* Rimuove gli spazi tra le celle */
-  margin-bottom: 20px; /* Distanza tra le tabelle */
-  table-layout: fixed; /* Fissa la larghezza delle colonne */
-  overflow-x: hidden; /* Rimuove la barra di scorrimento orizzontale */
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: fixed;
+  overflow-x: hidden;
 }
 
-table td, table th, table tr {
-  text-align: center; /* Centra il testo nelle celle */
-  padding: 12px; /* Aggiunge un padding alle celle */
-  border: 1px solid #ddd; /* Bordo grigio chiaro per tutte le celle */
-  overflow-x: hidden; /* Rimuove la barra di scorrimento orizzontale */
+table td,
+table th,
+table tr {
+  text-align: center;
+  padding: 12px;
+  border: 1px solid #ddd;
+  overflow-x: hidden;
 }
 
-/* Modifica del comportamento delle tabelle in modalità scura */
 .dark-mode table {
-  background-color: #1e1e1e; /* Sfondo scuro per la tabella */
-  color: white; /* Testo bianco in modalità scura */
-  border-color: #444; /* Bordo grigio scuro */
+  background-color: #1e1e1e;
+  color: white;
+  border-color: #444;
 }
 
-.dark-mode table td, .dark-mode table th {
-  background-color: #333; /* Sfondo grigio scuro per le celle */
-  color: white; /* Testo bianco per le celle */
-  border-color: #555; /* Bordo grigio più scuro per le celle */
+.dark-mode table td,
+.dark-mode table th {
+  background-color: #333;
+  border-color: #555;
 }
 
 .dark-mode table th {
-  background-color: #292929; /* Sfondo più scuro per l'intestazione */
+  background-color: #292929;
 }
 
 .dark-mode table tbody tr:nth-of-type(odd) td {
-  background-color: #252525; /* Colore alternato per le righe dispari */
+  background-color: #252525;
 }
 
 .dark-mode table tbody tr:hover td {
-  background-color: #555; /* Colore della riga al passaggio del mouse */
+  background-color: #555;
 }
 
 .dark-mode .table-responsive {
-  border-radius: 10px; /* Aggiungi bordi arrotondati */
-  box-shadow: 0 4px 8px rgba(21, 21, 21, 0.4); /* Aggiungi ombra */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(21, 21, 21, 0.4);
   margin-top: 10px;
   margin-bottom: 10px;
-  overflow-x: hidden; /* Rimuove la barra di scorrimento orizzontale */
+  overflow-x: hidden;
 }
 
 .dark-mode .table-bordered {
-  border: 1px solid #444; /* Bordo più scuro per tabelle con bordo */
+  border: 1px solid #444;
 }
 
-.dark-mode .table-bordered th, .dark-mode .table-bordered td {
-  border: 1px solid #555; /* Bordo ancora più scuro per celle bordate */
+.dark-mode .table-bordered th,
+.dark-mode .table-bordered td {
+  border: 1px solid #555;
 }
 
-/* Regola per le tabelle responsive */
 .table-responsive {
-  overflow-x: auto; /* Abilita lo scroll orizzontale su schermi piccoli */
+  overflow-x: auto;
   margin-bottom: 20px;
-  overflow-x: hidden; /* Rimuove la barra di scorrimento orizzontale */
 }
 
-/* Modalità scura per bottoni dentro tabelle */
 .dark-mode .btn {
   color: white !important;
 }
 
-/* Modifica delle tabelle striped per modalità scura */
 .dark-mode .table-striped tbody tr:nth-of-type(odd) td {
   background-color: #252525 !important;
 }
 
-/* Modifica della tabella hover per modalità scura */
 .dark-mode .table-hover tbody tr:hover td {
   background-color: #555 !important;
 }
 
-
-/* Tabelle in modalità notte */
 .dark-mode .table,
 .dark-mode .table th,
-.dark-mode .table td {
+.dark-mode .table td,
+.dark-mode .table-responsive {
   background-color: #1e1e1e !important;
   color: white !important;
   border-color: #444 !important;
   text-align: center;
 }
 
-.dark-mode .table-responsive,
-.dark-mode .table th,
-.dark-mode .table td {
-  background-color: #2c2c2c !important;
-  color: white !important;
-  border-color: #444 !important;
-}
-
 .dark-mode .table thead th {
   background-color: #292929 !important;
-}
-
-.dark-mode .table-striped tbody tr:nth-of-type(odd) td {
-  background-color: #252525 !important;
-}
-
-.dark-mode .table-hover tbody tr:hover td {
-  background-color: #555 !important;
 }
 
 .dark-mode .table-bordered {
   border: 1px solid #444 !important;
 }
 
-.dark-mode .table-bordered th,
-.dark-mode .table-bordered td {
-  border: 1px solid #555 !important;
-}
-
-/* Sidebar in modalità notte */
 .dark-mode #sidebarMenu {
   background-color: #1e1e1e !important;
   color: white !important;
@@ -189,7 +229,7 @@ table td, table th, table tr {
 }
 
 .dark-mode #sidebarMenu a:hover {
-  background-color: #292929 !important;
+  background-color: red !important;
 }
 
 .dark-mode .list-group-item {
@@ -202,24 +242,11 @@ table td, table th, table tr {
   color: #fff !important;
 }
 
-/* Footer e link */
-/* .dark-mode .footer a,
-.dark-mode a {
-  color: #ddd !important;
-}
-
-.dark-mode .footer a:hover,
-.dark-mode a:hover {
-  color: #fff !important;
-} */
-
-/* Bottoni e link */
 a,
 .btn {
   border-radius: 10px;
 }
 
-/* Modalità dark per i bottoni Bootstrap */
 .dark-mode .btn-primary {
   background-color: #0d6efd !important;
   border-color: #0a58ca !important;
@@ -272,7 +299,6 @@ a,
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Ombra per la modalità scura */
 .dark-mode .custom-shadow {
   box-shadow: 0 4px 8px rgba(21, 21, 21, 0.4);
 }
@@ -283,10 +309,8 @@ a,
   margin-top: 10px;
   margin-bottom: 10px;
   width: 100%;
-  /* Imposta la larghezza della tabella al 100% della larghezza del contenitore */
   table-layout: fixed;
-  /* Fissa la larghezza delle colonne */
-  overflow-x: hidden; /* Rimuove la barra di scorrimento orizzontale */
+  overflow-x: hidden;
 }
 
 .dark-mode .table-responsive {
@@ -296,14 +320,8 @@ a,
   margin-bottom: 10px;
 }
 
-/* Footer in modalità scura */
 .dark-mode .container {
   color: white;
-}
-
-body {
-  display: flex;
-  flex-direction: row;
 }
 
 .dark-mode .form-control {
@@ -317,67 +335,108 @@ body {
 }
 
 header img {
-  max-width: 150px; /* Imposta la larghezza massima */
-  height: auto; /* Mantiene le proporzioni dell'immagine */
-  margin-bottom: 20px; /* Aggiungi un po' di spazio sotto il logo */
+  max-width: 150px;
+  height: auto;
+  margin-bottom: 20px;
 }
 
-/* Rimuove il bordo inferiore dalle voci della sidebar */
 .list-group-item {
   border-bottom: none !important;
 }
 
 .custom-select-width {
-  width: 500px !important; /* Imposta la larghezza a 300px */
+  width: 500px !important;
   height: 691px !important;
 }
 
-/* Personalizza lo stile di Select2 per la modalità scura */
 .select2-container {
-  background-color: #333 !important; /* Colore di sfondo scuro */
-  color: white !important; /* Colore del testo chiaro */
+  background-color: #333 !important;
+  color: white !important;
 }
 
 .select2-selection {
-  background-color: #444 !important; /* Colore di sfondo per la selezione */
-  color: white !important; /* Colore del testo della selezione */
-  border: 1px solid #666 !important; /* Aggiungi un bordo scuro */
+  background-color: #444 !important;
+  color: white !important;
+  border: 1px solid #666 !important;
 }
 
 .select2-results {
-  background-color: #333 !important; /* Colore di sfondo del menu dei risultati */
-  color: white !important; /* Colore del testo dei risultati */
+  background-color: #333 !important;
+  color: white !important;
 }
 
 .select2-results__option[aria-selected="true"] {
-  background-color: #555 !important; /* Colore di sfondo per le opzioni selezionate */
-  color: white !important; /* Colore del testo selezionato */
+  background-color: #555 !important;
+  color: white !important;
 }
 
-/* Personalizza lo stile dell'elemento selezionato nella lista */
 .select2-selection__rendered {
-  color: white !important; /* Colore del testo per l'elemento selezionato */
-  background-color: #555 !important; /* Colore di sfondo per gli elementi selezionati */
+  color: white !important;
+  background-color: #555 !important;
 }
 
-/* Personalizza lo stile di opzioni selezionate nella tendina */
 .select2-results__option[aria-selected="true"] {
-  background-color: #777 !important; /* Colore di sfondo per l'opzione selezionata */
-  color: white !important; /* Colore del testo per le opzioni selezionate */
+  background-color: #777 !important;
+  color: white !important;
 }
 
-/* Opzione hover per una miglior visibilità */
 .select2-results__option:hover {
-  background-color: #666 !important; /* Colore di sfondo al passaggio del mouse */
-  color: white !important; /* Colore del testo al passaggio del mouse */
+  background-color: #666 !important;
+  color: white !important;
 }
-/* Personalizza l'aspetto della selezione multipla */
+
 .select2-selection__choice {
-  background-color: #444 !important; /* Colore di sfondo per ciascun giocatore selezionato */
-  color: white !important; /* Colore del testo */
-  border: 1px solid #666 !important; /* Bordo per ogni opzione selezionata */
+  background-color: #444 !important;
+  color: white !important;
+  border: 1px solid #666 !important;
 }
 
 .select2-selection__choice__remove {
-  color: #bbb !important; /* Colore per il pulsante di rimozione (per la modalità scura) */
+  color: #bbb !important;
 }
+
+table th,
+table td {
+  text-align: center !important;
+}
+
+/* Stile per il link attivo in modalità chiara */
+.list-group-item.active {
+  background-color: red; /* Verde per il link attivo */
+  color: white; /* Colore del testo per miglior contrasto */
+  font-weight: bold; /* Testo in grassetto */
+  border-radius: 10px; /* Mantenere la forma arrotondata */
+}
+
+/* Stile per il link attivo in modalità scura */
+.dark-mode .list-group-item.active {
+  background-color: red !important; /* Verde per il link attivo in dark mode */
+  color: white !important; /* Colore del testo per miglior contrasto */
+  font-weight: bold !important; /* Testo in grassetto */
+  border-radius: 10px !important; /* Mantenere la forma arrotondata */
+}
+
+/* Hover in modalità chiara */
+.list-group-item:hover {
+  background-color: #28a745 !important; /* Verde per hover */
+  color: white !important; /* Colore del testo per miglior contrasto */
+}
+
+/* Hover in modalità scura */
+.dark-mode .list-group-item:hover {
+  background-color: #28a745 !important; /* Verde per hover in modalità scura */
+  color: white !important; /* Colore del testo per miglior contrasto */
+}
+
+/* Stile di base per la modalità scura, cambia il colore di base dei link */
+.dark-mode .list-group-item {
+  background-color: #343a40 !important; /* Sfondo scuro di base per la modalità scura */
+  color: white !important; /* Colore del testo chiaro */
+}
+
+/* Stile di base per la modalità chiara, cambia il colore di base dei link */
+.list-group-item {
+  background-color: #ffffff !important; /* Sfondo chiaro di base per la modalità chiara */
+  color: black !important; /* Colore del testo scuro */
+}
+
