@@ -46,16 +46,16 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DropDate)
+                @item.DropDate
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CurrentPriceInLucent)
+                @item.CurrentPriceInLucent
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdHonorEntryNavigation.IdHonorEntry)
+                @item.IdHonorEntryNavigation
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdItemNavigation.IdItem)
+                @item.IdItemNavigation
             </td>
             <td>
                 <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.Id" data-bs-toggle="tooltip"

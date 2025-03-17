@@ -19,7 +19,7 @@
 </script>
 
 <script>
-    window.onload = function() {
+    window.onload = function () {
         $('#memberTable').DataTable({
             "paging": true,
             "searching": true,
@@ -28,114 +28,95 @@
     };
 </script>
 
-<h1>Membri</h1>
+<h1>Membri di Gilda</h1>
 
 <div class="form-group">
     <a asp-page="Create" class="btn btn-primary">Crea Membro</a>
 </div>
 
+
 <div class="table-responsive">
     <table id="memberTable" class="display table table-striped table-bordered">
         <thead>
             <tr>
-                <th style="text-align: center;">
-                    ID
+                <th>
+                    #
                 </th>
                 <th>
                     Nome Giocatore
                 </th>
                 <th>
-                    Nome PG 1° Gilda
+                    ID Discord 1° Account
                 </th>
                 <th>
-                    Nome PG 2° Gilda
+                    ID Discord 2° Account
                 </th>
                 <th>
                     Data Ingresso Gilda
                 </th>
                 <th>
-                    È attivo
+                    Attivo
                 </th>
                 <th>
-                    È in gilda
+                    In gilda
                 </th>
-                <th></th>
+                <th>
+                    Admin
+                </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.Member)
             {
-                <tr>
-                    <td style="text-align: center;">
-                        @item.IdMembers
-                    </td>
-                    <td>
-                        @item.Name
-                    </td>
-                    <td>
-                        @item.CharacterName
-                    </td>
-                    <td>
-                        @item.SecondaryCharacterName
-                    </td>
-                    <td>
-                        @item.JoinDate?.ToString("dd/MM/yyyy")
-                    </td>
-                    <td>
+                int counter = Model.Member.IndexOf(item) + 1; // Ottieni indice come contatore
+                                                              <tr>
+                                                                  <td style="text-align: center;">
+                                                                      @counter
+                                                                  </td>
+                                                                  <td style="text-align: center;">
+                                                                      @item.Name
+                                                                  </td>
+                                                                  <td
+                                                                      style="width: auto; font-size: smaller; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                                                                      @item.CharacterName
+                                                                  </td>
+                                                                  <td
+                                                                      style="width: auto; font-size: smaller; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+                                                                      @item.SecondaryCharacterName
+                                                                  </td>
+                                                                  <td style="text-align: center;">
+                                                                      @item.JoinDate?.ToString("dd/MM/yyyy")
+                                                                  </td>
+                                                                  <td>
                         @if (item.IsActive == 1)
                         {
-                            <i class="bi bi-check-circle-fill" style="color: green;"></i> <!-- Vero -->
+                            <i class="bi bi-check-circle-fill" style="color: green;"></i>
                         }
                         else
                         {
-                            <i class="bi bi-x-circle-fill" style="color: red;"></i> <!-- Falso -->
+                            <i class="bi bi-x-circle-fill" style="color: red;"></i>
                         }
                     </td>
                     <td>
                         @if (item.IsStillInGuild == 1)
                         {
-                            <i class="bi bi-check-circle-fill" style="color: green;"></i> <!-- Vero -->
+                            <i class="bi bi-check-circle-fill" style="color: green;"></i>
                         }
                         else
                         {
-                            <i class="bi bi-x-circle-fill" style="color: red;"></i> <!-- Falso -->
+                            <i class="bi bi-x-circle-fill" style="color: red;"></i>
                         }
                     </td>
                     <td style="width: auto;">
                         <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.IdMembers" data-bs-toggle="tooltip"
                             title="Modifica"><i class="bi bi-pencil-square"></i></a>
-
                         <a asp-page="./Details" class="btn btn-secondary" asp-route-id="@item.IdMembers"
                             data-bs-toggle="tooltip" title="Dettagli"><i class="bi bi-eye"></i></a>
-
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                            data-id="@item.IdMembers" data-name="@item.Name">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
+                        <a asp-page="./Delete" class="btn btn-danger" asp-route-id="@item.IdMembers"
+                            data-bs-toggle="tooltip" title="Elimina"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-</div>
-
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content bg-dark text-light"> <!-- Dark mode -->
-            <div class="modal-header border-secondary">
-                <h5 class="modal-title" id="deleteModalLabel">Conferma Eliminazione</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Sei sicuro di voler eliminare il membro <strong id="memberName"></strong>?</p>
-            </div>
-            <div class="modal-footer border-secondary">
-                <form method="post" action="/Members/Delete">
-                    <input type="hidden" id="deleteMemberId" name="id" />
-                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Annulla</button>
-                    <input type="submit" value="Elimina" class="btn btn-danger" />
-                </form>
-            </div>
-        </div>
-    </div>
 </div>

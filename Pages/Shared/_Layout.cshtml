@@ -65,37 +65,57 @@
     });
 </script>
 <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const logoImage = document.getElementById("logoImage");
-            const body = document.documentElement;
+    document.addEventListener("DOMContentLoaded", function () {
+        const logoImage = document.getElementById("logoImage");
+        const body = document.documentElement;
 
-            // Funzione per cambiare il logo in base alla modalità
-            function updateLogo() {
-                if (body.classList.contains("dark-mode")) {
-                    logoImage.src = "/images/zerodrop.png"; // Logo per dark mode
-                } else {
-                    logoImage.src = "/images/logo.png"; // Logo per light mode
-                }
+        // Funzione per cambiare il logo in base alla modalità
+        function updateLogo() {
+            if (body.classList.contains("dark-mode")) {
+                logoImage.src = "/images/zerodrop.png"; // Logo per dark mode
+            } else {
+                logoImage.src = "/images/logo.png"; // Logo per light mode
             }
+        }
 
-            // Esegui subito per impostare il logo corretto all'avvio
+        // Esegui subito per impostare il logo corretto all'avvio
+        updateLogo();
+
+        // Ogni volta che la modalità cambia, aggiorna il logo
+        const toggleButton = document.getElementById("darkModeToggle");
+        toggleButton.addEventListener("click", function () {
             updateLogo();
-
-            // Ogni volta che la modalità cambia, aggiorna il logo
-            const toggleButton = document.getElementById("darkModeToggle");
-            toggleButton.addEventListener("click", function () {
-                updateLogo();
-            });
         });
-    </script>
+    });
+</script>
+
+<!-- Link attivo -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll(".list-group-item"); // Seleziona tutti i link
+        const currentPath = window.location.pathname; // Ottieni il percorso della pagina corrente
+
+        links.forEach(link => {
+            const linkPath = link.getAttribute("href"); // Ottieni il percorso dell'href del link
+
+            // Confronta il percorso del link con il percorso corrente
+            if (linkPath === currentPath) {
+                link.classList.add("active"); // Aggiungi la classe active se il link corrisponde
+            } else {
+                link.classList.remove("active"); // Rimuovi la classe active da altri link
+            }
+        });
+    });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 <script src="~/js/dataTables.min.js"></script>
 
-<body class="d-flex">
-    <!--Main Navigation-->
+<!--Main Navigation-->
+<body class="d-flex flex">
+
     <!-- Sidebar -->
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse custom-shadow"
         style="margin: 10px; border-radius: 10px;">
@@ -105,33 +125,41 @@
             <div class="d-flex justify-content-center">
                 <img id="logoImage" src="/images/zerodrop.png" alt="Logo" style="max-width: 450px; height: 350px;">
             </div>
+            <div class="d-flex justify-content-center">
+                <h1>DKP Honor System</h1>
+            </div>
 
-            <div class="list-group list-group-flush mx-3 mt-4">
-                <a href="/Members" style="margin-bottom: 10px; border-radius: 10px; text-align: center;"
-                    class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+            <div class="list-group list-group-flush mx-3 mt-4"
+                style="background-image: url('/images/logo.png'); background-size: cover; background-position: center; padding-bottom: 20px;">
+                <a href="/Members"
+                    style="margin-bottom: 10px; border-radius: 10px; text-align: center; font-weight: bold; opacity: 0.9;"
+                    class="list-group-item list-group-item-action list-group-item:hoverpy-2 ripple" aria-current="true">
                     <i class="fas fa-users fa-fw me-3"></i><span>Membri</span>
                 </a>
-                <a href="/Items" style="margin-bottom: 10px; text-align: center;"
+                <a href="/Items" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
                     class="list-group-item list-group-item-action py-2 ripple">
                     <i class="fas fa-money-bill fa-fw me-3"></i><span>Item</span>
                 </a>
-                <a href="/Bosses" style="margin-bottom: 10px; text-align: center;"
+                <a href="/Bosses" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
                     class="list-group-item list-group-item-action py-2 ripple">
                     <i class="fas fa-money-bill fa-fw me-3"></i><span>Boss</span>
                 </a>
-                <a href="/ItemRequests" style="margin-bottom: 10px; text-align: center;"
+                <a href="/ItemRequests"
+                    style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
                     class="list-group-item list-group-item-action py-2 ripple">
                     <i class="fas fa-hand fa-fw me-3"></i><span>Richieste Item</span>
                 </a>
-                <a href="/HonorEntry" style="margin-bottom: 10px; text-align: center;"
+                <a href="/HonorEntry" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
                     class="list-group-item list-group-item-action py-2 ripple">
                     <i class="fas fa-calculator fa-fw me-3"></i><span>Honor Entries</span>
                 </a>
-                <a href="/HonorEntryTypes" style="margin-bottom: 10px; text-align: center;"
+                <a href="/HonorEntryTypes"
+                    style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
                     class="list-group-item list-group-item-action py-2 ripple">
                     <i class="fas fa-calculator fa-fw me-3"></i><span>Honor Entry Types</span>
                 </a>
-                <a href="/LeftItemInGuildStorage" style="margin-bottom: 10px; text-align: center;"
+                <a href="/LeftItemInGuildStorage"
+                    style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
                     class="list-group-item list-group-item-action py-2 ripple">
                     <i class="fas fa-calculator fa-fw me-3"></i><span>Item Droppati</span>
                 </a>
@@ -140,24 +168,24 @@
                     <button id="darkModeToggle" style="margin-top: 5px;" class="btn btn-dark">🌙
                     </button>
                 </div>
-
             </div>
         </div>
     </nav>
-    <!--Main Navigation-->
 
     <!--Main layout-->
-    <main style="margin-top: 58px;">
-        <div class="container pt-4">
+    <main class="container min-vh-100 d-flex justify-content-center align-items-center">
+        <div >
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
         </div>
     </main>
 
+    <!-- Footer -->
     <footer class="border-top footer text-muted">
         <div style="margin-left: 10px">
-            <p class="footer-text m-0">&copy; 2025 - Developed by Chantra, Microfono</p>
+            <p class="footer-text m-0">&copy; 2025 - Developed by Chantra, Microfono & Loretta - <a
+                    href="https://46e9-148-113-42-214.ngrok-free.app/swagger">Swagger</a></p>
         </div>
     </footer>
 

@@ -5,18 +5,64 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome, dio cane</h1>
+    <br>
+    <p>Chantra mi fa bestemmiare, viva Microfono il pazzo</p>
+</div>
+<br>
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <img id="logoImage" src="/images/chantra.jpg" alt="Logo"
+            style="max-width: 450px; height: 350px; border-radius: 10px;">
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-success mt-3" id="showImageButton">PIPPO CLICCA QUI</button>
+    </div>
 </div>
 
-<div class="container">
-    <ul>
-        <li><a href="/Members">Members</a></li>
-        <li><a href="/Bosses">Bosses</a></li>
-        <li><a href="/Items">Items</a></li>
-        <li><a href="/ItemRequests">ItemRequests</a></li>
-        <li><a href="/HonorEntry">HonorEntry</a></li>
-        <li><a href="/HonorEntryTypes">HonorEntryTypes</a></li>
-        <li><a href="/LeftItemInGuildStorage">LeftItemInGuildStorage</a></li>
-    </ul>
+<div class="modal" tabindex="-1" id="imageModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Immagine</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="/images/piedi.jpg" alt="Immagine" style="width: 100%; height: auto;">
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Script per gestire l'apertura del modal e l'effetto lampeggiante -->
+<script>
+    // Gestione dell'apertura del modal
+    document.getElementById('showImageButton').addEventListener('click', function () {
+        var modal = new bootstrap.Modal(document.getElementById('imageModal'));
+        modal.show();
+    });
+
+    // Funzione per far lampeggiare il bottone
+    function startBlinking() {
+        let button = document.getElementById('showImageButton');
+        setInterval(function () {
+            button.classList.toggle('blink'); // Alterna la classe 'blink'
+        }, 500); // Cambia ogni 500ms
+    }
+
+    // Avvia il lampeggio del bottone
+    startBlinking();
+</script>
+
+<!-- CSS per l'animazione -->
+<style>
+    .blink {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    #showImageButton {
+        transition: opacity 0.5s ease-in-out;
+    }
+</style>
