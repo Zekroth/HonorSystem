@@ -22,13 +22,20 @@ namespace HonorSystem.ApiControllers
 
         // GET: api/DroppedItemsApi
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Leftiteminguildstorage>>> GetLeftiteminguildstorages([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Leftiteminguildstorage>>> GetLeftiteminguildstorages([FromQuery] int pageNumber = 0, [FromQuery] int pageSize = 0)
         {
-            var items = await _context.Leftiteminguildstorages
+            var items = new List<Leftiteminguildstorage>();
+            if (pageNumber == 0 && pageSize == 0)
+            {
+                items = await _context.Leftiteminguildstorages
+                .ToListAsync();
+            } else
+            {
+                items = await _context.Leftiteminguildstorages
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
-
+            }
             return Ok(items);
         }
         // GET: api/GetAllDroppedItems
@@ -47,17 +54,32 @@ namespace HonorSystem.ApiControllers
         [Route("AvailableDroppedItems")]
         public async Task<ActionResult<IEnumerable<Leftiteminguildstorage>>> AvailableDroppedItems([FromQuery] int pageNumber = 0, [FromQuery] int pageSize = 0)
         {
+            if (_context.Leftiteminguildstorages == null)
+            {
+                return NotFound("Leftiteminguildstorages not found.");
+            }
+
+            if (_context.Leftiteminguildstorages
+                .Where(x => x.DistributedDate == null).Count() == 0)
+            {
+                return StatusCode(204);
+            }
+
             List<Leftiteminguildstorage> items;
 
             if (pageNumber == 0 && pageSize == 0)
             {
                 items = await _context.Leftiteminguildstorages
-                    .Where(_context => _context.DistributedDate == null)
+                    .Include(x => x.IdHonorEntryNavigation)
+                    .Include(x => x.IdItemNavigation)
                     .ToListAsync();
-            } else
+            }
+            else
             {
                 items = await _context.Leftiteminguildstorages
-                    .Where(_context => _context.DistributedDate == null)
+                    .Include(x => x.IdHonorEntryNavigation)
+                    .Include(x => x.IdItemNavigation)
+                    .Where(x => x.DistributedDate == null)
                     .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
                     .ToListAsync();

@@ -18,7 +18,7 @@ namespace HonorSystem.Pages.Droppeditemsrequests
             _context = context;
         }
 
-        public IList<Droppeditemsrequest> DIRequest { get;set; } = default!;
+        public IList<Droppeditemsrequest> DIRequest { get;set; }
 
         public async Task OnGetAsync()
         {

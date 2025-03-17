@@ -5,29 +5,6 @@
     ViewData["Title"] = "Members";
 }
 
-<script>
-    var deleteModal = document.getElementById('deleteModal');
-    deleteModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget; // Bottone che ha aperto il modale
-        var memberId = button.getAttribute('data-id');
-        var memberName = button.getAttribute('data-name');
-
-        // Aggiorna il modale con i dati corretti
-        document.getElementById("deleteMemberId").value = memberId;
-        document.getElementById("memberName").textContent = memberName;
-    });
-</script>
-
-<script>
-    window.onload = function() {
-        $('#memberTable').DataTable({
-            "paging": true,
-            "searching": true,
-            "ordering": true
-        });
-    };
-</script>
-
 <h1>Membri</h1>
 
 <div class="form-group">
@@ -45,19 +22,16 @@
                     Nome Giocatore
                 </th>
                 <th>
-                    Nome PG 1° Gilda
+                    Nome Personaggio Prima Gilda
                 </th>
                 <th>
-                    Nome PG 2° Gilda
+                    Nome Personaggio Seconda Gilda
                 </th>
                 <th>
-                    Data Ingresso Gilda
+                    Data ingresso gilda
                 </th>
                 <th>
                     È attivo
-                </th>
-                <th>
-                    È in gilda
                 </th>
                 <th></th>
             </tr>
@@ -66,7 +40,7 @@
             @foreach (var item in Model.Member)
             {
                 <tr>
-                    <td style="text-align: center;">
+                    <td>
                         @item.IdMembers
                     </td>
                     <td>
@@ -79,63 +53,31 @@
                         @item.SecondaryCharacterName
                     </td>
                     <td>
-                        @item.JoinDate?.ToString("dd/MM/yyyy")
+                        @item.JoinDate
                     </td>
                     <td>
-                        @if (item.IsActive == 1)
-                        {
-                            <i class="bi bi-check-circle-fill" style="color: green;"></i> <!-- Vero -->
-                        }
-                        else
-                        {
-                            <i class="bi bi-x-circle-fill" style="color: red;"></i> <!-- Falso -->
-                        }
+                        @((item.IsActive == 1) ? "Si" : "No")
                     </td>
                     <td>
-                        @if (item.IsStillInGuild == 1)
-                        {
-                            <i class="bi bi-check-circle-fill" style="color: green;"></i> <!-- Vero -->
-                        }
-                        else
-                        {
-                            <i class="bi bi-x-circle-fill" style="color: red;"></i> <!-- Falso -->
-                        }
-                    </td>
-                    <td style="width: auto;">
-                        <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.IdMembers" data-bs-toggle="tooltip"
-                            title="Modifica"><i class="bi bi-pencil-square"></i></a>
-
-                        <a asp-page="./Details" class="btn btn-secondary" asp-route-id="@item.IdMembers"
-                            data-bs-toggle="tooltip" title="Dettagli"><i class="bi bi-eye"></i></a>
-
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
-                            data-id="@item.IdMembers" data-name="@item.Name">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
+                        <a asp-page="./Edit" asp-route-id="@item.IdMembers">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.IdMembers">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.IdMembers">Delete</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+
 </div>
 
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content bg-dark text-light"> <!-- Dark mode -->
-            <div class="modal-header border-secondary">
-                <h5 class="modal-title" id="deleteModalLabel">Conferma Eliminazione</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Sei sicuro di voler eliminare il membro <strong id="memberName"></strong>?</p>
-            </div>
-            <div class="modal-footer border-secondary">
-                <form method="post" action="/Members/Delete">
-                    <input type="hidden" id="deleteMemberId" name="id" />
-                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Annulla</button>
-                    <input type="submit" value="Elimina" class="btn btn-danger" />
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+<script>
+
+    window.onload = function() {
+        $('#memberTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true
+        });
+    };
+</script>
