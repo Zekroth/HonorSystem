@@ -1,137 +1,150 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - HonorSystem</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/HonorSystem.styles.css" asp-append-version="true" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>@ViewData["Title"] - HonorSystem</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/HonorSystem.styles.css" asp-append-version="true" />
 
-    <!-- Load CSS for DataTables -->
-    <link rel="stylesheet" href="~/css/dataTables.min.css" />
+<!-- Load CSS for DataTables -->
+<link rel="stylesheet" href="~/css/dataTables.min.css" />
 
-    <!-- Icone bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+<!-- Icone bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
-    <!-- Tooltips -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-            tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl)
-            })
-        });
-    </script>
+<!-- Tooltips -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    });
+</script>
 
-    <!-- Gestione light/dark mode -->
-    <script>
+<!-- Gestione light/dark mode -->
+<script>
+    if (localStorage.getItem("darkMode") === "enabled") {
+        document.documentElement.classList.add("dark-mode");
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById("darkModeToggle");
+        const body = document.documentElement;
+        const sidebar = document.getElementById("sidebarMenu");
+
+        // Controlla se l'utente ha già una preferenza salvata
         if (localStorage.getItem("darkMode") === "enabled") {
-            document.documentElement.classList.add("dark-mode");
+            body.classList.add("dark-mode");
+            sidebar.classList.remove("bg-white");
+            sidebar.classList.add("bg-dark");
+            toggleButton.textContent = "☀️";
         }
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const toggleButton = document.getElementById("darkModeToggle");
-            const body = document.documentElement;
-            const sidebar = document.getElementById("sidebarMenu");
 
-            // Controlla se l'utente ha già una preferenza salvata
-            if (localStorage.getItem("darkMode") === "enabled") {
-                body.classList.add("dark-mode");
+        toggleButton.addEventListener("click", function () {
+            body.classList.toggle("dark-mode");
+
+            if (body.classList.contains("dark-mode")) {
+                localStorage.setItem("darkMode", "enabled");
                 sidebar.classList.remove("bg-white");
                 sidebar.classList.add("bg-dark");
                 toggleButton.textContent = "☀️";
+            } else {
+                localStorage.setItem("darkMode", "disabled");
+                sidebar.classList.remove("bg-dark");
+                sidebar.classList.add("bg-white");
+                toggleButton.textContent = "🌙";
+            }
+        });
+    });
+</script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const logoImage = document.getElementById("logoImage");
+            const body = document.documentElement;
+
+            // Funzione per cambiare il logo in base alla modalità
+            function updateLogo() {
+                if (body.classList.contains("dark-mode")) {
+                    logoImage.src = "/images/zerodrop.png"; // Logo per dark mode
+                } else {
+                    logoImage.src = "/images/logo.png"; // Logo per light mode
+                }
             }
 
-            toggleButton.addEventListener("click", function () {
-                body.classList.toggle("dark-mode");
+            // Esegui subito per impostare il logo corretto all'avvio
+            updateLogo();
 
-                if (body.classList.contains("dark-mode")) {
-                    localStorage.setItem("darkMode", "enabled");
-                    sidebar.classList.remove("bg-white");
-                    sidebar.classList.add("bg-dark");
-                    toggleButton.textContent = "☀️";
-                } else {
-                    localStorage.setItem("darkMode", "disabled");
-                    sidebar.classList.remove("bg-dark");
-                    sidebar.classList.add("bg-white");
-                    toggleButton.textContent = "🌙";
-                }
+            // Ogni volta che la modalità cambia, aggiorna il logo
+            const toggleButton = document.getElementById("darkModeToggle");
+            toggleButton.addEventListener("click", function () {
+                updateLogo();
             });
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/js/dataTables.min.js"></script>
 
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/dataTables.min.js"></script>
-
-</head>
-
-<body style="display:flex;">
-
+<body class="d-flex">
     <!--Main Navigation-->
-    <header style="margin-top:10vh;">
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse custom-shadow"
+        style="margin: 10px; border-radius: 10px;">
 
-        <!-- Sidebar -->
-        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse custom-shadow"
-            style="margin: 10px; border-radius: 10px;">
+        <div class="position-sticky" style="margin: 10px;">
 
-            <div class="position-sticky" style="margin: 10px;">
+            <div class="d-flex justify-content-center">
+                <img id="logoImage" src="/images/zerodrop.png" alt="Logo" style="max-width: 450px; height: 350px;">
+            </div>
+
+            <div class="list-group list-group-flush mx-3 mt-4">
+                <a href="/Members" style="margin-bottom: 10px; border-radius: 10px; text-align: center;"
+                    class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
+                    <i class="fas fa-users fa-fw me-3"></i><span>Membri</span>
+                </a>
+                <a href="/Items" style="margin-bottom: 10px; text-align: center;"
+                    class="list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-money-bill fa-fw me-3"></i><span>Item</span>
+                </a>
+                <a href="/Bosses" style="margin-bottom: 10px; text-align: center;"
+                    class="list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-money-bill fa-fw me-3"></i><span>Boss</span>
+                </a>
+                <a href="/ItemRequests" style="margin-bottom: 10px; text-align: center;"
+                    class="list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-hand fa-fw me-3"></i><span>Richieste Item</span>
+                </a>
+                <a href="/HonorEntry" style="margin-bottom: 10px; text-align: center;"
+                    class="list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-calculator fa-fw me-3"></i><span>Honor Entries</span>
+                </a>
+                <a href="/HonorEntryTypes" style="margin-bottom: 10px; text-align: center;"
+                    class="list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-calculator fa-fw me-3"></i><span>Honor Entry Types</span>
+                </a>
+                <a href="/LeftItemInGuildStorage" style="margin-bottom: 10px; text-align: center;"
+                    class="list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-calculator fa-fw me-3"></i><span>Item Droppati</span>
+                </a>
 
                 <div class="d-flex justify-content-center">
                     <button id="darkModeToggle" style="margin-top: 5px;" class="btn btn-dark">🌙
                     </button>
                 </div>
 
-                <div class="list-group list-group-flush mx-3 mt-4">
-                    <a href="/Members" style="margin-bottom: 10px; border-radius: 10px;"
-                        class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-                        <i class="fas fa-users fa-fw me-3"></i><span>Membri</span>
-                    </a>
-                    <a href="/Items" style="margin-bottom: 10px;"
-                        class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Item</span>
-                    </a>
-                    <a href="/Bosses" style="margin-bottom: 10px;"
-                        class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Boss</span>
-                    </a>
-                    <a href="/ItemRequests" style="margin-bottom: 10px;"
-                        class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-hand fa-fw me-3"></i><span>Richieste Item</span>
-                    </a>
-                    <a href="/HonorEntry" style="margin-bottom: 10px;"
-                        class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-calculator fa-fw me-3"></i><span>Honor Entries</span>
-                    </a>
-                    <a href="/HonorEntryTypes" style="margin-bottom: 10px;"
-                        class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-calculator fa-fw me-3"></i><span>Honor Entry Types</span>
-                    </a>
-                    <a href="/LeftItemInGuildStorage" style="margin-bottom: 10px;"
-                        class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-calculator fa-fw me-3"></i><span>Item Droppati</span>
-                    </a>
-                    <a href="/Droppeditemsrequests" style="margin-bottom: 10px; border-radius: 10px;"
-                       class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-calculator fa-fw me-3"></i><span>Dropped Items Requests</span>
-                    </a>
-                    <a href="/Classifica" style="margin-bottom: 10px; border-radius: 10px;"
-                       class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-calculator fa-fw me-3"></i><span>Classifica</span>
-                    </a>
-                </div>
+
             </div>
-        </nav>
-        <!-- Sidebar -->
-    </header>
+        </div>
+    </nav>
     <!--Main Navigation-->
 
     <!--Main layout-->
@@ -141,11 +154,11 @@
                 @RenderBody()
             </main>
         </div>
-
     </main>
+
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - HonorSystem - <a href="/swagger">Swagger</a>
+        <div style="margin-left: 10px">
+            <p class="footer-text m-0">&copy; 2025 - Developed by Chantra, Microfono</p>
         </div>
     </footer>
 

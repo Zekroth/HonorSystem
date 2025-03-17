@@ -35,15 +35,109 @@ body {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
+/* Sidebar fissa e attaccata in alto */
+#sidebarMenu {
+  height: 100vh; /* Occupa tutta l'altezza della pagina */
+  background-color: white; /* Assicura uno sfondo visibile */
+  padding-top: 10px;
 }
 
-table td,
-table th {
-  text-align: center;
+/* Elimina il margine extra */
+#sidebarMenu .position-sticky {
+  margin: 0;
 }
+
+.footer-text {
+  font-size: 14px; /* Dimensione più elegante */
+  color: #6c757d; /* Grigio bootstrap */
+  transition: color 0.3s ease-in-out;
+}
+
+/* Cambia colore in dark mode */
+.dark-mode .footer-text {
+  color: #bbb; /* Grigio chiaro per dark mode */
+}
+
+
+/* Tabelle generali (sia in modalità chiara che scura) */
+table {
+  width: 100%; /* Imposta la larghezza al 100% */
+  border-collapse: collapse; /* Rimuove gli spazi tra le celle */
+  margin-bottom: 20px; /* Distanza tra le tabelle */
+  table-layout: fixed; /* Fissa la larghezza delle colonne */
+  overflow-x: hidden; /* Rimuove la barra di scorrimento orizzontale */
+}
+
+table td, table th, table tr {
+  text-align: center; /* Centra il testo nelle celle */
+  padding: 12px; /* Aggiunge un padding alle celle */
+  border: 1px solid #ddd; /* Bordo grigio chiaro per tutte le celle */
+  overflow-x: hidden; /* Rimuove la barra di scorrimento orizzontale */
+}
+
+/* Modifica del comportamento delle tabelle in modalità scura */
+.dark-mode table {
+  background-color: #1e1e1e; /* Sfondo scuro per la tabella */
+  color: white; /* Testo bianco in modalità scura */
+  border-color: #444; /* Bordo grigio scuro */
+}
+
+.dark-mode table td, .dark-mode table th {
+  background-color: #333; /* Sfondo grigio scuro per le celle */
+  color: white; /* Testo bianco per le celle */
+  border-color: #555; /* Bordo grigio più scuro per le celle */
+}
+
+.dark-mode table th {
+  background-color: #292929; /* Sfondo più scuro per l'intestazione */
+}
+
+.dark-mode table tbody tr:nth-of-type(odd) td {
+  background-color: #252525; /* Colore alternato per le righe dispari */
+}
+
+.dark-mode table tbody tr:hover td {
+  background-color: #555; /* Colore della riga al passaggio del mouse */
+}
+
+.dark-mode .table-responsive {
+  border-radius: 10px; /* Aggiungi bordi arrotondati */
+  box-shadow: 0 4px 8px rgba(21, 21, 21, 0.4); /* Aggiungi ombra */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow-x: hidden; /* Rimuove la barra di scorrimento orizzontale */
+}
+
+.dark-mode .table-bordered {
+  border: 1px solid #444; /* Bordo più scuro per tabelle con bordo */
+}
+
+.dark-mode .table-bordered th, .dark-mode .table-bordered td {
+  border: 1px solid #555; /* Bordo ancora più scuro per celle bordate */
+}
+
+/* Regola per le tabelle responsive */
+.table-responsive {
+  overflow-x: auto; /* Abilita lo scroll orizzontale su schermi piccoli */
+  margin-bottom: 20px;
+  overflow-x: hidden; /* Rimuove la barra di scorrimento orizzontale */
+}
+
+/* Modalità scura per bottoni dentro tabelle */
+.dark-mode .btn {
+  color: white !important;
+}
+
+/* Modifica delle tabelle striped per modalità scura */
+.dark-mode .table-striped tbody tr:nth-of-type(odd) td {
+  background-color: #252525 !important;
+}
+
+/* Modifica della tabella hover per modalità scura */
+.dark-mode .table-hover tbody tr:hover td {
+  background-color: #555 !important;
+}
+
 
 /* Tabelle in modalità notte */
 .dark-mode .table,
@@ -109,7 +203,7 @@ table th {
 }
 
 /* Footer e link */
-.dark-mode .footer a,
+/* .dark-mode .footer a,
 .dark-mode a {
   color: #ddd !important;
 }
@@ -117,7 +211,7 @@ table th {
 .dark-mode .footer a:hover,
 .dark-mode a:hover {
   color: #fff !important;
-}
+} */
 
 /* Bottoni e link */
 a,
@@ -188,6 +282,11 @@ a,
   border-radius: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 100%;
+  /* Imposta la larghezza della tabella al 100% della larghezza del contenitore */
+  table-layout: fixed;
+  /* Fissa la larghezza delle colonne */
+  overflow-x: hidden; /* Rimuove la barra di scorrimento orizzontale */
 }
 
 .dark-mode .table-responsive {
@@ -215,4 +314,70 @@ body {
 
 .form-group {
   margin-bottom: 10px;
+}
+
+header img {
+  max-width: 150px; /* Imposta la larghezza massima */
+  height: auto; /* Mantiene le proporzioni dell'immagine */
+  margin-bottom: 20px; /* Aggiungi un po' di spazio sotto il logo */
+}
+
+/* Rimuove il bordo inferiore dalle voci della sidebar */
+.list-group-item {
+  border-bottom: none !important;
+}
+
+.custom-select-width {
+  width: 500px !important; /* Imposta la larghezza a 300px */
+  height: 691px !important;
+}
+
+/* Personalizza lo stile di Select2 per la modalità scura */
+.select2-container {
+  background-color: #333 !important; /* Colore di sfondo scuro */
+  color: white !important; /* Colore del testo chiaro */
+}
+
+.select2-selection {
+  background-color: #444 !important; /* Colore di sfondo per la selezione */
+  color: white !important; /* Colore del testo della selezione */
+  border: 1px solid #666 !important; /* Aggiungi un bordo scuro */
+}
+
+.select2-results {
+  background-color: #333 !important; /* Colore di sfondo del menu dei risultati */
+  color: white !important; /* Colore del testo dei risultati */
+}
+
+.select2-results__option[aria-selected="true"] {
+  background-color: #555 !important; /* Colore di sfondo per le opzioni selezionate */
+  color: white !important; /* Colore del testo selezionato */
+}
+
+/* Personalizza lo stile dell'elemento selezionato nella lista */
+.select2-selection__rendered {
+  color: white !important; /* Colore del testo per l'elemento selezionato */
+  background-color: #555 !important; /* Colore di sfondo per gli elementi selezionati */
+}
+
+/* Personalizza lo stile di opzioni selezionate nella tendina */
+.select2-results__option[aria-selected="true"] {
+  background-color: #777 !important; /* Colore di sfondo per l'opzione selezionata */
+  color: white !important; /* Colore del testo per le opzioni selezionate */
+}
+
+/* Opzione hover per una miglior visibilità */
+.select2-results__option:hover {
+  background-color: #666 !important; /* Colore di sfondo al passaggio del mouse */
+  color: white !important; /* Colore del testo al passaggio del mouse */
+}
+/* Personalizza l'aspetto della selezione multipla */
+.select2-selection__choice {
+  background-color: #444 !important; /* Colore di sfondo per ciascun giocatore selezionato */
+  color: white !important; /* Colore del testo */
+  border: 1px solid #666 !important; /* Bordo per ogni opzione selezionata */
+}
+
+.select2-selection__choice__remove {
+  color: #bbb !important; /* Colore per il pulsante di rimozione (per la modalità scura) */
 }
