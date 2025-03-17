@@ -54,6 +54,11 @@ namespace HonorSystem.ApiControllers
         [Route("AvailableDroppedItems")]
         public async Task<ActionResult<IEnumerable<Leftiteminguildstorage>>> AvailableDroppedItems([FromQuery] int pageNumber = 0, [FromQuery] int pageSize = 0)
         {
+            if (_context.Leftiteminguildstorages == null)
+            {
+                return NotFound("Leftiteminguildstorages not found.");
+            }
+
             if (_context.Leftiteminguildstorages
                 .Where(x => x.DistributedDate == null).Count() == 0)
             {
@@ -66,6 +71,7 @@ namespace HonorSystem.ApiControllers
             {
                 items = await _context.Leftiteminguildstorages
                     .Include(x => x.IdItemNavigation)
+                    .Include(x => x.IdHonorEntryNavigation)
                     .Where(x => x.DistributedDate == null)
                     .ToListAsync();
             }
@@ -73,13 +79,25 @@ namespace HonorSystem.ApiControllers
             {
                 items = await _context.Leftiteminguildstorages
                     .Include(x => x.IdItemNavigation)
+                    .Include(x => x.IdHonorEntryNavigation)
                     .Where(x => x.DistributedDate == null)
                     .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
                     .ToListAsync();
             }
 
-            return Ok(items);
+            // Controlla e gestisci i valori nulli
+            var itemsDto = items.Select(x => new
+            {
+                Id = x.Id,
+                DropDate = x.DropDate,
+                CurrentPriceInLucent = x.CurrentPriceInLucent,
+                ItemName = x.IdItemNavigation?.ItemName ?? "N/A", // Gestisci il valore nullo
+                IdHonorEntry = x.IdHonorEntry, // Gestisci il valore nullo
+                HonorEntryDescription = x.IdHonorEntryNavigation?.Description ?? "N/A" // Gestisci il valore nullo
+            }).ToList();
+
+            return Ok(itemsDto);
         }
 
 
