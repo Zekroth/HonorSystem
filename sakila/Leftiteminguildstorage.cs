@@ -21,7 +21,7 @@ public partial class Leftiteminguildstorage
 
     public virtual Member? DistributedToNavigation { get; set; }
 
-    public virtual ICollection<Droppeditemsrequest> Droppeditemsrequests { get; set; } = new List<Droppeditemsrequest>();
+    public virtual ICollection<Droppeditemsrequest>? Droppeditemsrequests { get; set; } = new List<Droppeditemsrequest>();
 
     public virtual Honorentry? IdHonorEntryNavigation { get; set; }
 
