@@ -25,8 +25,8 @@ namespace HonorSystem.Pages.HonorEntry
             if (_context.Honorentries != null)
             {
                 Honorentry = await _context.Honorentries
-                .Include(h => h.HonorEntryType)
-                .Include(h => h.Player).ToListAsync();
+                    .Include(h => h.HonorEntryType)
+                    .Include(h => h.Player).ToListAsync();
             }
         }
     }
