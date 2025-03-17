@@ -5,7 +5,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<script>
+    window.onload = function() {
+        $('#leftItemInGuildStorageTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true
+        });
+    };
+</script>
+
+<h1>Item Droppati</h1>
 
 <div class="form-group">
     <a asp-page="Create" class="btn btn-primary">Crea Item</a>

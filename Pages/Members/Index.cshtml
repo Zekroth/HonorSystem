@@ -19,19 +19,11 @@
 </script>
 
 <script>
-    window.onload = function () {
+    window.onload = function() {
         $('#memberTable').DataTable({
-            "paging": true,  // Attiva la paginazione
-            "searching": true,  // Abilita la ricerca
-            "ordering": true,  // Abilita l'ordinamento
-            "pageLength": 25,  // Imposta il numero di righe per pagina (puoi cambiare questo valore)
-            "lengthMenu": [5, 10, 25, 50, 100],  // Opzioni per le righe per pagina (es. 5, 10, 25, 50, 100)
-            "pagingType": "full_numbers",  // Tipo di paginazione (numeri completi)
-            "language": {
-                "lengthMenu": "",
-                "info": "",
-                "search": "Cerca:"
-            }
+            "paging": true,
+            "searching": true,
+            "ordering": true
         });
     };
 </script>
@@ -46,7 +38,7 @@
     <table id="memberTable" class="display table table-striped table-bordered">
         <thead>
             <tr>
-                <th>
+                <th style="text-align: center;">
                     ID
                 </th>
                 <th>
