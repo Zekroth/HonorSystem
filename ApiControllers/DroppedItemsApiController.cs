@@ -70,34 +70,22 @@ namespace HonorSystem.ApiControllers
             if (pageNumber == 0 && pageSize == 0)
             {
                 items = await _context.Leftiteminguildstorages
-                    .Include(x => x.IdItemNavigation)
                     .Include(x => x.IdHonorEntryNavigation)
-                    .Where(x => x.DistributedDate == null)
+                    .Include(x => x.IdItemNavigation)
                     .ToListAsync();
             }
             else
             {
                 items = await _context.Leftiteminguildstorages
-                    .Include(x => x.IdItemNavigation)
                     .Include(x => x.IdHonorEntryNavigation)
+                    .Include(x => x.IdItemNavigation)
                     .Where(x => x.DistributedDate == null)
                     .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
                     .ToListAsync();
             }
 
-            // Controlla e gestisci i valori nulli
-            var itemsDto = items.Select(x => new
-            {
-                Id = x.Id,
-                DropDate = x.DropDate,
-                CurrentPriceInLucent = x.CurrentPriceInLucent,
-                ItemName = x.IdItemNavigation?.ItemName ?? "N/A", // Gestisci il valore nullo
-                IdHonorEntry = x.IdHonorEntry, // Gestisci il valore nullo
-                HonorEntryDescription = x.IdHonorEntryNavigation?.Description ?? "N/A" // Gestisci il valore nullo
-            }).ToList();
-
-            return Ok(itemsDto);
+            return Ok(items);
         }
 
 
