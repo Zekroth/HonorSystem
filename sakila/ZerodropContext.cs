@@ -25,6 +25,8 @@ public partial class ZerodropContext : DbContext
 
     public virtual DbSet<ClassificaWithId> ClassificaWithIds { get; set; }
 
+    public virtual DbSet<Droppeditemsrequest> Droppeditemsrequests { get; set; }
+
     public virtual DbSet<Efmigrationshistory> Efmigrationshistories { get; set; }
 
     public virtual DbSet<Honorentry> Honorentries { get; set; }
@@ -112,6 +114,38 @@ public partial class ZerodropContext : DbContext
                 .HasMaxLength(45)
                 .HasColumnName("name");
             entity.Property(e => e.TotalePunti).HasPrecision(32);
+        });
+
+        modelBuilder.Entity<Droppeditemsrequest>(entity =>
+        {
+            entity.HasKey(e => e.IdDroppedItemsRequests).HasName("PRIMARY");
+
+            entity.ToTable("droppeditemsrequests");
+
+            entity.HasIndex(e => e.IdLeftItemInGuildStorage, "fk_droppeditemsrequests_leftiteminguildstorage1");
+
+            entity.HasIndex(e => e.IdMember, "fk_droppeditemsrequests_members1_idx");
+
+            entity.Property(e => e.IdDroppedItemsRequests).HasColumnName("idDroppedItemsRequests");
+            entity.Property(e => e.IdLeftItemInGuildStorage).HasColumnName("idLeftItemInGuildStorage");
+            entity.Property(e => e.IdMember).HasColumnName("idMember");
+            entity.Property(e => e.Reason)
+                .HasMaxLength(300)
+                .HasColumnName("reason");
+            entity.Property(e => e.RequestDate)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("datetime")
+                .HasColumnName("requestDate");
+
+            entity.HasOne(d => d.IdLeftItemInGuildStorageNavigation).WithMany(p => p.Droppeditemsrequests)
+                .HasForeignKey(d => d.IdLeftItemInGuildStorage)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_droppeditemsrequests_leftiteminguildstorage1");
+
+            entity.HasOne(d => d.IdMemberNavigation).WithMany(p => p.Droppeditemsrequests)
+                .HasForeignKey(d => d.IdMember)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_droppeditemsrequests_members1");
         });
 
         modelBuilder.Entity<Efmigrationshistory>(entity =>
