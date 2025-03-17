@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://localhost:5000"/*, "http://148.113.42.214:80"*/);
+builder.WebHost.UseUrls("http://localhost:5000", "http://148.113.42.214:80");
 
 // Add services to the container.
 builder.Services.AddRazorPages();
