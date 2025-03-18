@@ -49,6 +49,7 @@
         });
     });
 </script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const selectAllCheckbox = document.getElementById('selectAll');
@@ -75,6 +76,39 @@
     });
 </script>
 
+<script>
+    var honorEntryTypeList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.HonorEntryTypes)) || [];
+    function onChange() {
+        var selectedHonorList = honorEntryTypeList.find((x) => {
+            if (x.IdHonorEntryType == document.getElementById("BulkInsertViewModel_HonorEntryTypeId").value)
+                return true;
+            return false;
+        });
+
+        if (selectedHonorList == null) {
+            console.log("HonorEntryType " + document.getElementById("BulkInsertViewModel_HonorEntryTypeId").value + " is undefined");
+            return;
+        }
+
+        document.getElementById("BulkInsertViewModel_AssignedPoints").value = selectedHonorList.DefaultPoints;
+        document.getElementById("BulkInsertViewModel_Description").value = selectedHonorList.Description;
+
+        if (selectedHonorList.Expiration == 0) {
+            document.getElementById("BulkInsertViewModel_ExpirationDate").value = null;
+        } else {
+            var ms = Date.now();
+            if (document.getElementById("BulkInsertViewModel_ExpirationDate").value == '') {
+                var newDate = addDaysToDate(ms, selectedHonorList.Expiration);
+                document.getElementById("BulkInsertViewModel_ExpirationDate").value = newDate.toISOString().substr(0, 16);
+            } else {
+                var newDate = addDaysToDate(document.getElementById("BulkInsertViewModel_ExpirationDate").value, selectedHonorList.Expiration);
+                document.getElementById("BulkInsertViewModel_ExpirationDate").value = newDate.toISOString().substr(0, 16);
+            }
+        }
+    }
+
+    window.onload = onChange();
+</script>
 
 <h1>Inserimento Punti</h1>
 <hr />
