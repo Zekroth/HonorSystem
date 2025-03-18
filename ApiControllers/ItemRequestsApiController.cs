@@ -22,7 +22,7 @@ namespace HonorSystem.ApiControllers
 
         // GET: api/ItemRequestsApi
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Itemrequest>>> GetItemrequests([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Itemrequest>>> GetItemrequests([FromQuery] int pageNumber = 0, [FromQuery] int pageSize = 0)
         {
             var items = await _context.Itemrequests
                 .Skip((pageNumber - 1) * pageSize)
