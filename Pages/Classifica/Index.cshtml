@@ -5,23 +5,41 @@
     ViewData["Title"] = "Classifica";
 }
 
+<!-- Datatable -->
+<script>
+    window.onload = function() {
+        $('#tableClassifica').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "language": {
+                "lengthMenu": "Mostra _MENU_ righe per pagina",
+                "search": "Cerca:",
+                "info": "Mostra da _START_ a _END_ di _TOTAL_ righe",
+                "infoEmpty": "Nessuna riga disponibile",
+                "paginate": {
+                    "next": "Avanti",
+                    "previous": "Indietro"
+                }
+            }
+        });
+    };
+</script>
+
 <h1>Classifica</h1>
+<hr />
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-
-<div class="table-responsive">
+<div class="table-responsive" style="padding-left: 10px; padding-right: 10px;">
     <table id="tableClassifica" class="table">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Classificas[0].Name)
+                    Nome
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Classificas[0].TotalePunti)
+                    Totale Punti
                 </th>
-                <th></th>
+                @* <th></th> *@
             </tr>
         </thead>
         <tbody>
@@ -32,27 +50,21 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TotalePunti)
+                        @item.TotalePunti
                     </td>
-                    <td>
-                        <a asp-page="Edit" asp-route-id="@item.Name">Edit</a> |
-                        <a asp-page="Details" asp-route-id="@item.Name">Details</a> |
-                        <a asp-page="Delete" asp-route-id="@item.Name">Delete</a>
-                    </td>
+                    @* <td style="width: auto;">
+                        <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.Name" data-bs-toggle="tooltip"
+                           title="Modifica"><i class="bi bi-pencil-square"></i></a>
+
+                        <a asp-page="./Details" class="btn btn-secondary" asp-route-id="@item.Name"
+                           data-bs-toggle="tooltip" title="Dettagli"><i class="bi bi-eye"></i></a>
+
+                        <a asp-page="./Delete" class="btn btn-danger" asp-route-id="@item.Name"
+                           data-bs-toggle="tooltip" title="Elimina"><i class="bi bi-trash-fill"></i></a>
+                    </td> *@
                 </tr>
             }
         </tbody>
     </table>
-
 </div>
 
-
-<script>
-    window.onload = function() {
-        $('#tableClassifica').DataTable({
-            "paging": true,
-            "searching": true,
-            "ordering": true
-        });
-    };
-</script>

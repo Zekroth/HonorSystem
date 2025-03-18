@@ -5,10 +5,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Crea</h1>
-
-<h4>Membro</h4>
+<h1>Inserisci Membro</h1>
 <hr />
+
 <div class="row">
     <div class="col-auto">
         <form method="post">
@@ -19,12 +18,12 @@
                 <span asp-validation-for="Member.Name" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="Member.CharacterName" class="control-label">Nome 1° Discord</label>
+                <label asp-for="Member.CharacterName" class="control-label">ID 1° Discord</label>
                 <input asp-for="Member.CharacterName" class="form-control" />
                 <span asp-validation-for="Member.CharacterName" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="Member.SecondaryCharacterName" class="control-label">Nome 2° Discord</label>
+                <label asp-for="Member.SecondaryCharacterName" class="control-label">ID 2° Discord</label>
                 <input asp-for="Member.SecondaryCharacterName" class="form-control" />
                 <span asp-validation-for="Member.SecondaryCharacterName" class="text-danger"></span>
             </div>

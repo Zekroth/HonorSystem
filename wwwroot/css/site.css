@@ -20,49 +20,38 @@ body {
 }
 
 :root {
-  --bg-color: white;
-  --text-color: black;
-}
-
-.dark-mode {
   --bg-color: #121212;
   --text-color: white;
 }
 
-/* Hover in modalità chiara */
-.list-group-item:hover {
-  background-color: #28a745 !important; /* Verde per hover */
-  color: white !important; /* Colore del testo per miglior contrasto */
+.table-responsive {
+  box-shadow: 0 4px 8px rgba(21, 21, 21, 0.4);
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  table-layout: fixed;
+  overflow-x: hidden; 
+  background-color: #1e1e1e;
+  color: white;
+  border-color: #444;
+  text-align: center;
 }
 
 /* Hover in modalità scura */
-.dark-mode .list-group-item:hover {
+.list-group-item:hover {
   background-color: #28a745 !important; /* Verde per hover in modalità scura */
   color: white !important; /* Colore del testo per miglior contrasto */
 }
 
 /* Stile di base per la modalità scura */
-.dark-mode .list-group-item {
+.list-group-item {
   background-color: #343a40 !important; /* Sfondo scuro per la modalità scura */
   color: white !important; /* Colore del testo chiaro */
 }
 
-/* Stile di base per la modalità chiara */
-.list-group-item {
-  background-color: #ffffff !important; /* Sfondo chiaro per la modalità chiara */
-  color: black !important; /* Colore del testo scuro */
-}
-
-/* Stile per il link attivo in modalità chiara */
-.list-group-item.active {
-  background-color: #198754 !important; /* Verde per il link attivo in modalità chiara */
-  color: white !important; /* Colore del testo per miglior contrasto */
-  font-weight: bold !important; /* Testo in grassetto */
-  border-radius: 10px !important; /* Mantenere la forma arrotondata */
-}
-
 /* Stile per il link attivo in modalità scura */
-.dark-mode .list-group-item.active {
+ .list-group-item.active {
   background-color: #198754 !important; /* Verde per il link attivo in modalità scura */
   color: white !important; /* Colore del testo per miglior contrasto */
   font-weight: bold !important; /* Testo in grassetto */
@@ -100,30 +89,15 @@ table.dataTable>thead>tr>td {
 }
 
 #sidebarMenu {
-  height: 100vh;
+  height: auto;
   background-color: white;
   padding-top: 10px;
 }
 
-#sidebarMenu .position-sticky {
-  margin: 0;
-}
-
-footer {
-  flex-shrink: 0; /* Impedisce che il footer si ridimensioni */
-  position: sticky;
-  bottom: 0;
-  width: 100%;
-}
-
 .footer-text {
   font-size: 14px;
-  color: #6c757d;
-  transition: color 0.3s ease-in-out;
-}
-
-.dark-mode .footer-text {
   color: #bbb;
+  transition: color 0.3s ease-in-out;
 }
 
 table {
@@ -132,6 +106,9 @@ table {
   margin-bottom: 20px;
   table-layout: fixed;
   overflow-x: hidden;
+  background-color: #1e1e1e;
+  color: white;
+  border-color: #444;
 }
 
 table td,
@@ -139,105 +116,80 @@ table th,
 table tr {
   text-align: center;
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid #555;
   overflow-x: hidden;
-}
-
-.dark-mode table {
-  background-color: #1e1e1e;
-  color: white;
-  border-color: #444;
-}
-
-.dark-mode table td,
-.dark-mode table th {
   background-color: #333;
-  border-color: #555;
 }
 
-.dark-mode table th {
+table th {
   background-color: #292929;
 }
 
-.dark-mode table tbody tr:nth-of-type(odd) td {
+table tbody tr:nth-of-type(odd) td {
   background-color: #252525;
 }
 
-.dark-mode table tbody tr:hover td {
+table tbody tr:hover td {
   background-color: #555;
 }
 
-.dark-mode .table-responsive {
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(21, 21, 21, 0.4);
-  margin-top: 10px;
-  margin-bottom: 10px;
-  overflow-x: hidden;
-}
-
-.dark-mode .table-bordered {
+.table-bordered {
   border: 1px solid #444;
 }
 
-.dark-mode .table-bordered th,
-.dark-mode .table-bordered td {
+.table-bordered th,
+.table-bordered td {
   border: 1px solid #555;
 }
 
-.table-responsive {
-  overflow-x: auto;
-  margin-bottom: 20px;
-}
-
-.dark-mode .btn {
+.btn {
   color: white !important;
 }
 
-.dark-mode .table-striped tbody tr:nth-of-type(odd) td {
+.table-striped tbody tr:nth-of-type(odd) td {
   background-color: #252525 !important;
 }
 
-.dark-mode .table-hover tbody tr:hover td {
+.table-hover tbody tr:hover td {
   background-color: #555 !important;
 }
 
-.dark-mode .table,
-.dark-mode .table th,
-.dark-mode .table td,
-.dark-mode .table-responsive {
+ .table,
+.table th,
+.table td {
   background-color: #1e1e1e !important;
   color: white !important;
   border-color: #444 !important;
   text-align: center;
 }
 
-.dark-mode .table thead th {
+  .table thead th {
   background-color: #292929 !important;
 }
 
-.dark-mode .table-bordered {
+  .table-bordered {
   border: 1px solid #444 !important;
 }
 
-.dark-mode #sidebarMenu {
+  #sidebarMenu {
   background-color: #1e1e1e !important;
   color: white !important;
 }
 
-.dark-mode #sidebarMenu a {
+  #sidebarMenu a {
   color: white !important;
 }
 
-.dark-mode #sidebarMenu a:hover {
+  #sidebarMenu a:hover {
   background-color: red !important;
 }
 
-.dark-mode .list-group-item {
+  .list-group-item {
   color: #ddd !important;
   background-color: #333 !important;
 }
 
-.dark-mode .list-group-item:hover {
+  .list-group-item:hover {
   background-color: #444 !important;
   color: #fff !important;
 }
@@ -247,49 +199,49 @@ a,
   border-radius: 10px;
 }
 
-.dark-mode .btn-primary {
+  .btn-primary {
   background-color: #0d6efd !important;
   border-color: #0a58ca !important;
   color: white !important;
 }
 
-.dark-mode .btn-secondary {
+  .btn-secondary {
   background-color: #6c757d !important;
   border-color: #565e64 !important;
   color: white !important;
 }
 
-.dark-mode .btn-success {
+  .btn-success {
   background-color: #198754 !important;
   border-color: #146c43 !important;
   color: white !important;
 }
 
-.dark-mode .btn-danger {
+  .btn-danger {
   background-color: #dc3545 !important;
   border-color: #b02a37 !important;
   color: white !important;
 }
 
-.dark-mode .btn-warning {
+  .btn-warning {
   background-color: #ffc107 !important;
   border-color: #ffca2c !important;
   color: black !important;
 }
 
-.dark-mode .btn-info {
+  .btn-info {
   background-color: #0dcaf0 !important;
   border-color: #31d2f2 !important;
   color: black !important;
 }
 
-.dark-mode .btn-light {
+  .btn-light {
   background-color: #f8f9fa !important;
   border-color: #f9fafb !important;
   color: black !important;
 }
 
-.dark-mode .btn-dark {
+  .btn-dark {
   background-color: #212529 !important;
   border-color: #1d2124 !important;
   color: white !important;
@@ -299,32 +251,15 @@ a,
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.dark-mode .custom-shadow {
+  .custom-shadow {
   box-shadow: 0 4px 8px rgba(21, 21, 21, 0.4);
 }
 
-.table-responsive {
-  box-shadow: 0 4px 8px rgba(21, 21, 21, 0.4);
-  border-radius: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 100%;
-  table-layout: fixed;
-  overflow-x: hidden;
-}
-
-.dark-mode .table-responsive {
-  box-shadow: 0 4px 8px rgba(21, 21, 21, 0.4);
-  border-radius: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.dark-mode .container {
+  .container {
   color: white;
 }
 
-.dark-mode .form-control {
+  .form-control {
   background-color: #333;
   color: #fff;
   border-color: #444;
@@ -344,99 +279,86 @@ header img {
   border-bottom: none !important;
 }
 
-.custom-select-width {
-  width: 500px !important;
-  height: 691px !important;
-}
-
-.select2-container {
-  background-color: #333 !important;
-  color: white !important;
-}
-
-.select2-selection {
-  background-color: #444 !important;
-  color: white !important;
-  border: 1px solid #666 !important;
-}
-
-.select2-results {
-  background-color: #333 !important;
-  color: white !important;
-}
-
-.select2-results__option[aria-selected="true"] {
-  background-color: #555 !important;
-  color: white !important;
-}
-
-.select2-selection__rendered {
-  color: white !important;
-  background-color: #555 !important;
-}
-
-.select2-results__option[aria-selected="true"] {
-  background-color: #777 !important;
-  color: white !important;
-}
-
-.select2-results__option:hover {
-  background-color: #666 !important;
-  color: white !important;
-}
-
-.select2-selection__choice {
-  background-color: #444 !important;
-  color: white !important;
-  border: 1px solid #666 !important;
-}
-
-.select2-selection__choice__remove {
-  color: #bbb !important;
-}
-
 table th,
 table td {
   text-align: center !important;
 }
 
-/* Stile per il link attivo in modalità chiara */
-.list-group-item.active {
-  background-color: red; /* Verde per il link attivo */
-  color: white; /* Colore del testo per miglior contrasto */
-  font-weight: bold; /* Testo in grassetto */
-  border-radius: 10px; /* Mantenere la forma arrotondata */
-}
-
 /* Stile per il link attivo in modalità scura */
-.dark-mode .list-group-item.active {
+.list-group-item.active {
   background-color: red !important; /* Verde per il link attivo in dark mode */
   color: white !important; /* Colore del testo per miglior contrasto */
   font-weight: bold !important; /* Testo in grassetto */
   border-radius: 10px !important; /* Mantenere la forma arrotondata */
 }
 
-/* Hover in modalità chiara */
-.list-group-item:hover {
-  background-color: #28a745 !important; /* Verde per hover */
-  color: white !important; /* Colore del testo per miglior contrasto */
-}
-
 /* Hover in modalità scura */
-.dark-mode .list-group-item:hover {
+.list-group-item:hover {
   background-color: #28a745 !important; /* Verde per hover in modalità scura */
   color: white !important; /* Colore del testo per miglior contrasto */
 }
 
 /* Stile di base per la modalità scura, cambia il colore di base dei link */
-.dark-mode .list-group-item {
+.list-group-item {
   background-color: #343a40 !important; /* Sfondo scuro di base per la modalità scura */
   color: white !important; /* Colore del testo chiaro */
 }
 
-/* Stile di base per la modalità chiara, cambia il colore di base dei link */
-.list-group-item {
-  background-color: #ffffff !important; /* Sfondo chiaro di base per la modalità chiara */
-  color: black !important; /* Colore del testo scuro */
+.modal-content {
+  height: 100%;
+  overflow-y: auto;
 }
 
+.align-left-table td {
+  text-align: left; /* Allinea il contenuto delle celle a sinistra */
+  vertical-align: middle; /* centra verticalmente il contenuto delle celle */
+}
+
+.align-left-table .form-check {
+  text-align: left; /* Allinea il contenuto del div con checkbox a sinistra */
+}
+
+.align-left-table .form-check-label {
+  margin-left: 5px; /* Facoltativo: aggiunge un piccolo margine tra il checkbox e l'etichetta */
+}
+
+
+/* Scurisce il menu a discesa per la selezione delle righe per pagina */
+.dataTables_length select {
+  background-color: #333 !important; /* Sfondo scuro */
+  color: white !important; /* Testo chiaro */
+  border: 1px solid #444; /* Bordo scuro */
+  border-radius: 4px; /* Bordo arrotondato */
+  padding: 5px; /* Padding interno per migliorare l'aspetto */
+}
+
+/* Modifica lo sfondo durante il focus */
+.dataTables_length select:focus {
+  outline: none;
+  background-color: #444 !important; /* Sfondo ancora più scuro durante il focus */
+}
+
+#loader {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+  z-index: 9999; /* Porta il loader sopra tutti gli altri elementi */
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.version-display {
+  font-size: 14px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 1; /* Assicurati che la versione sia sopra altri contenuti */
+}

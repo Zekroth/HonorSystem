@@ -4,12 +4,23 @@
     ViewData["Title"] = "Item Requests";
 }
 
+<!-- Datatable -->
 <script>
     window.onload = function() {
         $('#itemRequestTable').DataTable({
             "paging": true,
             "searching": true,
-            "ordering": true
+            "ordering": true,
+            "language": {
+                "lengthMenu": "Mostra _MENU_ righe per pagina",
+                "search": "Cerca:",
+                "info": "Mostra da _START_ a _END_ di _TOTAL_ righe",
+                "infoEmpty": "Nessuna riga disponibile",
+                "paginate": {
+                    "next": "Avanti",
+                    "previous": "Indietro"
+                }
+            }
         });
     };
 </script>
@@ -20,12 +31,12 @@
     <a asp-page="Create" class="btn btn-primary">Crea Item Request</a>
 </div>
 
-<div class="table-responsive">
+<div class="table-responsive" style="padding-left: 10px; padding-right: 10px;">
     <table id="itemRequestTable" class="display table table-striped table-bordered">
         <thead>
             <tr>
                 <th>ID</th>
-                <th>È presente</th>
+                <th>Disponibile</th>
                 <th>Item</th>
                 <th>Player</th>
             </tr>

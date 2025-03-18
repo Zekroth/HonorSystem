@@ -5,12 +5,23 @@
     ViewData["Title"] = "Index";
 }
 
+<!-- Datatable -->
 <script>
     window.onload = function() {
         $('#leftItemInGuildStorageTable').DataTable({
             "paging": true,
             "searching": true,
-            "ordering": true
+            "ordering": true,
+            "language": {
+                "lengthMenu": "Mostra _MENU_ righe per pagina",
+                "search": "Cerca:",
+                "info": "Mostra da _START_ a _END_ di _TOTAL_ righe",
+                "infoEmpty": "Nessuna riga disponibile",
+                "paginate": {
+                    "next": "Avanti",
+                    "previous": "Indietro"
+                }
+            }
         });
     };
 </script>
@@ -21,15 +32,15 @@
     <a asp-page="Create" class="btn btn-primary">Crea Item</a>
 </div>
 
-<div class="table-responsive">
+<div class="table-responsive" style="padding-left: 10px; padding-right: 10px;">
     <table id="leftItemInGuildStorageTable" class="display table table-striped table-bordered">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].DropDate)
+                    Data del Drop
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].CurrentPriceInLucent)
+                    Prezzo Corrente (Lucent)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].IdHonorEntryNavigation)
@@ -60,14 +71,6 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.IdItemNavigation.ItemName)
-                    </td>
-                    <td>
-                        <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.Id" data-bs-toggle="tooltip"
-                           title="Modifica"><i class="bi bi-pencil-square"></i></a>
-                        <a asp-page="./Details" class="btn btn-secondary" asp-route-id="@item.Id" data-bs-toggle="tooltip"
-                           title="Dettagli"><i class="bi bi-eye"></i></a>
-                        <a asp-page="./Delete" class="btn btn-danger" asp-route-id="@item.Id" data-bs-toggle="tooltip"
-                           title="Elimina"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
             }

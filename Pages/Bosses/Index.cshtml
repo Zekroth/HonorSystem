@@ -5,12 +5,23 @@
     ViewData["Title"] = "Bosses";
 }
 
+<!-- Datatable -->
 <script>
     window.onload = function() {
         $('#itemTable').DataTable({
             "paging": true,
             "searching": true,
-            "ordering": true
+            "ordering": true,
+            "language": {
+                "lengthMenu": "Mostra _MENU_ righe per pagina",
+                "search": "Cerca:",
+                "info": "Mostra da _START_ a _END_ di _TOTAL_ righe",
+                "infoEmpty": "Nessuna riga disponibile",
+                "paginate": {
+                    "next": "Avanti",
+                    "previous": "Indietro"
+                }
+            }
         });
     };
 </script>
@@ -21,7 +32,7 @@
     <a asp-page="Create" class="btn btn-primary">Crea Boss</a>
 </div>
 
-<div class="table-responsive">
+<div class="table-responsive" style="padding-left: 10px; padding-right: 10px;">
     <table id="itemTable" class="display table table-striped table-bordered">
         <thead>
             <tr>

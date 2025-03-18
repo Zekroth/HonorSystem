@@ -6,37 +6,37 @@
 }
 
 <h1>Elimina</h1>
-
 <h3>Sei sicuro di voler eliminare @Html.DisplayFor(model => model.Member.Name)?</h3>
+<hr />
 
 <div>
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Member.Name)
+            Nome
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Member.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Member.CharacterName)
+            ID 2° Discord
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Member.CharacterName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Member.SecondaryCharacterName)
+            ID 2° Discord
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Member.SecondaryCharacterName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Member.JoinDate)
+            Data Ingresso
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Member.JoinDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Member.IsActive)
+            Attivo
         </dt>
         <dd class="col-sm-10">
             @if (Model.Member.IsActive == 1) { 
@@ -46,7 +46,7 @@
             }
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Member.IsStillInGuild)
+            In gilda
         </dt>
         <dd class="col-sm-10">
             @if (Model.Member.IsStillInGuild == 1) { 

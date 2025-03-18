@@ -5,13 +5,34 @@
     ViewData["Title"] = "Dropped Items Requests";
 }
 
-<h1>Dropped Items Requests</h1>
+<!-- Datatable -->
+<script>
+    window.onload = function() {
+        $('#droppedItemsTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "language": {
+                "lengthMenu": "Mostra _MENU_ righe per pagina",
+                "search": "Cerca:",
+                "info": "Mostra da _START_ a _END_ di _TOTAL_ righe",
+                "infoEmpty": "Nessuna riga disponibile",
+                "paginate": {
+                    "next": "Avanti",
+                    "previous": "Indietro"
+                }
+            }
+        });
+    };
+</script>
+
+<h1>Richieste Item Droppati</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Inserisci Richiesta</a>
 </p>
 
-<div class="table-responsive">
+<div class="table-responsive" style="padding-left: 10px; padding-right: 10px;">
     <table id="droppedItemsTable" class="table">
         <thead>
             <tr>
@@ -22,13 +43,13 @@
                     @Html.DisplayNameFor(model => model.DIRequest[0].IdMemberNavigation.Name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DIRequest[0].RequestDate)
+                    Data di Richiesta
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DIRequest[0].IdLeftItemInGuildStorageNavigation.IdItemNavigation.ItemName)
+                    Item Richiesto
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DIRequest[0].Reason)
+                    Motivazione
                 </th>
                 <th></th>
             </tr>
@@ -65,14 +86,3 @@
         </tbody>
     </table>
 </div>
-
-<script>
-
-    window.onload = function() {
-        $('#droppedItemsTable').DataTable({
-            "paging": true,
-            "searching": true,
-            "ordering": true
-        });
-    };
-</script>

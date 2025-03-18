@@ -19,7 +19,10 @@ namespace HonorSystem.Pages.HonorEntry
         }
 
         [BindProperty]
-      public Honorentry Honorentry { get; set; } = default!;
+        public Honorentry Honorentry { get; set; } = default!;
+        
+        [BindProperty(SupportsGet = true)]
+        public string? PlayerName { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,12 +32,13 @@ namespace HonorSystem.Pages.HonorEntry
             }
 
             var honorentry = await _context.Honorentries.FirstOrDefaultAsync(m => m.IdHonorEntry == id);
+            
 
             if (honorentry == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Honorentry = honorentry;
             }
