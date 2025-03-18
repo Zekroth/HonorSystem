@@ -5,39 +5,53 @@
     ViewData["Title"] = "Index";
 }
 
+<!-- Datatable -->
 <script>
     window.onload = function() {
         $('#honorEntryTypeTable').DataTable({
             "paging": true,
             "searching": true,
-            "ordering": true
+            "ordering": true,
+            "language": {
+                "lengthMenu": "Mostra _MENU_ righe per pagina",
+                "search": "Cerca:",
+                "info": "Mostra da _START_ a _END_ di _TOTAL_ righe",
+                "infoEmpty": "Nessuna riga disponibile",
+                "paginate": {
+                    "next": "Avanti",
+                    "previous": "Indietro"
+                }
+            }
         });
     };
 </script>
 
-<h1>Index</h1>
+<h1>Tipi di Punteggio</h1>
+<hr />
 
 <div class="form-group">
-    <a asp-page="Create" class="btn btn-primary">Crea HonorEntryType</a>
+    <a asp-page="Create" class="btn btn-primary">Inserisci Tipo di Punteggio</a>
 </div>
 
-<div class="table-responsive">
+<div class="table-responsive" style="padding-left: 10px; padding-right: 10px;">
     <table id="honorEntryTypeTable" class="display table table-striped table-bordered">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Honorentrytype[0].Type)
+                    Tipo
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Honorentrytype[0].DefaultPoints)
+                    Punteggio
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Honorentrytype[0].Description)
+                    Descrizione
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Honorentrytype[0].Expiration)
+                    Scadenza
                 </th>
-                <th></th>
+                <th>
+                    Admin
+                </th>
             </tr>
         </thead>
         <tbody>

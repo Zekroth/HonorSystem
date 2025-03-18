@@ -6,31 +6,31 @@
 }
 
 <h1>Dettagli</h1>
+<h4>@Html.DisplayFor(model => model.Honorentrytype.Type)</h4>
+<hr />
 
-<div>
-    <h4>Honorentry type</h4>
-    <hr />
+<div class="container">
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Honorentrytype.Type)
+            Tipo
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Honorentrytype.Type)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Honorentrytype.DefaultPoints)
+            Punti
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Honorentrytype.DefaultPoints)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Honorentrytype.Description)
+            Descrizione
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Honorentrytype.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Honorentrytype.Expiration)
+            Scadenza
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Honorentrytype.Expiration)
@@ -38,6 +38,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@Model.Honorentrytype?.IdHonorEntryType">Salva</a> 
+    <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@Model.Honorentrytype?.IdHonorEntryType">Salva</a>
     <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
 </div>

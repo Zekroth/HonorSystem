@@ -5,6 +5,27 @@
     ViewData["Title"] = "Members";
 }
 
+<!-- Datatable -->
+<script>
+    window.onload = function() {
+        $('#memberTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "language": {
+                "lengthMenu": "Mostra _MENU_ righe per pagina",
+                "search": "Cerca:",
+                "info": "Mostra da _START_ a _END_ di _TOTAL_ righe",
+                "infoEmpty": "Nessuna riga disponibile",
+                "paginate": {
+                    "next": "Avanti",
+                    "previous": "Indietro"
+                }
+            }
+        });
+    };
+</script>
+
 <script>
     var deleteModal = document.getElementById('deleteModal');
     deleteModal.addEventListener('show.bs.modal', function (event) {
@@ -18,31 +39,21 @@
     });
 </script>
 
-<script>
-    window.onload = function () {
-        $('#memberTable').DataTable({
-            "paging": true,
-            "searching": true,
-            "ordering": true
-        });
-    };
-</script>
-
 <h1>Membri di Gilda</h1>
 
 <div class="form-group">
-    <a asp-page="Create" class="btn btn-primary">Crea Membro</a>
+    <a asp-page="Create" class="btn btn-primary">Inserisci Membro</a>
 </div>
 
-<div class="table-responsive">
+<div class="table-responsive" style="padding-left: 10px; padding-right: 10px;">
     <table id="memberTable" class="display table table-striped table-bordered">
         <thead>
             <tr>
                 <th>#</th>
-                <th>Nome Giocatore</th>
-                <th>ID Discord 1° Account</th>
-                <th>ID Discord 2° Account</th>
-                <th>Data ingresso gilda</th>
+                <th>Nome</th>
+                <th>ID 1° Discord</th>
+                <th>ID 2° Discord</th>
+                <th>Ingresso Gilda</th>
                 <th>Attivo</th>
                 <th>In gilda</th>
                 <th>Admin</th>
@@ -78,30 +89,6 @@
                             <i class="bi bi-x-circle-fill" style="color: red;"></i>
                         }
                     </td>
-                    <td>
-                        @item.JoinDate?.ToString("dd/MM/yyyy")
-                    </td>
-                    <td>
-                        @if (item.IsActive == 1)
-                        {
-                            <i class="bi bi-check-circle-fill" style="color: green;"></i> <!-- Vero -->
-                        }
-                        else
-                        {
-                            <i class="bi bi-x-circle-fill" style="color: red;"></i> <!-- Falso -->
-                        }
-                    </td>
-                    <td>
-                        @if (item.IsStillInGuild == 1)
-                        {
-                            <i class="bi bi-check-circle-fill" style="color: green;"></i> <!-- Vero -->
-                        }
-                        else
-                        {
-                            <i class="bi bi-x-circle-fill" style="color: red;"></i> <!-- Falso -->
-                        }
-                    </td>
-
                     <td style="width: auto;">
                         <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.IdMembers" data-bs-toggle="tooltip"
                            title="Modifica"><i class="bi bi-pencil-square"></i></a>

@@ -6,98 +6,145 @@
     ViewData["Title"] = "BulkInsert";
 }
 
+<!-- Datatable -->
+<script>
+    window.onload = function() {
+        $('#players').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "dom": '<"row justify-content-between"<"col-sm-6 text-start"f><"col-sm-6 text-end"l>>rt<"row justify-content-between"<"col-sm-6 text-start"i><"col-sm-6 text-end"p>>',
+            "language": {
+                "lengthMenu": "Mostra _MENU_ righe per pagina",
+                "search": "Cerca:",
+                "info": "Mostra da _START_ a _END_ di _TOTAL_ righe",
+                "infoEmpty": "Nessuna riga disponibile",
+                "paginate": {
+                    "next": "Avanti",
+                    "previous": "Indietro"
+                }
+            }
+        });
+    };
+</script>
 
-<h1>Create</h1>
+<!-- Gestione click delle righe in tabella -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Seleziona tutte le righe con la classe "clickable-row"
+        const rows = document.querySelectorAll('.clickable-row');
 
-<h4>Honorentry</h4>
+        rows.forEach(row => {
+            row.addEventListener('click', function (e) {
+                // Evita che il click interno (come quello sulla checkbox) crei conflitti
+                if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'LABEL') {
+                    const checkboxId = this.dataset.checkboxId; // Ottiene l'ID della checkbox
+                    const checkbox = document.getElementById(checkboxId);
+
+                    if (checkbox) {
+                        checkbox.checked = !checkbox.checked; // Alterna lo stato della checkbox
+                    }
+                }
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectAllCheckbox = document.getElementById('selectAll');
+        const playerCheckboxes = document.querySelectorAll('.player-checkbox');
+
+        // Gestione selezione/deselezione di tutte le checkbox
+        selectAllCheckbox.addEventListener('change', function () {
+            const isChecked = this.checked;
+            playerCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked; // Applica lo stato della checkbox "Seleziona Tutti"
+            });
+        });
+
+        // Aggiornamento dello stato di "Seleziona Tutti" in base alle checkbox individuali
+        playerCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                if (!this.checked) {
+                    selectAllCheckbox.checked = false; // Deseleziona "Seleziona Tutti" se una checkbox viene deselezionata
+                } else if (Array.from(playerCheckboxes).every(cb => cb.checked)) {
+                    selectAllCheckbox.checked = true; // Se tutte le checkbox sono selezionate, spunta "Seleziona Tutti"
+                }
+            });
+        });
+    });
+</script>
+
+
+<h1>Inserimento Punti</h1>
 <hr />
+
 <div class="row">
     <div class="col-auto">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="BulkInsertViewModel.AssignedPoints" class="control-label"></label>
+                <label asp-for="BulkInsertViewModel.AssignedPoints" class="control-label">Punti Assegnati</label>
                 <input asp-for="BulkInsertViewModel.AssignedPoints" class="form-control" />
                 <span asp-validation-for="BulkInsertViewModel.AssignedPoints" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="BulkInsertViewModel.Description" class="control-label"></label>
+                <label asp-for="BulkInsertViewModel.Description" class="control-label">Descrizione</label>
                 <input asp-for="BulkInsertViewModel.Description" class="form-control" />
                 <span asp-validation-for="BulkInsertViewModel.Description" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="BulkInsertViewModel.ExpirationDate" class="control-label"></label>
+                <label asp-for="BulkInsertViewModel.ExpirationDate" class="control-label">Scadenza</label>
                 <input asp-for="BulkInsertViewModel.ExpirationDate" class="form-control" />
                 <span asp-validation-for="BulkInsertViewModel.ExpirationDate" class="text-danger"></span>
             </div>
-            <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="BulkInsertViewModel.HonorEntryTypeId" class="control-label"></label>
+            <div class="form-group" style="margin-bottom: 30px;">
+                <label asp-for="BulkInsertViewModel.HonorEntryTypeId" class="control-label">Tipo di Punteggio</label>
                 <select asp-for="BulkInsertViewModel.HonorEntryTypeId" class="form-control"
                     asp-items="ViewBag.HonorEntryTypeId" onchange="onChange()"></select>
             </div>
 
-            <div class="form-group" style="margin-bottom: 10px;">
+            <!-- Lista checkbox in tabella -->
+            <div class="table-responsive" style="padding-left: 10px; padding-right: 10px;">
+                <div id="playerList">
+                    <table id="players" class="display table table-striped table-bordered align-left-table">
+    <thead>
+        <tr>
+            <th>
+                <input type="checkbox" id="selectAll" class="form-check-input" />
+                <label class="form-check-label" for="selectAll">Seleziona Tutti</label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var player in (IEnumerable<SelectListItem>)ViewBag.PlayerId)
+        {
+            <tr class="clickable-row" data-checkbox-id="player-@player.Value">
+                <td>
+                    <div class="form-check">
+                        <input type="checkbox" name="BulkInsertViewModel.PlayerId" value="@player.Value" class="form-check-input player-checkbox" id="player-@player.Value" />
+                        <label class="form-check-label" for="player-@player.Value">@player.Text</label>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+                </div>
+            </div>
+
+            <!-- Bottoni -->
+            <div class="form-group" style="margin-top: 10px;">
                 <input type="submit" value="Salva" class="btn btn-primary" />
                 <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
             </div>
-            <div class="col-auto">
-                <div class="form-group" style="margin-bottom: 10px;">
-                    <label asp-for="BulkInsertViewModel.PlayerId" class="control-label"></label>
-                    <select asp-for="BulkInsertViewModel.PlayerId" class="form-control custom-select-width" asp-items="ViewBag.PlayerId" multiple="multiple"></select>
-                </div>
-            </div>
+
         </form>
     </div>
     
-
-<!-- CSS di Select2 -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-
-<!-- JS di Select2 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $('#BulkInsertViewModel_PlayerId').select2({
-            closeOnSelect: false  // Impedisce che la tendina si chiuda dopo ogni selezione
-        });
-    });
-</script>
-
-<script>
-    var honorEntryTypeList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.HonorEntryTypes)) || [];
-    function onChange() {
-        var selectedHonorList = honorEntryTypeList.find((x) => {
-            if (x.IdHonorEntryType == document.getElementById("BulkInsertViewModel_HonorEntryTypeId").value)
-                return true;
-            return false;
-        });
-
-        if (selectedHonorList == null) {
-            console.log("HonorEntryType " + document.getElementById("BulkInsertViewModel_HonorEntryTypeId").value + " is undefined");
-            return;
-        }
-
-        document.getElementById("BulkInsertViewModel_AssignedPoints").value = selectedHonorList.DefaultPoints;
-        document.getElementById("BulkInsertViewModel_Description").value = selectedHonorList.Description;
-
-        if (selectedHonorList.Expiration == 0) {
-            document.getElementById("BulkInsertViewModel_ExpirationDate").value = null;
-        } else {
-            var ms = Date.now();
-            if (document.getElementById("BulkInsertViewModel_ExpirationDate").value == '') {
-                var newDate = addDaysToDate(ms, selectedHonorList.Expiration);
-                document.getElementById("BulkInsertViewModel_ExpirationDate").value = newDate.toISOString().substr(0, 16);
-            } else {
-                var newDate = addDaysToDate(document.getElementById("BulkInsertViewModel_ExpirationDate").value, selectedHonorList.Expiration);
-                document.getElementById("BulkInsertViewModel_ExpirationDate").value = newDate.toISOString().substr(0, 16);
-            }
-        }
-    }
-
-    window.onload = onChange();
-</script>
-
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
