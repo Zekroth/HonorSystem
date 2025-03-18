@@ -35,7 +35,7 @@
                     @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].IdHonorEntryNavigation)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].IdItemNavigation)
+                    @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].IdItemNavigation.ItemName)
                 </th>
                 <th></th>
             </tr>
@@ -59,7 +59,7 @@
                         }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.IdItemNavigation.IdItem)
+                        @Html.DisplayFor(modelItem => item.IdItemNavigation.ItemName)
                     </td>
                     <td>
                         <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.Id" data-bs-toggle="tooltip"

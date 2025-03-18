@@ -25,6 +25,9 @@ namespace HonorSystem.ApiControllers
         public async Task<ActionResult<IEnumerable<Droppeditemsrequest>>> GetDroppeditemsrequests()
         {
             return await _context.Droppeditemsrequests
+                .Include(x => x.IdMemberNavigation)
+                .Include(x => x.IdLeftItemInGuildStorageNavigation)
+                .Include(x => x.IdLeftItemInGuildStorageNavigation.IdItemNavigation)
                 .Where(x => x.IdLeftItemInGuildStorageNavigation.DistributedTo == null)
                 .ToListAsync();
         }
@@ -33,7 +36,11 @@ namespace HonorSystem.ApiControllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Droppeditemsrequest>> GetDroppeditemsrequest(int id)
         {
-            var droppeditemsrequest = await _context.Droppeditemsrequests.FindAsync(id);
+            var droppeditemsrequest = _context.Droppeditemsrequests
+                .Include(x => x.IdMemberNavigation)
+                .Include(x => x.IdLeftItemInGuildStorageNavigation)
+                .Include(x => x.IdLeftItemInGuildStorageNavigation.IdItemNavigation)
+                .FirstOrDefault(x => x.IdLeftItemInGuildStorage == id);
 
             if (droppeditemsrequest == null)
             {
