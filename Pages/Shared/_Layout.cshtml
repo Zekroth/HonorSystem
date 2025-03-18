@@ -10,6 +10,7 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <link rel="stylesheet" href="~/HonorSystem.styles.css" asp-append-version="true" />
+<link rel="icon" type="image/png" href="/images/logo.png">
 
 <!-- Load CSS for DataTables -->
 <link rel="stylesheet" href="~/css/dataTables.min.css" />
@@ -27,7 +28,7 @@
     });
 </script>
 
-<!-- Gestione light/dark mode -->
+@* <!-- Gestione light/dark mode -->
 <script>
     if (localStorage.getItem("darkMode") === "enabled") {
         document.documentElement.classList.add("dark-mode");
@@ -63,31 +64,36 @@
             }
         });
     });
-</script>
+</script> *@
+
+<!-- Loader + Script -->
+<div id="loader"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); display: flex; justify-content: center; align-items: center; z-index: 1050; visibility: hidden; opacity: 0; transition: opacity 0.3s ease-in-out;">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const logoImage = document.getElementById("logoImage");
-        const body = document.documentElement;
+        const loader = document.getElementById("loader");
+        const links = document.querySelectorAll(".list-group-item");
 
-        // Funzione per cambiare il logo in base alla modalità
-        function updateLogo() {
-            if (body.classList.contains("dark-mode")) {
-                logoImage.src = "/images/zerodrop.png"; // Logo per dark mode
-            } else {
-                logoImage.src = "/images/logo.png"; // Logo per light mode
-            }
-        }
+        links.forEach(link => {
+            link.addEventListener("click", function (event) {
+                loader.style.visibility = "visible";
+                loader.style.opacity = "1";
+            });
+        });
 
-        // Esegui subito per impostare il logo corretto all'avvio
-        updateLogo();
-
-        // Ogni volta che la modalità cambia, aggiorna il logo
-        const toggleButton = document.getElementById("darkModeToggle");
-        toggleButton.addEventListener("click", function () {
-            updateLogo();
+        window.addEventListener("load", function () {
+            loader.style.opacity = "0";
+            setTimeout(() => {
+                loader.style.visibility = "hidden";
+            }, 300);
         });
     });
 </script>
+
 
 <!-- Link attivo -->
 <script>
@@ -120,7 +126,7 @@
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse custom-shadow"
         style="margin: 10px; border-radius: 10px;">
 
-        <div class="position-sticky" style="margin: 10px;">
+        <div style="margin: 10px;">
 
             <div class="d-flex justify-content-center">
                 <img id="logoImage" src="/images/zerodrop.png" alt="Logo" style="max-width: 450px; height: 350px;">
@@ -151,39 +157,38 @@
                 </a>
                 <a href="/HonorEntry" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
                     class="list-group-item list-group-item-action py-2 ripple">
-                    <i class="fas fa-calculator fa-fw me-3"></i><span>Honor Entries</span>
+                    <i class="fas fa-calculator fa-fw me-3"></i><span>Inserimento Punti</span>
                 </a>
                 <a href="/HonorEntryTypes"
                     style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
                     class="list-group-item list-group-item-action py-2 ripple">
-                    <i class="fas fa-calculator fa-fw me-3"></i><span>Honor Entry Types</span>
+                    <i class="fas fa-calculator fa-fw me-3"></i><span>Tipi di Punteggio</span>
                 </a>
                 <a href="/LeftItemInGuildStorage"
                     style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
                     class="list-group-item list-group-item-action py-2 ripple">
                     <i class="fas fa-calculator fa-fw me-3"></i><span>Item Droppati</span>
                 </a>
-                <a href="/DroppedItemsRequests" style="margin-bottom: 10px; text-align: center;"
-                   class="list-group-item list-group-item-action py-2 ripple">
-                    <i class="fas fa-calculator fa-fw me-3"></i><span>Richieste Oggetti Droppati</span>
+                <a href="/DroppedItemsRequests"
+                    style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
+                    class="list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-calculator fa-fw me-3"></i><span>Richieste Item Droppati</span>
                 </a>
-                <a href="/Classifica" style="margin-bottom: 10px; text-align: center;"
-                   class="list-group-item list-group-item-action py-2 ripple">
+                <a href="/Classifica" style="text-align: center; font-weight: bold; opacity: 0.8; border-radius: 10px;"
+                    class="list-group-item list-group-item-action py-2 ripple">
                     <i class="fas fa-calculator fa-fw me-3"></i><span>Classifica</span>
                 </a>
-
-
-                <div class="d-flex justify-content-center">
-                    <button id="darkModeToggle" style="margin-top: 5px;" class="btn btn-dark">🌙
-                    </button>
-                </div>
+            </div>
+            <!-- Version Display -->
+            <div class="version-display">
+                Honor System v1.0.1 - 1803
             </div>
         </div>
     </nav>
 
     <!--Main layout-->
     <main class="container min-vh-100 d-flex justify-content-center align-items-center">
-        <div >
+        <div>
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
@@ -192,8 +197,9 @@
 
     <!-- Footer -->
     <footer class="border-top footer text-muted">
-        <div style="margin-left: 10px">
-            <p class="footer-text m-0">&copy; 2025 - Developed by Chantra, Microfono & Loretta - <a href="/swagger">Swagger</a></p>
+        <div style="margin-left: 15px">
+            <p class="footer-text m-0">&copy; 2025 - Developed by Chantra, Microfono & Loretta - <a
+                    href="/swagger">Swagger</a></p>
         </div>
     </footer>
 

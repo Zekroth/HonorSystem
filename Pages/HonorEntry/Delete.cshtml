@@ -6,11 +6,10 @@
 }
 
 <h1>Elimina</h1>
+<h3>Sei sicuro di voler eliminare i punti del player?</h3>
+<hr />
 
-<h3>Sei sicuro di voler eliminare l'honorentry?</h3>
 <div>
-<div>
-    <hr />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Honorentry.EntryDate)
@@ -52,7 +51,7 @@
 
     <form method="post">
         <input type="hidden" asp-for="Honorentry.IdHonorEntry" />
-        <input type="submit" value="Elimina" class="btn btn-danger" /> 
+        <input type="submit" value="Elimina" class="btn btn-danger" />
         <a asp-page="Index" class="btn btn-primary"><i class="bi bi-arrow-left"></i></a>
     </form>
 </div>
