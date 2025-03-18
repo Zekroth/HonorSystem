@@ -359,6 +359,7 @@ table td {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
   padding: 5px;
-  border-radius: 5px;
+  margin: 5px;
+  border-radius: 10px;
   z-index: 1; /* Assicurati che la versione sia sopra altri contenuti */
 }
