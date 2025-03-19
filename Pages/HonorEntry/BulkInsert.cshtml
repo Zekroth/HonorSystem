@@ -8,23 +8,24 @@
 
 <!-- Datatable -->
 <script>
-    window.onload = function() {
-    $('#players').DataTable({
-    "paging": true,
-    "searching": true,
-    "ordering": true,
-    "dom": '<"row justify-content-between"<"col-sm-6 text-start"f><"col-sm-6 text-end"l>>rt<"row justify-content-between"<"col-sm-6 text-start"i><"col-sm-6 text-end"p>>',
-    "language": {
-    "lengthMenu": "Mostra _MENU_ righe per pagina",
-    "search": "Cerca:",
-    "info": "Mostra da _START_ a _END_ di _TOTAL_ righe",
-    "infoEmpty": "Nessuna riga disponibile",
-    "paginate": {
-    "next": "Avanti",
-    "previous": "Indietro"
-    }
-    }
-    });
+    window.onload = function () {
+        $('#players').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "language": {
+                "lengthMenu": "Mostra _MENU_ righe per pagina",
+                "search": "Cerca:",
+                "info": "Mostra da _START_ a _END_ di _TOTAL_ righe",
+                "infoEmpty": "Nessuna riga disponibile",
+                "paginate": {
+                    "next": "Avanti",
+                    "previous": "Indietro"
+                }
+            }
+        });
+    
+        onChange();
     };
 </script>
 
@@ -117,24 +118,31 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="BulkInsertViewModel.AssignedPoints" class="control-label">Punti Assegnati</label>
-                <input asp-for="BulkInsertViewModel.AssignedPoints" class="form-control" />
+                <label asp-for="BulkInsertViewModel.AssignedPoints" class="control-label bg-dark">Punti Assegnati</label>
+                <input asp-for="BulkInsertViewModel.AssignedPoints" class="form-control bg-dark" />
                 <span asp-validation-for="BulkInsertViewModel.AssignedPoints" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="BulkInsertViewModel.Description" class="control-label">Descrizione</label>
-                <input asp-for="BulkInsertViewModel.Description" class="form-control" />
+                <input asp-for="BulkInsertViewModel.Description" class="form-control bg-dark" />
                 <span asp-validation-for="BulkInsertViewModel.Description" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="BulkInsertViewModel.ExpirationDate" class="control-label">Scadenza</label>
-                <input asp-for="BulkInsertViewModel.ExpirationDate" class="form-control" />
+                <input asp-for="BulkInsertViewModel.ExpirationDate" class="form-control bg-dark" />
                 <span asp-validation-for="BulkInsertViewModel.ExpirationDate" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 30px;">
                 <label asp-for="BulkInsertViewModel.HonorEntryTypeId" class="control-label">Tipo di Punteggio</label>
-                <select asp-for="BulkInsertViewModel.HonorEntryTypeId" class="form-control"
-                asp-items="ViewBag.HonorEntryTypeId" onchange="onChange()"></select>
+                <select asp-for="BulkInsertViewModel.HonorEntryTypeId" class="form-control bg-dark"
+                    asp-items="ViewBag.HonorEntryTypeId" onchange="onChange()"></select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 10px;">
+
+            <input type="checkbox" id="selectAll" class="form-check-input" />
+            <label class="form-check-label" for="selectAll">Seleziona Tutti</label>
+
             </div>
 
             <!-- Lista checkbox in tabella -->
@@ -143,10 +151,7 @@
                     <table id="players" class="display table table-striped table-bordered align-left-table">
                         <thead>
                             <tr>
-                                <th>
-                                    <input type="checkbox" id="selectAll" class="form-check-input" />
-                                    <label class="form-check-label" for="selectAll">Seleziona Tutti</label>
-                                </th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -155,7 +160,8 @@
                                 <tr class="clickable-row" data-checkbox-id="player-@player.Value">
                                     <td>
                                         <div class="form-check">
-                                            <input type="checkbox" name="BulkInsertViewModel.PlayerId" value="@player.Value" class="form-check-input player-checkbox" id="player-@player.Value" />
+                                            <input type="checkbox" name="BulkInsertViewModel.PlayerId" value="@player.Value"
+                                                class="form-check-input player-checkbox" id="player-@player.Value" />
                                             <label class="form-check-label" for="player-@player.Value">@player.Text</label>
                                         </div>
                                     </td>
@@ -163,9 +169,6 @@
                             }
                         </tbody>
                     </table>
-
-
-
                 </div>
             </div>
 
