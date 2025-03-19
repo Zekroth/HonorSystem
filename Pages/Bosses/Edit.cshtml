@@ -16,12 +16,12 @@
             <input type="hidden" asp-for="Boss.IdBoss" />
             <div class="form-group">
                 <label asp-for="Boss.BossName" class="control-label">Nome Boss</label>
-                <input asp-for="Boss.BossName" class="form-control" />
+                <input asp-for="Boss.BossName" class="form-control bg-dark" />
                 <span asp-validation-for="Boss.BossName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Boss.IsField" class="control-label">Field Boss</label>
-                <select asp-for="Boss.IsField" class="form-control">
+                <select asp-for="Boss.IsField" class="form-control bg-dark">
                     <option value="1">Sì</option>
                     <option value="0">No</option>
                 </select>
@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Boss.IsArch" class="control-label">Arch Boss</label>
-                <select asp-for="Boss.IsArch" class="form-control">
+                <select asp-for="Boss.IsArch" class="form-control bg-dark">
                     <option value="1">Sì</option>
                     <option value="0">No</option>
                 </select>
@@ -37,7 +37,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Boss.IsGuild" class="control-label">Guild Boss</label>
-                <select asp-for="Boss.IsGuild" class="form-control">
+                <select asp-for="Boss.IsGuild" class="form-control bg-dark">
                     <option value="1">Sì</option>
                     <option value="0">No</option>
                 </select>

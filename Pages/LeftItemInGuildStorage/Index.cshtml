@@ -26,10 +26,11 @@
     };
 </script>
 
-<h1>Item Droppati</h1>
+<h1>Item in Distribution</h1>
+<hr />
 
 <div class="form-group">
-    <a asp-page="Create" class="btn btn-primary">Crea Item</a>
+    <a asp-page="Create" class="btn btn-primary">Inserisci Item</a>
 </div>
 
 <div class="table-responsive" style="padding-left: 10px; padding-right: 10px;">
@@ -37,7 +38,7 @@
         <thead>
             <tr>
                 <th>
-                    Data del Drop
+                    Data Drop
                 </th>
                 <th>
                     Prezzo Corrente (Lucent)
@@ -46,7 +47,7 @@
                     @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].IdHonorEntryNavigation)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].IdItemNavigation.ItemName)
+                    Item
                 </th>
             </tr>
         </thead>

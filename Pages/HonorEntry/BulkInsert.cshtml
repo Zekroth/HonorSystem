@@ -138,11 +138,16 @@
                     asp-items="ViewBag.HonorEntryTypeId" onchange="onChange()"></select>
             </div>
 
+            <!-- Bottoni e select all-->
+            <div class="d-flex align-items-center" style="gap: 10px">
             <div class="form-group" style="margin-bottom: 10px;">
-
             <input type="checkbox" id="selectAll" class="form-check-input" />
             <label class="form-check-label" for="selectAll">Seleziona Tutti</label>
-
+            </div>
+            <div class="form-group" style="margin-bottom: 10px;">
+            <input type="submit" value="Salva" class="btn btn-primary" />
+            <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
+            </div>
             </div>
 
             <!-- Lista checkbox in tabella -->
@@ -171,13 +176,6 @@
                     </table>
                 </div>
             </div>
-
-            <!-- Bottoni -->
-            <div class="form-group" style="margin-top: 10px;">
-                <input type="submit" value="Salva" class="btn btn-primary" />
-                <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
-            </div>
-
         </form>
     </div>
 </div>
