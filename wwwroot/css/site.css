@@ -4,9 +4,9 @@ html {
   min-height: 100%;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
+@media (max-width: 1500px){
+  #sidebarMenu {
+    display: none !important;
   }
 }
 
@@ -32,6 +32,7 @@ body {
   width: 100%;
   table-layout: fixed;
   overflow-x: hidden; 
+  overflow-y: hidden;
   background-color: #1e1e1e;
   color: white;
   border-color: #444;
@@ -118,6 +119,7 @@ table tr {
   padding: 12px;
   border: 1px solid #555;
   overflow-x: hidden;
+  overflow-y: hidden;
   background-color: #333;
 }
 
@@ -362,4 +364,40 @@ table td {
   margin: 5px;
   border-radius: 10px;
   z-index: 1; /* Assicurati che la versione sia sopra altri contenuti */
+}
+
+/* Stile per la select */
+.form-control {
+  color: #fff; /* Testo bianco */
+}
+
+/* Stile per il menu a tendina */
+.form-control option {
+  color: #fff; /* Testo bianco */
+}
+
+.form-control.bg-dark {
+  background-color: #222 !important; /* Sfondo scuro forzato */
+  color: #fff !important; /* Testo bianco */
+  border: 1px solid #555; /* Bordo grigio */
+}
+
+.form-control.bg-dark:focus {
+  background-color: #222 !important; /* Mantiene lo sfondo scuro in focus */
+  color: #fff !important; /* Testo bianco */
+  border-color: #777; /* Cambia leggermente il bordo in focus */
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); /* Effetto glow leggero */
+}
+
+.clickable-row {
+  cursor: pointer; /* Trasforma il puntatore in una mano */
+}
+
+div.DTE_Field_InputControl select option {
+  border: solid 1px #035096;
+  background-color: #035096;
+}
+
+#dt-length-0 > option{
+  background-color: #222222;
 }

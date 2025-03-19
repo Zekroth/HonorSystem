@@ -8,7 +8,7 @@
 
 <!-- Datatable -->
 <script>
-    window.onload = function() {
+    window.onload = function () {
         $('#players').DataTable({
             "paging": true,
             "searching": true,
@@ -24,7 +24,7 @@
                 }
             }
         });
-        
+    
         onChange();
     };
 </script>
@@ -119,55 +119,57 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="BulkInsertViewModel.AssignedPoints" class="control-label">Punti Assegnati</label>
-                <input asp-for="BulkInsertViewModel.AssignedPoints" class="form-control" />
+                <label asp-for="BulkInsertViewModel.AssignedPoints" class="control-label bg-dark">Punti Assegnati</label>
+                <input asp-for="BulkInsertViewModel.AssignedPoints" class="form-control bg-dark" />
                 <span asp-validation-for="BulkInsertViewModel.AssignedPoints" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="BulkInsertViewModel.Description" class="control-label">Descrizione</label>
-                <input asp-for="BulkInsertViewModel.Description" class="form-control" />
+                <input asp-for="BulkInsertViewModel.Description" class="form-control bg-dark" />
                 <span asp-validation-for="BulkInsertViewModel.Description" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="BulkInsertViewModel.ExpirationDate" class="control-label">Scadenza</label>
-                <input asp-for="BulkInsertViewModel.ExpirationDate" class="form-control" />
+                <input asp-for="BulkInsertViewModel.ExpirationDate" class="form-control bg-dark" />
                 <span asp-validation-for="BulkInsertViewModel.ExpirationDate" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 30px;">
                 <label asp-for="BulkInsertViewModel.HonorEntryTypeId" class="control-label">Tipo di Punteggio</label>
-                <select asp-for="BulkInsertViewModel.HonorEntryTypeId" class="form-control"
+                <select asp-for="BulkInsertViewModel.HonorEntryTypeId" class="form-control bg-dark"
                     asp-items="ViewBag.HonorEntryTypeId" onchange="onChange()"></select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 10px;">
+
+            <input type="checkbox" id="selectAll" class="form-check-input" />
+            <label class="form-check-label" for="selectAll">Seleziona Tutti</label>
+
             </div>
 
             <!-- Lista checkbox in tabella -->
             <div class="table-responsive" style="padding-left: 10px; padding-right: 10px;">
                 <div id="playerList">
                     <table id="players" class="display table table-striped table-bordered align-left-table">
-    <thead>
-        <tr>
-            <th>
-                <input type="checkbox" id="selectAll" class="form-check-input" />
-                <label class="form-check-label" for="selectAll">Seleziona Tutti</label>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var player in (IEnumerable<SelectListItem>)ViewBag.PlayerId)
-        {
-            <tr class="clickable-row" data-checkbox-id="player-@player.Value">
-                <td>
-                    <div class="form-check">
-                        <input type="checkbox" name="BulkInsertViewModel.PlayerId" value="@player.Value" class="form-check-input player-checkbox" id="player-@player.Value" />
-                        <label class="form-check-label" for="player-@player.Value">@player.Text</label>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-
-
+                        <thead>
+                            <tr>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var player in (IEnumerable<SelectListItem>)ViewBag.PlayerId)
+                            {
+                                <tr class="clickable-row" data-checkbox-id="player-@player.Value">
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" name="BulkInsertViewModel.PlayerId" value="@player.Value"
+                                                class="form-check-input player-checkbox" id="player-@player.Value" />
+                                            <label class="form-check-label" for="player-@player.Value">@player.Text</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
