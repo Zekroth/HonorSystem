@@ -22,8 +22,7 @@ namespace HonorSystem.Pages.DroppedItemsRequests
         public IActionResult OnGet()
         {
             ViewData["IdMembers"] = new SelectList(_context.Members, "IdMembers", "Name");
-            ViewData["IdLeftItemInGuildStorage"] = new SelectList(_context.Leftiteminguildstorages
-                .Include(x => x.IdItemNavigation), "IdLeftItemInGuildStorage", "IdItemNavigation");
+            ViewData["IdLeftItemInGuildStorage"] = new SelectList(_context.Leftiteminguildstorages.Include(x => x.IdItemNavigation), "Id", "IdItemNavigation.ItemName");
             return Page();
         }
 
@@ -34,7 +33,7 @@ namespace HonorSystem.Pages.DroppedItemsRequests
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Droppeditemsrequests == null || DroppedItemRequest == null)
+            if (!ModelState.IsValid || _context.Droppeditemsrequests == null || DroppedItemRequest == null)
             {
                 return Page();
             }

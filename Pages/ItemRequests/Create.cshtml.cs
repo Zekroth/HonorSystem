@@ -20,8 +20,8 @@ namespace HonorSystem.Pages.ItemRequests
 
         public IActionResult OnGet()
         {
-        ViewData["ItemId"] = new SelectList(_context.Items, "IdItem", "ItemName");
-        ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "Name");
+            ViewData["ItemId"] = new SelectList(_context.Items, "IdItem", "ItemName");
+            ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "Name");
             return Page();
         }
 
