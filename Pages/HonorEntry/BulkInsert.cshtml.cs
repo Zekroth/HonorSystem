@@ -26,7 +26,9 @@ namespace HonorSystem.Pages.HonorEntry
 
         public IActionResult OnGet()
         {
-            ViewData["HonorEntryTypeId"] = new SelectList(_context.Honorentrytypes, "IdHonorEntryType", "Type");
+            ViewData["HonorEntryTypeId"] = new SelectList(_context.Honorentrytypes
+                .OrderByDescending(x => x.DefaultPoints)
+                .ToList(), "IdHonorEntryType", "Type");
             ViewData["PlayerId"] = new MultiSelectList(_context.Members, "IdMembers", "Name");
             ViewData["HonorEntryTypes"] = _context.Honorentrytypes.ToList() ;
             return Page();

@@ -24,12 +24,44 @@ namespace HonorSystem.ApiControllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Itemrequest>>> GetItemrequests([FromQuery] int pageNumber = 0, [FromQuery] int pageSize = 0)
         {
-            var items = await _context.Itemrequests
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
+            if (pageNumber == 0 || pageSize == 0)
+            {
+                return Ok(await _context.Itemrequests
+                    .Include(x => x.Item)
+                    .ToListAsync());
+            } else
+            {
+                return Ok( await _context.Itemrequests
+                    .Include(x => x.Item)
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync());
+            }
 
-            return Ok(items);
+        }
+
+        // GET: api/ItemRequestsByMemberIdApi/{MemberId}
+        [HttpGet]
+        [Route("GetItemRequestsByMemberIdApi/{MemberId}")]
+        public async Task<ActionResult<IEnumerable<Itemrequest>>> GetItemRequestsByMemberIdApi(int MemberId, [FromQuery] int pageNumber = 0, [FromQuery] int pageSize = 0)
+        {
+            if (pageNumber == 0 || pageSize == 0)
+            {
+                return Ok(await _context.Itemrequests
+                    .Include(x => x.Item)
+                    .Where(x => x.PlayerId == MemberId)
+                    .ToListAsync());
+            }
+            else
+            {
+                return Ok(await _context.Itemrequests
+                    .Include(x => x.Item)
+                    .Where(x => x.PlayerId == MemberId)
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync());
+            }
+
         }
 
         // GET: api/ItemRequestsApi
