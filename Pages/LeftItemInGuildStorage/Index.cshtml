@@ -38,6 +38,9 @@
         <thead>
             <tr>
                 <th>
+                    Item
+                </th>
+                <th>
                     Data Drop
                 </th>
                 <th>
@@ -45,16 +48,16 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].IdHonorEntryNavigation)
-                </th>
-                <th>
-                    Item
-                </th>
+                </th>                
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model.Leftiteminguildstorage)
             {
                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdItemNavigation.ItemName)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DropDate)
                     </td>
@@ -68,10 +71,7 @@
                             else
                                 @Html.Raw(" - ")
                         }
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IdItemNavigation.ItemName)
-                    </td>
+                    </td>                    
                 </tr>
             }
         </tbody>

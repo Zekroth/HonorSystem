@@ -1,29 +1,32 @@
 ﻿@page
-@model HonorSystem.sakila.Droppeditemsrequest
+@model HonorSystem.Pages.DroppedItemsRequests.CreateModel
 
 @{
     ViewData["Title"] = "Create";
 }
+
+
 
 <h1>Richiesta Item</h1>
 <hr />
 
 <div class="row">
     <div class="col-md-4">
+        @Html.ValidationSummary("Required")
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="IdMember" class="control-label"></label>
-                <select asp-for="IdMember" class ="form-control" asp-items="ViewBag.IdMember"></select>
+                <label asp-for="DroppedItemRequest.IdMember" class="control-label"></label>
+                <select asp-for="DroppedItemRequest.IdMember" class ="form-control bg-dark" asp-items="ViewBag.IdMembers"></select>
             </div>
             <div class="form-group">
-                <label asp-for="IdLeftItemInGuildStorage" class="control-label"></label>
-                <select asp-for="IdLeftItemInGuildStorage" class ="form-control" asp-items="ViewBag.IdLeftItemInGuildStorage"></select>
+                <label asp-for="DroppedItemRequest.IdLeftItemInGuildStorage" class="control-label"></label>
+                <select asp-for="DroppedItemRequest.IdLeftItemInGuildStorage" class ="form-control bg-dark" asp-items="ViewBag.IdLeftItemInGuildStorage?.ItemName"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Reason" class="control-label"></label>
-                <input asp-for="Reason" class="form-control bg-dark" />
-                <span asp-validation-for="Reason" class="text-danger"></span>
+                <label asp-for="DroppedItemRequest.Reason" class="control-label"></label>
+                <input asp-for="DroppedItemRequest.Reason" class="form-control bg-dark" />
+                <span asp-validation-for="DroppedItemRequest.Reason" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Salva" class="btn btn-primary" />
