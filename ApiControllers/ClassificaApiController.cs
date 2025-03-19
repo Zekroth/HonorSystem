@@ -23,7 +23,7 @@ namespace HonorSystem.ApiControllers
 
         // GET: api/DroppedItemsApi
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Classifica>>> GetClassifica([FromQuery] int pageNumber = 0, [FromQuery] int pageSize = 0)
+        public async Task<ActionResult<IEnumerable<ClassificaWithId>>> GetClassifica([FromQuery] int pageNumber = 0, [FromQuery] int pageSize = 0)
         {
             var items =
                 from Classifica in _context.Classificas
@@ -32,11 +32,12 @@ namespace HonorSystem.ApiControllers
                 where CM.IsStillInGuild == 1 && CM.IsActive == 1
                 select new { c = Classifica, u = CM };
 
-            List<Classifica> cla = await items
+            List<ClassificaWithId> cla = await items
                 .OrderByDescending((x) => x.c.TotalePunti)
-                .Select(x => new Classifica()
+                .Select(x => new ClassificaWithId()
                 {
-                    Name = x.c.Name,
+                    IdMember = x.u.IdMembers,
+                    Name = x.u.Name,
                     TotalePunti = x.c.TotalePunti
                 })
                 .ToListAsync();
