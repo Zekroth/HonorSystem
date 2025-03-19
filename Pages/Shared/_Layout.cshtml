@@ -28,45 +28,6 @@
     });
 </script>
 
-@* <!-- Gestione light/dark mode -->
-<script>
-    if (localStorage.getItem("darkMode") === "enabled") {
-        document.documentElement.classList.add("dark-mode");
-    }
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const toggleButton = document.getElementById("darkModeToggle");
-        const body = document.documentElement;
-        const sidebar = document.getElementById("sidebarMenu");
-
-        // Controlla se l'utente ha già una preferenza salvata
-        if (localStorage.getItem("darkMode") === "enabled") {
-            body.classList.add("dark-mode");
-            sidebar.classList.remove("bg-white");
-            sidebar.classList.add("bg-dark");
-            toggleButton.textContent = "☀️";
-        }
-
-        toggleButton.addEventListener("click", function () {
-            body.classList.toggle("dark-mode");
-
-            if (body.classList.contains("dark-mode")) {
-                localStorage.setItem("darkMode", "enabled");
-                sidebar.classList.remove("bg-white");
-                sidebar.classList.add("bg-dark");
-                toggleButton.textContent = "☀️";
-            } else {
-                localStorage.setItem("darkMode", "disabled");
-                sidebar.classList.remove("bg-dark");
-                sidebar.classList.add("bg-white");
-                toggleButton.textContent = "🌙";
-            }
-        });
-    });
-</script> *@
-
 <!-- Loader + Script -->
 <div id="loader"
     style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); display: flex; justify-content: center; align-items: center; z-index: 1050; visibility: hidden; opacity: 0; transition: opacity 0.3s ease-in-out;">
@@ -121,87 +82,91 @@
 <script src="~/js/dataTables.min.js"></script>
 
 <!--Main Navigation-->
+
 <body>
 
-    <!-- Sidebar -->
-    <nav id="sidebarMenu" class="collapse d-lg-block sidebar custom-shadow"
-        style="margin: 10px; border-radius: 10px;">
+    <div class="main-container">
+        
+        <!-- Sidebar -->
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar custom-shadow"
+            style="margin: 10px; border-radius: 10px;">
 
-        <!-- Version Display -->
-            <div class="version-display">
-                Honor System v1.0.1 - 1803
+            <div style="margin: 10px;">
+
+                <div class="d-flex justify-content-center">
+                    <img id="logoImage" src="/images/zerodrop.png" alt="Logo" style="max-width: 450px; height: 350px;">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <h1>DKP Honor System</h1>
+                </div>
+
+                <div class="list-group list-group-flush mx-3 mt-4">
+                    <a href="/Members"
+                        style="margin-bottom: 10px; border-radius: 10px; text-align: center; font-weight: bold; opacity: 0.9;"
+                        class="list-group-item list-group-item-action list-group-item:hoverpy-2 ripple"
+                        aria-current="true">
+                        <i class="fas fa-users fa-fw me-3"></i><span>Membri</span>
+                    </a>
+                    <a href="/Items" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Item</span>
+                    </a>
+                    <a href="/Bosses" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Boss</span>
+                    </a>
+                    <a href="/ItemRequests"
+                        style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-hand fa-fw me-3"></i><span>Richieste Item</span>
+                    </a>
+                    <a href="/HonorEntry"
+                        style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-calculator fa-fw me-3"></i><span>Inserimento Punti</span>
+                    </a>
+                    <a href="/HonorEntryTypes"
+                        style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-calculator fa-fw me-3"></i><span>Tipi di Punteggio</span>
+                    </a>
+                    <a href="/LeftItemInGuildStorage"
+                        style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-calculator fa-fw me-3"></i><span>Item Droppati</span>
+                    </a>
+                    <a href="/DroppedItemsRequests"
+                        style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-calculator fa-fw me-3"></i><span>Richieste Item Droppati</span>
+                    </a>
+                    <a href="/Classifica"
+                        style="text-align: center; font-weight: bold; opacity: 0.8; border-radius: 10px;"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-calculator fa-fw me-3"></i><span>Classifica</span>
+                    </a>
+                </div>
             </div>
+        </nav>
 
-        <div style="margin: 10px;">
-
-            <div class="d-flex justify-content-center">
-                <img id="logoImage" src="/images/zerodrop.png" alt="Logo" style="max-width: 450px; height: 350px;">
+        <!--Main layout-->
+        <main class="container d-flex justify-content-center align-items-center">
+            <div>
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
             </div>
-            <div class="d-flex justify-content-center">
-                <h1>DKP Honor System</h1>
-            </div>
-
-            <div class="list-group list-group-flush mx-3 mt-4">
-                <a href="/Members"
-                    style="margin-bottom: 10px; border-radius: 10px; text-align: center; font-weight: bold; opacity: 0.9;"
-                    class="list-group-item list-group-item-action list-group-item:hoverpy-2 ripple" aria-current="true">
-                    <i class="fas fa-users fa-fw me-3"></i><span>Membri</span>
-                </a>
-                <a href="/Items" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
-                    class="list-group-item list-group-item-action py-2 ripple">
-                    <i class="fas fa-money-bill fa-fw me-3"></i><span>Item</span>
-                </a>
-                <a href="/Bosses" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
-                    class="list-group-item list-group-item-action py-2 ripple">
-                    <i class="fas fa-money-bill fa-fw me-3"></i><span>Boss</span>
-                </a>
-                <a href="/ItemRequests"
-                    style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
-                    class="list-group-item list-group-item-action py-2 ripple">
-                    <i class="fas fa-hand fa-fw me-3"></i><span>Richieste Item</span>
-                </a>
-                <a href="/HonorEntry" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
-                    class="list-group-item list-group-item-action py-2 ripple">
-                    <i class="fas fa-calculator fa-fw me-3"></i><span>Inserimento Punti</span>
-                </a>
-                <a href="/HonorEntryTypes"
-                    style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
-                    class="list-group-item list-group-item-action py-2 ripple">
-                    <i class="fas fa-calculator fa-fw me-3"></i><span>Tipi di Punteggio</span>
-                </a>
-                <a href="/LeftItemInGuildStorage"
-                    style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
-                    class="list-group-item list-group-item-action py-2 ripple">
-                    <i class="fas fa-calculator fa-fw me-3"></i><span>Item Droppati</span>
-                </a>
-                <a href="/DroppedItemsRequests"
-                    style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
-                    class="list-group-item list-group-item-action py-2 ripple">
-                    <i class="fas fa-calculator fa-fw me-3"></i><span>Richieste Item Droppati</span>
-                </a>
-                <a href="/Classifica" style="text-align: center; font-weight: bold; opacity: 0.8; border-radius: 10px;"
-                    class="list-group-item list-group-item-action py-2 ripple">
-                    <i class="fas fa-calculator fa-fw me-3"></i><span>Classifica</span>
-                </a>
-            </div>          
-        </div>
-    </nav>
-
-    <!--Main layout-->
-    <main class="container min-vh-100 d-flex justify-content-center align-items-center">
-        <div>
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
-    </main>
+        </main>
+    </div>
 
     <!-- Footer -->
-    <footer class="border-top footer text-muted">
+    <footer class="d-flex justify-content-between border-top footer text-muted">
         <div style="margin-left: 15px">
-            <p class="footer-text m-0">&copy; 2025 - Developed by Chantra, Microfono & Loretta - <a
-                    href="/swagger">Swagger</a></p>
-            <p class="footer-text m-0 flex-right">@GetType().Assembly.GetName().Version.ToString()</p>
+            <span class="footer-text m-0">&copy; 2025 - Developed by Chantra, Microfono & Loretta - <a
+                    href="/swagger">Swagger</a></span>
+        </div>
+        <div>
+            <span class="footer-text m-2 flex-right">v @GetType().Assembly.GetName().Version.ToString()</span>
         </div>
     </footer>
 

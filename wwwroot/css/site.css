@@ -4,6 +4,12 @@ html {
   min-height: 100%;
 }
 
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
 @media (max-width: 1500px){
   #sidebarMenu {
     display: none !important;
@@ -11,17 +17,18 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.9s, color 0.6s;
-  display: flex;
-  flex-direction: row;
 }
 
 :root {
   --bg-color: #121212;
   --text-color: white;
+}
+
+#sidebarMenu {
+  height: 92vh !important;
 }
 
 .table-responsive {
@@ -400,4 +407,10 @@ div.DTE_Field_InputControl select option {
 
 #dt-length-0 > option{
   background-color: #222222;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 70px;
 }
