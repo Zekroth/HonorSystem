@@ -86,6 +86,13 @@ namespace HonorSystem.ApiControllers
         [HttpPost]
         public async Task<ActionResult<Droppeditemsrequest>> PostDroppeditemsrequest(Droppeditemsrequest droppeditemsrequest)
         {
+            var found = _context.Find<Droppeditemsrequest>(droppeditemsrequest.IdLeftItemInGuildStorage, droppeditemsrequest.IdMember);
+
+            if (found != null)
+            {
+                return StatusCode(409, found);
+            }
+
             _context.Droppeditemsrequests.Add(droppeditemsrequest);
             await _context.SaveChangesAsync();
 
