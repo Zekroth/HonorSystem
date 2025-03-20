@@ -64,9 +64,8 @@
         <tbody>
             @foreach (var item in Model.Member)
             {
-                int counter = Model.Member.IndexOf(item) + 1;
                 <tr>
-                    <td>@counter</td>
+                    <td>@item.IdMembers</td>
                     <td>@item.Name</td>
                     <td style="width: auto; font-size: smaller; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">@item.CharacterName</td>
                     <td style="width: auto; font-size: smaller; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">@item.SecondaryCharacterName</td>
