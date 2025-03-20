@@ -6,9 +6,9 @@
     ViewData["Title"] = "BulkInsert";
 }
 
-<!-- Datatable -->
 <script>
-    window.onload = function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        // Inizializzazione DataTable
         $('#players').DataTable({
             "paging": true,
             "searching": true,
@@ -26,68 +26,63 @@
             },
         });
 
-        onChange();
-    };
-</script>
-
-<!-- Gestione click delle righe in tabella -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Seleziona tutte le righe con la classe "clickable-row"
+        const selectAllCheckbox = document.getElementById('selectAll');
+        const playerCheckboxes = document.querySelectorAll('.player-checkbox');
+        const selectedCountSpan = document.getElementById('selectedCount');
         const rows = document.querySelectorAll('.clickable-row');
 
+        // Funzione per aggiornare il conteggio delle checkbox selezionate
+        function updateSelectedCount() {
+            const selectedCount = document.querySelectorAll('.player-checkbox:checked').length;
+            selectedCountSpan.textContent = selectedCount;
+        }
+
+        // Selezione/Deselezione di tutte le checkbox
+        selectAllCheckbox.addEventListener('change', function () {
+            const isChecked = this.checked;
+
+            setTimeout(() => {
+                playerCheckboxes.forEach(checkbox => {
+                    checkbox.checked = isChecked;
+                    checkbox.dispatchEvent(new Event('change')); // Forza l'aggiornamento
+                });
+            }, 10); // Timeout minimo per garantire che il cambio avvenga
+        });
+
+
+        // Aggiornamento stato "Seleziona Tutti" e conteggio selezionati
+        playerCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                selectAllCheckbox.checked = Array.from(playerCheckboxes).every(cb => cb.checked);
+                updateSelectedCount();
+            });
+        });
+
+        // Gestione click sulle righe
         rows.forEach(row => {
             row.addEventListener('click', function (e) {
-                // Evita che il click interno (come quello sulla checkbox) crei conflitti
                 if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'LABEL') {
-                    const checkboxId = this.dataset.checkboxId; // Ottiene l'ID della checkbox
+                    const checkboxId = this.dataset.checkboxId;
                     const checkbox = document.getElementById(checkboxId);
-
                     if (checkbox) {
-                        checkbox.checked = !checkbox.checked; // Alterna lo stato della checkbox
+                        checkbox.checked = !checkbox.checked;
+                        checkbox.dispatchEvent(new Event('change')); // Forza l'aggiornamento
                     }
                 }
             });
         });
+
+        // Aggiorna il conteggio iniziale se ci sono checkbox pre-selezionate
+        updateSelectedCount();
     });
-</script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const selectAllCheckbox = document.getElementById('selectAll');
-        const playerCheckboxes = document.querySelectorAll('.player-checkbox');
-
-        // Gestione selezione/deselezione di tutte le checkbox
-        selectAllCheckbox.addEventListener('change', function () {
-            const isChecked = this.checked;
-            playerCheckboxes.forEach(checkbox => {
-                checkbox.checked = isChecked; // Applica lo stato della checkbox "Seleziona Tutti"
-            });
-        });
-
-        // Aggiornamento dello stato di "Seleziona Tutti" in base alle checkbox individuali
-        playerCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function () {
-                if (!this.checked) {
-                    selectAllCheckbox.checked = false; // Deseleziona "Seleziona Tutti" se una checkbox viene deselezionata
-                } else if (Array.from(playerCheckboxes).every(cb => cb.checked)) {
-                    selectAllCheckbox.checked = true; // Se tutte le checkbox sono selezionate, spunta "Seleziona Tutti"
-                }
-            });
-        });
-    });
-</script>
-
-<script>
-    var honorEntryTypeList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.HonorEntryTypes)) || [];
+    // Gestione del cambio tipo di punteggio
     function onChange() {
-        var selectedHonorList = honorEntryTypeList.find((x) => {
-            if (x.IdHonorEntryType == document.getElementById("BulkInsertViewModel_HonorEntryTypeId").value)
-                return true;
-        });
+        var honorEntryTypeList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.HonorEntryTypes)) || [];
+        var selectedHonorList = honorEntryTypeList.find(x => x.IdHonorEntryType == document.getElementById("BulkInsertViewModel_HonorEntryTypeId").value);
 
-        if (selectedHonorList == null) {
-            console.log("HonorEntryType " + document.getElementById("BulkInsertViewModel_HonorEntryTypeId").value + " is undefined");
+        if (!selectedHonorList) {
+            console.log("HonorEntryType non definito.");
             return;
         }
 
@@ -97,57 +92,14 @@
         if (selectedHonorList.Expiration == 0) {
             document.getElementById("BulkInsertViewModel_ExpirationDate").value = null;
         } else {
-            var ms = Date.now();
-            if (document.getElementById("BulkInsertViewModel_ExpirationDate").value == '') {
-                var newDate = addDaysToDate(ms, selectedHonorList.Expiration);
-                document.getElementById("BulkInsertViewModel_ExpirationDate").value = newDate.toISOString().substr(0, 16);
-            } else {
-                var newDate = addDaysToDate(document.getElementById("BulkInsertViewModel_ExpirationDate").value, selectedHonorList.Expiration);
-                document.getElementById("BulkInsertViewModel_ExpirationDate").value = newDate.toISOString().substr(0, 16);
-            }
+            var newDate = addDaysToDate(Date.now(), selectedHonorList.Expiration);
+            document.getElementById("BulkInsertViewModel_ExpirationDate").value = newDate.toISOString().substr(0, 16);
         }
     }
 
-    window.onload = onChange();
+    window.onload = onChange;
 </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const selectAllCheckbox = document.getElementById('selectAll');
-        const playerCheckboxes = document.querySelectorAll('.player-checkbox');
-        const selectedCountSpan = document.getElementById('selectedCount');
-
-        function updateSelectedCount() {
-            const selectedCount = document.querySelectorAll('.player-checkbox:checked').length;
-            selectedCountSpan.textContent = selectedCount;
-        }
-
-        // Selezione/Deselezione di tutte le checkbox
-        selectAllCheckbox.addEventListener('change', function () {
-            const isChecked = this.checked;
-            playerCheckboxes.forEach(checkbox => {
-                checkbox.checked = isChecked;
-            });
-            updateSelectedCount();
-        });
-
-        // Aggiornamento stato "Seleziona Tutti" e conteggio selezionati
-        playerCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function () {
-                if (!this.checked) {
-                    selectAllCheckbox.checked = false;
-                } else if (Array.from(playerCheckboxes).every(cb => cb.checked)) {
-                    selectAllCheckbox.checked = true;
-                }
-                updateSelectedCount();
-            });
-        });
-
-        // Aggiorna il conteggio iniziale se ci sono checkbox pre-selezionate
-        updateSelectedCount();
-    });
-
-</script>
 
 <h1>Inserimento Punti</h1>
 <hr />
