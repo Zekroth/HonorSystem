@@ -12,6 +12,7 @@
             "paging": true,
             "searching": true,
             "ordering": true,
+            "pageLength": 25,
             "language": {
                 "lengthMenu": "Mostra _MENU_ righe per pagina",
                 "search": "Cerca:",
@@ -38,10 +39,10 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.DIRequest[0].IdMember)
+                    #
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DIRequest[0].IdMemberNavigation.Name)
+                    Nome
                 </th>
                 <th>
                     Data di Richiesta
@@ -66,7 +67,7 @@
                         @Html.DisplayFor(modelItem => item.IdMemberNavigation.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.RequestDate)
+                        @item.RequestDate.ToString("dd/MM/yyyy")
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.IdLeftItemInGuildStorageNavigation.IdItemNavigation.ItemName)

@@ -5,26 +5,23 @@
     ViewData["Title"] = "Create";
 }
 
-
-
 <h1>Richiesta Item</h1>
 <hr />
 
 <div class="row">
-    <div class="col-md-4">
-        @Html.ValidationSummary("Required")
+    <div class="col-md-auto">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="DroppedItemRequest.IdMember" class="control-label"></label>
+                <label asp-for="DroppedItemRequest.IdMember" class="control-label">Player</label>
                 <select asp-for="DroppedItemRequest.IdMember" class ="form-control bg-dark" asp-items="ViewBag.IdMembers"></select>
             </div>
             <div class="form-group">
-                <label asp-for="DroppedItemRequest.IdLeftItemInGuildStorage" class="control-label"></label>
+                <label asp-for="DroppedItemRequest.IdLeftItemInGuildStorage" class="control-label">Item Richiesto</label>
                 <select asp-for="DroppedItemRequest.IdLeftItemInGuildStorage" class ="form-control bg-dark" asp-items="ViewBag.IdLeftItemInGuildStorage"></select>
             </div>
             <div class="form-group">
-                <label asp-for="DroppedItemRequest.Reason" class="control-label"></label>
+                <label asp-for="DroppedItemRequest.Reason" class="control-label">Motivazione</label>
                 <input asp-for="DroppedItemRequest.Reason" class="form-control bg-dark" />
                 <span asp-validation-for="DroppedItemRequest.Reason" class="text-danger"></span>
             </div>

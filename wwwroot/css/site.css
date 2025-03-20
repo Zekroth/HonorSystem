@@ -10,16 +10,32 @@ html {
   }
 }
 
-@media (max-width: 1500px){
+@media (max-width: 1500px) {
   #sidebarMenu {
     display: none !important;
   }
 }
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.9s, color 0.6s;
+  background: rgb(18, 18, 18);
+  color: white;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 60px;
+  background: rgba(124, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.a {
+  margin-bottom: 10px; 
+  text-align: center; 
+  font-weight: bold; 
+  opacity: 0.8; 
+  border-radius: 10px;
 }
 
 :root {
@@ -38,7 +54,7 @@ body {
   margin-bottom: 10px;
   width: 100%;
   table-layout: fixed;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   overflow-y: hidden;
   background-color: #1e1e1e;
   color: white;
@@ -48,14 +64,18 @@ body {
 
 /* Hover in modalità scura */
 .list-group-item:hover {
-  background-color: #28a745 !important; /* Verde per hover in modalità scura */
-  color: white !important; /* Colore del testo per miglior contrasto */
+  background-color: #28a745 !important;
+  /* Verde per hover in modalità scura */
+  color: white !important;
+  /* Colore del testo per miglior contrasto */
 }
 
 /* Stile di base per la modalità scura */
 .list-group-item {
-  background-color: #343a40 !important; /* Sfondo scuro per la modalità scura */
-  color: white !important; /* Colore del testo chiaro */
+  background-color: #343a40 !important;
+  /* Sfondo scuro per la modalità scura */
+  color: white !important;
+  /* Colore del testo chiaro */
 }
 
 .btn:focus,
@@ -156,7 +176,7 @@ table tbody tr:hover td {
   background-color: #555 !important;
 }
 
- .table,
+.table,
 .table th,
 .table td {
   background-color: #1e1e1e !important;
@@ -165,33 +185,33 @@ table tbody tr:hover td {
   text-align: center;
 }
 
-  .table thead th {
+.table thead th {
   background-color: #292929 !important;
 }
 
-  .table-bordered {
+.table-bordered {
   border: 1px solid #444 !important;
 }
 
-  #sidebarMenu {
-  background-color: #1e1e1e !important;
+#sidebarMenu {
+  background-color: #222222 !important;
   color: white !important;
 }
 
-  #sidebarMenu a {
+#sidebarMenu a {
   color: white !important;
 }
 
-  #sidebarMenu a:hover {
-  background-color: red !important;
+#sidebarMenu a:hover {
+  background-color: rgb(222, 0, 0) !important;
 }
 
-  .list-group-item {
+.list-group-item {
   color: #ddd !important;
   background-color: #333 !important;
 }
 
-  .list-group-item:hover {
+.list-group-item:hover {
   background-color: #444 !important;
   color: #fff !important;
 }
@@ -201,67 +221,63 @@ a,
   border-radius: 10px;
 }
 
-  .btn-primary {
+.btn-primary {
   background-color: #0d6efd !important;
   border-color: #0a58ca !important;
   color: white !important;
 }
 
-  .btn-secondary {
+.btn-secondary {
   background-color: #6c757d !important;
   border-color: #565e64 !important;
   color: white !important;
 }
 
-  .btn-success {
+.btn-success {
   background-color: #198754 !important;
   border-color: #146c43 !important;
   color: white !important;
 }
 
-  .btn-danger {
+.btn-danger {
   background-color: #dc3545 !important;
   border-color: #b02a37 !important;
   color: white !important;
 }
 
-  .btn-warning {
+.btn-warning {
   background-color: #ffc107 !important;
   border-color: #ffca2c !important;
   color: black !important;
 }
 
-  .btn-info {
+.btn-info {
   background-color: #0dcaf0 !important;
   border-color: #31d2f2 !important;
   color: black !important;
 }
 
-  .btn-light {
+.btn-light {
   background-color: #f8f9fa !important;
   border-color: #f9fafb !important;
   color: black !important;
 }
 
-  .btn-dark {
+.btn-dark {
   background-color: #212529 !important;
   border-color: #1d2124 !important;
   color: white !important;
 }
 
 .custom-shadow {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(12, 12, 12, 0.2);
 }
 
-  .custom-shadow {
-  box-shadow: 0 4px 8px rgba(21, 21, 21, 0.4);
-}
-
-  .container {
+.container {
   color: white;
 }
 
-  .form-control {
+.form-control {
   background-color: #333;
   color: #fff;
   border-color: #444;
@@ -288,23 +304,27 @@ table td {
 
 /* Stile per il link attivo in modalità scura */
 .list-group-item.active {
-  background-color: red !important; 
+  background-color: red !important;
   border-color: red !important;
-  color: white !important; 
-  font-weight: bold !important; 
-  border-radius: 10px !important; 
+  color: white !important;
+  font-weight: bold !important;
+  border-radius: 10px !important;
 }
 
 /* Hover in modalità scura */
 .list-group-item:hover {
-  background-color: #28a745 !important; /* Verde per hover in modalità scura */
-  color: white !important; /* Colore del testo per miglior contrasto */
+  background-color: #28a745 !important;
+  /* Verde per hover in modalità scura */
+  color: white !important;
+  /* Colore del testo per miglior contrasto */
 }
 
 /* Stile di base per la modalità scura, cambia il colore di base dei link */
 .list-group-item {
-  background-color: #343a40 !important; /* Sfondo scuro di base per la modalità scura */
-  color: white !important; /* Colore del testo chiaro */
+  background-color: #343a40 !important;
+  /* Sfondo scuro di base per la modalità scura */
+  color: white !important;
+  /* Colore del testo chiaro */
 }
 
 .modal-content {
@@ -313,32 +333,42 @@ table td {
 }
 
 .align-left-table td {
-  text-align: left; /* Allinea il contenuto delle celle a sinistra */
-  vertical-align: middle; /* centra verticalmente il contenuto delle celle */
+  text-align: left;
+  /* Allinea il contenuto delle celle a sinistra */
+  vertical-align: middle;
+  /* centra verticalmente il contenuto delle celle */
 }
 
 .align-left-table .form-check {
-  text-align: left; /* Allinea il contenuto del div con checkbox a sinistra */
+  text-align: left;
+  /* Allinea il contenuto del div con checkbox a sinistra */
 }
 
 .align-left-table .form-check-label {
-  margin-left: 5px; /* Facoltativo: aggiunge un piccolo margine tra il checkbox e l'etichetta */
+  margin-left: 5px;
+  /* Facoltativo: aggiunge un piccolo margine tra il checkbox e l'etichetta */
 }
 
 
 /* Scurisce il menu a discesa per la selezione delle righe per pagina */
 .dataTables_length select {
-  background-color: #333 !important; /* Sfondo scuro */
-  color: white !important; /* Testo chiaro */
-  border: 1px solid #444; /* Bordo scuro */
-  border-radius: 4px; /* Bordo arrotondato */
-  padding: 5px; /* Padding interno per migliorare l'aspetto */
+  background-color: #333 !important;
+  /* Sfondo scuro */
+  color: white !important;
+  /* Testo chiaro */
+  border: 1px solid #444;
+  /* Bordo scuro */
+  border-radius: 4px;
+  /* Bordo arrotondato */
+  padding: 5px;
+  /* Padding interno per migliorare l'aspetto */
 }
 
 /* Modifica lo sfondo durante il focus */
 .dataTables_length select:focus {
   outline: none;
-  background-color: #444 !important; /* Sfondo ancora più scuro durante il focus */
+  background-color: #444 !important;
+  /* Sfondo ancora più scuro durante il focus */
 }
 
 #loader {
@@ -348,8 +378,10 @@ table td {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
-  z-index: 9999; /* Porta il loader sopra tutti gli altri elementi */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Sfondo semi-trasparente */
+  z-index: 9999;
+  /* Porta il loader sopra tutti gli altri elementi */
 }
 
 .spinner-border {
@@ -360,33 +392,44 @@ table td {
 .version-display {
   font-size: 14px;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Sfondo semi-trasparente */
   padding: 5px;
   margin: 5px;
   border-radius: 10px;
-  z-index: 1; /* Assicurati che la versione sia sopra altri contenuti */
+  z-index: 1;
+  /* Assicurati che la versione sia sopra altri contenuti */
 }
 
 /* Stile per il menu a tendina */
 .form-control option {
-  color: #fff; /* Testo bianco */
+  color: #fff;
+  /* Testo bianco */
 }
 
 .form-control.bg-dark {
-  background-color: #333333 !important; /* Sfondo scuro forzato */
-  color: #fff !important; /* Testo bianco */
-  border: 1px solid #555; /* Bordo grigio */
+  background-color: #333333 !important;
+  /* Sfondo scuro forzato */
+  color: #fff !important;
+  /* Testo bianco */
+  border: 1px solid #555;
+  /* Bordo grigio */
 }
 
 .form-control.bg-dark:focus {
-  background-color: #222 !important; /* Mantiene lo sfondo scuro in focus */
-  color: #fff !important; /* Testo bianco */
-  border-color: #777; /* Cambia leggermente il bordo in focus */
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); /* Effetto glow leggero */
+  background-color: #222 !important;
+  /* Mantiene lo sfondo scuro in focus */
+  color: #fff !important;
+  /* Testo bianco */
+  border-color: #777;
+  /* Cambia leggermente il bordo in focus */
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+  /* Effetto glow leggero */
 }
 
 .clickable-row {
-  cursor: pointer; /* Trasforma il puntatore in una mano */
+  cursor: pointer;
+  /* Trasforma il puntatore in una mano */
 }
 
 div.DTE_Field_InputControl select option {
@@ -394,12 +437,6 @@ div.DTE_Field_InputControl select option {
   background-color: #035096;
 }
 
-#dt-length-0 > option{
+#dt-length-0>option {
   background-color: #222222;
-}
-
-.main-container {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 70px;
 }

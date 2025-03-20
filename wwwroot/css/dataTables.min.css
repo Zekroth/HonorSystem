@@ -12,6 +12,11 @@
     --dt-html-background: rgb(33, 37, 41)
 }
 
+
+div.dt-container .dt-length, div.dt-container .dt-search, div.dt-container .dt-info, div.dt-container .dt-processing, div.dt-container .dt-paging {
+    
+}
+
 table.dataTable td.dt-control {
     text-align: center;
     cursor: pointer

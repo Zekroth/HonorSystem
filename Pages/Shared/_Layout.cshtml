@@ -86,10 +86,10 @@
 <body>
 
     <div class="main-container">
-        
+
         <!-- Sidebar -->
         <nav id="sidebarMenu" class="collapse d-lg-block sidebar custom-shadow"
-            style="margin: 10px; border-radius: 10px;">
+            style=" border-radius: 10px;">
 
             <div style="margin: 10px;">
 
@@ -107,14 +107,6 @@
                         aria-current="true">
                         <i class="fas fa-users fa-fw me-3"></i><span>Membri</span>
                     </a>
-                    <a href="/Items" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
-                        class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Item</span>
-                    </a>
-                    <a href="/Bosses" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
-                        class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Boss</span>
-                    </a>
                     <a href="/ItemRequests"
                         style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
                         class="list-group-item list-group-item-action py-2 ripple">
@@ -124,11 +116,6 @@
                         style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
                         class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fas fa-calculator fa-fw me-3"></i><span>Inserimento Punti</span>
-                    </a>
-                    <a href="/HonorEntryTypes"
-                        style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
-                        class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-calculator fa-fw me-3"></i><span>Tipi di Punteggio</span>
                     </a>
                     <a href="/LeftItemInGuildStorage"
                         style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
@@ -141,9 +128,23 @@
                         <i class="fas fa-calculator fa-fw me-3"></i><span>Richieste Item Droppati</span>
                     </a>
                     <a href="/Classifica"
-                        style="text-align: center; font-weight: bold; opacity: 0.8; border-radius: 10px;"
+                        style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
                         class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fas fa-calculator fa-fw me-3"></i><span>Classifica</span>
+                    </a>
+                    <hr />
+                    <a href="/HonorEntryTypes"
+                        style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-calculator fa-fw me-3"></i><span>Tipi di Punteggio</span>
+                    </a>
+                    <a href="/Items" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8;"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Item</span>
+                    </a>
+                    <a href="/Bosses" style="margin-bottom: 10px; text-align: center; font-weight: bold; opacity: 0.8; border-radius: 10px;"
+                        class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="fas fa-money-bill fa-fw me-3"></i><span>Boss</span>
                     </a>
                 </div>
             </div>
@@ -160,10 +161,9 @@
     </div>
 
     <!-- Footer -->
-    <footer class="d-flex justify-content-between border-top footer text-muted">
+    <footer class="d-flex justify-content-between footer text-muted border-top">
         <div style="margin-left: 15px">
-            <span class="footer-text m-0">&copy; 2025 - Developed by Chantra, Microfono & Loretta - <a
-                    href="/swagger">Swagger</a></span>
+            <span class="footer-text m-0">&copy; 2025 - Developed by Chantra, Microfono, Loretta - <a href="/swagger">Swagger</a></span>
         </div>
         <div>
             <span class="footer-text m-2 flex-right">v @GetType().Assembly.GetName().Version.ToString()</span>
