@@ -11,6 +11,8 @@ public partial class Item
 
     public int IdBoss { get; set; }
 
+    public int Tier { get; set; }
+
     public virtual Boss? IdBossNavigation { get; set; }
 
     public virtual ICollection<Itemrequest> Itemrequests { get; set; } = new List<Itemrequest>();

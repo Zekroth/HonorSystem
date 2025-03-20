@@ -18,10 +18,16 @@
             @Html.DisplayFor(model => model.Item.ItemName)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Item.Tier)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Item.Tier == 0 ? "Archboss" : model.Item.Tier == 1 ? "T1" : model.Item.Tier == 2 ? "T2" : "Unknown")
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Item.IdBossNavigation)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Item.IdBossNavigation.IdBoss)
+            @Html.DisplayFor(model => model.Item.IdBossNavigation.BossName)
         </dd>
     </dl>
 

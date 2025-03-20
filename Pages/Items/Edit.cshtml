@@ -25,6 +25,15 @@
                 <span asp-validation-for="Item.IdBoss" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Item.Tier" class="control-label">Guild Boss</label>
+                <select asp-for="Item.Tier" class="form-control bg-dark">
+                    <option value="2">T2</option>
+                    <option value="1">T1</option>
+                    <option value="0">Archboss</option>
+                </select>
+                <span asp-validation-for="Item.Tier" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Salva" class="btn btn-primary" />
                 <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
             </div>

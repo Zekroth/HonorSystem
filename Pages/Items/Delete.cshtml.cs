@@ -28,7 +28,9 @@ namespace HonorSystem.Pages.Items
                 return NotFound();
             }
 
-            var item = await _context.Items.FirstOrDefaultAsync(m => m.IdItem == id);
+            var item = await _context.Items
+                .Include(x => x.IdBossNavigation)
+                .FirstOrDefaultAsync(m => m.IdItem == id);
 
             if (item == null)
             {

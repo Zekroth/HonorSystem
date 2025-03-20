@@ -180,7 +180,6 @@ public partial class ZerodropContext : DbContext
 
             entity.HasOne(d => d.Player).WithMany(p => p.Honorentries)
                 .HasForeignKey(d => d.PlayerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("MemberId");
         });
 
@@ -207,6 +206,7 @@ public partial class ZerodropContext : DbContext
 
             entity.Property(e => e.IdItem).HasColumnName("idItem");
             entity.Property(e => e.IdBoss).HasColumnName("idBoss");
+            entity.Property(e => e.Tier).HasColumnName("tier");
             entity.Property(e => e.ItemName)
                 .HasMaxLength(45)
                 .HasColumnName("itemName");
@@ -281,7 +281,6 @@ public partial class ZerodropContext : DbContext
 
             entity.HasOne(d => d.IdHonorEntryNavigation).WithMany(p => p.Leftiteminguildstorages)
                 .HasForeignKey(d => d.IdHonorEntry)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("HonorEtry_ItemLeftInStorage");
 
             entity.HasOne(d => d.IdItemNavigation).WithMany(p => p.Leftiteminguildstorages)
