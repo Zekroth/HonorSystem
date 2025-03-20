@@ -30,8 +30,7 @@ body {
   padding: 20px;
 }
 
-.a {
-  margin-bottom: 10px; 
+.a-menu {
   text-align: center; 
   font-weight: bold; 
   opacity: 0.8; 
@@ -42,10 +41,6 @@ body {
   --bg-color: #121212;
   --text-color: white;
 }
-
-/* #sidebarMenu {
-  height: 92vh !important;
-} */
 
 .table-responsive {
   box-shadow: 0 4px 8px rgba(21, 21, 21, 0.4);
@@ -62,20 +57,45 @@ body {
   text-align: center;
 }
 
-/* Hover in modalità scura */
-.list-group-item:hover {
-  background-color: #28a745 !important;
-  /* Verde per hover in modalità scura */
-  color: white !important;
-  /* Colore del testo per miglior contrasto */
+.list-group-item {
+  background-color: #343a40;
+  color: white;
+  border: none;
 }
 
-/* Stile di base per la modalità scura */
-.list-group-item {
-  background-color: #343a40 !important;
-  /* Sfondo scuro per la modalità scura */
-  color: white !important;
-  /* Colore del testo chiaro */
+.list-group-item.active {
+  background-color: red;
+  border-color: red;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.list-group-item:hover {
+  background-color: #444;
+  color: #fff;
+}
+
+.custom-btn {
+    width: auto; /* Adatta la larghezza al contenuto */
+    padding: 8px 15px; /* Migliora il padding per un aspetto più compatto */
+    align-items: center; /* Allinea verticalmente testo e icona */
+    background-color: #343a40;
+    color: white;
+    border: none;
+    margin: 10px;
+}
+
+.custom-btn:hover {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.custom-container-sidebar{
+  background-color: rgba(21, 21, 21, 0.5); 
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
 }
 
 .btn:focus,
@@ -206,16 +226,6 @@ table tbody tr:hover td {
   background-color: rgb(222, 0, 0) !important;
 }
 
-.list-group-item {
-  color: #ddd !important;
-  background-color: #333 !important;
-}
-
-.list-group-item:hover {
-  background-color: #444 !important;
-  color: #fff !important;
-}
-
 a,
 .btn {
   border-radius: 10px;
@@ -293,39 +303,12 @@ header img {
   margin-bottom: 20px;
 }
 
-.list-group-item {
-  border-bottom: none !important;
-}
-
 table th,
 table td {
   text-align: center !important;
 }
 
-/* Stile per il link attivo in modalità scura */
-.list-group-item.active {
-  background-color: red !important;
-  border-color: red !important;
-  color: white !important;
-  font-weight: bold !important;
-  border-radius: 10px !important;
-}
 
-/* Hover in modalità scura */
-.list-group-item:hover {
-  background-color: #28a745 !important;
-  /* Verde per hover in modalità scura */
-  color: white !important;
-  /* Colore del testo per miglior contrasto */
-}
-
-/* Stile di base per la modalità scura, cambia il colore di base dei link */
-.list-group-item {
-  background-color: #343a40 !important;
-  /* Sfondo scuro di base per la modalità scura */
-  color: white !important;
-  /* Colore del testo chiaro */
-}
 
 .modal-content {
   height: 100%;
