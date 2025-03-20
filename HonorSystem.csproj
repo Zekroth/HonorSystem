@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>7409dc97-d743-45e7-9dc4-9f2aa045bfe1</UserSecretsId>
     <SignAssembly>False</SignAssembly>
-    <AssemblyVersion>1.0.2</AssemblyVersion>
-    <FileVersion>1.0.2</FileVersion>
+    <AssemblyVersion>1.0.3</AssemblyVersion>
+    <FileVersion>1.0.3</FileVersion>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/Zekroth/HonorSystem.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

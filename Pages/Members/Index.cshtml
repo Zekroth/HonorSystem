@@ -12,6 +12,7 @@
             "paging": true,
             "searching": true,
             "ordering": true,
+            "pageLength": 25,
             "language": {
                 "lengthMenu": "Mostra _MENU_ righe per pagina",
                 "search": "Cerca:",
@@ -65,11 +66,11 @@
             {
                 int counter = Model.Member.IndexOf(item) + 1;
                 <tr>
-                    <td style="text-align: center;">@counter</td>
-                    <td style="text-align: center;">@item.Name</td>
+                    <td>@counter</td>
+                    <td>@item.Name</td>
                     <td style="width: auto; font-size: smaller; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">@item.CharacterName</td>
                     <td style="width: auto; font-size: smaller; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">@item.SecondaryCharacterName</td>
-                    <td style="text-align: center;">@item.JoinDate?.ToString("dd/MM/yyyy")</td>
+                    <td>@item.JoinDate?.ToString("dd/MM/yyyy")</td>
                     <td>
                         @if (item.IsActive == 1)
                         {

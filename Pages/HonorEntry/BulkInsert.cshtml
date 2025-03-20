@@ -13,6 +13,7 @@
             "paging": true,
             "searching": true,
             "ordering": true,
+            "pageLength": 25,
             "language": {
                 "lengthMenu": "Mostra _MENU_ righe per pagina",
                 "search": "Cerca:",
@@ -22,9 +23,9 @@
                     "next": "Avanti",
                     "previous": "Indietro"
                 }
-            }
+            },
         });
-    
+
         onChange();
     };
 </script>
@@ -32,48 +33,48 @@
 <!-- Gestione click delle righe in tabella -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-    // Seleziona tutte le righe con la classe "clickable-row"
-    const rows = document.querySelectorAll('.clickable-row');
+        // Seleziona tutte le righe con la classe "clickable-row"
+        const rows = document.querySelectorAll('.clickable-row');
 
-    rows.forEach(row => {
-    row.addEventListener('click', function (e) {
-    // Evita che il click interno (come quello sulla checkbox) crei conflitti
-    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'LABEL') {
-    const checkboxId = this.dataset.checkboxId; // Ottiene l'ID della checkbox
-    const checkbox = document.getElementById(checkboxId);
+        rows.forEach(row => {
+            row.addEventListener('click', function (e) {
+                // Evita che il click interno (come quello sulla checkbox) crei conflitti
+                if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'LABEL') {
+                    const checkboxId = this.dataset.checkboxId; // Ottiene l'ID della checkbox
+                    const checkbox = document.getElementById(checkboxId);
 
-    if (checkbox) {
-    checkbox.checked = !checkbox.checked; // Alterna lo stato della checkbox
-    }
-    }
-    });
-    });
+                    if (checkbox) {
+                        checkbox.checked = !checkbox.checked; // Alterna lo stato della checkbox
+                    }
+                }
+            });
+        });
     });
 </script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-    const selectAllCheckbox = document.getElementById('selectAll');
-    const playerCheckboxes = document.querySelectorAll('.player-checkbox');
+        const selectAllCheckbox = document.getElementById('selectAll');
+        const playerCheckboxes = document.querySelectorAll('.player-checkbox');
 
-    // Gestione selezione/deselezione di tutte le checkbox
-    selectAllCheckbox.addEventListener('change', function () {
-    const isChecked = this.checked;
-    playerCheckboxes.forEach(checkbox => {
-    checkbox.checked = isChecked; // Applica lo stato della checkbox "Seleziona Tutti"
-    });
-    });
+        // Gestione selezione/deselezione di tutte le checkbox
+        selectAllCheckbox.addEventListener('change', function () {
+            const isChecked = this.checked;
+            playerCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked; // Applica lo stato della checkbox "Seleziona Tutti"
+            });
+        });
 
-    // Aggiornamento dello stato di "Seleziona Tutti" in base alle checkbox individuali
-    playerCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', function () {
-    if (!this.checked) {
-    selectAllCheckbox.checked = false; // Deseleziona "Seleziona Tutti" se una checkbox viene deselezionata
-    } else if (Array.from(playerCheckboxes).every(cb => cb.checked)) {
-    selectAllCheckbox.checked = true; // Se tutte le checkbox sono selezionate, spunta "Seleziona Tutti"
-    }
-    });
-    });
+        // Aggiornamento dello stato di "Seleziona Tutti" in base alle checkbox individuali
+        playerCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                if (!this.checked) {
+                    selectAllCheckbox.checked = false; // Deseleziona "Seleziona Tutti" se una checkbox viene deselezionata
+                } else if (Array.from(playerCheckboxes).every(cb => cb.checked)) {
+                    selectAllCheckbox.checked = true; // Se tutte le checkbox sono selezionate, spunta "Seleziona Tutti"
+                }
+            });
+        });
     });
 </script>
 
@@ -83,20 +84,20 @@
         var selectedHonorList = honorEntryTypeList.find((x) => {
             if (x.IdHonorEntryType == document.getElementById("BulkInsertViewModel_HonorEntryTypeId").value)
                 return true;
-            });
+        });
 
-            if (selectedHonorList == null) {
-                console.log("HonorEntryType " + document.getElementById("BulkInsertViewModel_HonorEntryTypeId").value + " is undefined");
-                return;
-            }
+        if (selectedHonorList == null) {
+            console.log("HonorEntryType " + document.getElementById("BulkInsertViewModel_HonorEntryTypeId").value + " is undefined");
+            return;
+        }
 
-            document.getElementById("BulkInsertViewModel_AssignedPoints").value = selectedHonorList.DefaultPoints;
-            document.getElementById("BulkInsertViewModel_Description").value = selectedHonorList.Description;
+        document.getElementById("BulkInsertViewModel_AssignedPoints").value = selectedHonorList.DefaultPoints;
+        document.getElementById("BulkInsertViewModel_Description").value = selectedHonorList.Description;
 
-            if (selectedHonorList.Expiration == 0) {
-                document.getElementById("BulkInsertViewModel_ExpirationDate").value = null;
-            } else {
-                var ms = Date.now();
+        if (selectedHonorList.Expiration == 0) {
+            document.getElementById("BulkInsertViewModel_ExpirationDate").value = null;
+        } else {
+            var ms = Date.now();
             if (document.getElementById("BulkInsertViewModel_ExpirationDate").value == '') {
                 var newDate = addDaysToDate(ms, selectedHonorList.Expiration);
                 document.getElementById("BulkInsertViewModel_ExpirationDate").value = newDate.toISOString().substr(0, 16);
@@ -110,6 +111,44 @@
     window.onload = onChange();
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const selectAllCheckbox = document.getElementById('selectAll');
+        const playerCheckboxes = document.querySelectorAll('.player-checkbox');
+        const selectedCountSpan = document.getElementById('selectedCount');
+
+        function updateSelectedCount() {
+            const selectedCount = document.querySelectorAll('.player-checkbox:checked').length;
+            selectedCountSpan.textContent = selectedCount;
+        }
+
+        // Selezione/Deselezione di tutte le checkbox
+        selectAllCheckbox.addEventListener('change', function () {
+            const isChecked = this.checked;
+            playerCheckboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+            updateSelectedCount();
+        });
+
+        // Aggiornamento stato "Seleziona Tutti" e conteggio selezionati
+        playerCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                if (!this.checked) {
+                    selectAllCheckbox.checked = false;
+                } else if (Array.from(playerCheckboxes).every(cb => cb.checked)) {
+                    selectAllCheckbox.checked = true;
+                }
+                updateSelectedCount();
+            });
+        });
+
+        // Aggiorna il conteggio iniziale se ci sono checkbox pre-selezionate
+        updateSelectedCount();
+    });
+
+</script>
+
 <h1>Inserimento Punti</h1>
 <hr />
 
@@ -118,7 +157,8 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="BulkInsertViewModel.AssignedPoints" class="control-label bg-dark">Punti Assegnati</label>
+                <label asp-for="BulkInsertViewModel.AssignedPoints" class="control-label bg-dark">Punti
+                    Assegnati</label>
                 <input asp-for="BulkInsertViewModel.AssignedPoints" class="form-control bg-dark" />
                 <span asp-validation-for="BulkInsertViewModel.AssignedPoints" class="text-danger"></span>
             </div>
@@ -140,14 +180,17 @@
 
             <!-- Bottoni e select all-->
             <div class="d-flex align-items-center" style="gap: 10px">
-            <div class="form-group" style="margin-bottom: 10px;">
-            <input type="checkbox" id="selectAll" class="form-check-input" />
-            <label class="form-check-label" for="selectAll">Seleziona Tutti</label>
-            </div>
-            <div class="form-group" style="margin-bottom: 10px;">
-            <input type="submit" value="Salva" class="btn btn-primary" />
-            <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
-            </div>
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <input type="checkbox" id="selectAll" class="form-check-input" />
+                    <label class="form-check-label" for="selectAll">
+                        Seleziona Tutti (<span id="selectedCount">0</span>)
+                    </label>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <input type="submit" value="Salva" class="btn btn-primary" />
+                    <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
+                </div>
             </div>
 
             <!-- Lista checkbox in tabella -->
