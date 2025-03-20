@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HonorSystem.sakila;
+using Microsoft.IdentityModel.Tokens;
 
 namespace HonorSystem.ApiControllers
 {
@@ -86,9 +87,9 @@ namespace HonorSystem.ApiControllers
         [HttpPost]
         public async Task<ActionResult<Droppeditemsrequest>> PostDroppeditemsrequest(Droppeditemsrequest droppeditemsrequest)
         {
-            var found = _context.Find<Droppeditemsrequest>(droppeditemsrequest.IdLeftItemInGuildStorage, droppeditemsrequest.IdMember);
+            var found = _context.Droppeditemsrequests.Where( x => x.IdLeftItemInGuildStorage == droppeditemsrequest.IdLeftItemInGuildStorage && x.IdMember == droppeditemsrequest.IdMember);
 
-            if (found != null)
+            if (!found.IsNullOrEmpty())
             {
                 return StatusCode(409, found);
             }
