@@ -7,7 +7,7 @@
 
 <!-- Datatable -->
 <script>
-    window.onload = function() {
+    window.onload = function () {
         $('#droppedItemsTable').DataTable({
             "paging": true,
             "searching": true,
@@ -56,7 +56,12 @@
                 @* <th>
                     Tot. Punti
                 </th> *@
-                <th></th>
+                <th>
+                    Distribuito
+                </th>
+                <th>
+
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -78,20 +83,30 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Reason)
                     </td>
+                    <td>
+                        @if (item.IdLeftItemInGuildStorageNavigation.DistributedDate != null)
+                        {
+                            <i class="bi bi-check-circle-fill" style="color: green;"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                        }
+                    </td>
                     @* <td>
                         @Html.DisplayFor(modelItem => item.IdMemberNavigation.Honorentries)
                     </td> *@
                     <td>
-                        <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.IdDroppedItemsRequests" data-bs-toggle="tooltip"
-                           title="Modifica"><i class="bi bi-pencil-square"></i></a>
-                        <a asp-page="./Details" class="btn btn-secondary" asp-route-id="@item.IdDroppedItemsRequests" data-bs-toggle="tooltip"
-                           title="Dettagli"><i class="bi bi-eye"></i></a>
-                        <a asp-page="./Delete" class="btn btn-danger" asp-route-id="@item.IdDroppedItemsRequests" data-bs-toggle="tooltip"
-                           title="Elimina"><i class="bi bi-trash-fill"></i></a>
+                        <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.IdDroppedItemsRequests"
+                            data-bs-toggle="tooltip" title="Modifica"><i class="bi bi-pencil-square"></i></a>
+                        <a asp-page="./Details" class="btn btn-secondary" asp-route-id="@item.IdDroppedItemsRequests"
+                            data-bs-toggle="tooltip" title="Dettagli"><i class="bi bi-eye"></i></a>
+                        <a asp-page="./Delete" class="btn btn-danger" asp-route-id="@item.IdDroppedItemsRequests"
+                            data-bs-toggle="tooltip" title="Elimina"><i class="bi bi-trash-fill"></i></a>
                     </td>
                 </tr>
             }
-            
+
         </tbody>
     </table>
 </div>
