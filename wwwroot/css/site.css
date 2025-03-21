@@ -1,7 +1,6 @@
 html {
   font-size: 14px;
   position: relative;
-  min-height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -17,7 +16,7 @@ html {
 }
 
 body {
-  background: rgb(18, 18, 18);
+  background: #222222;
   color: white;
 }
 
@@ -25,9 +24,12 @@ body {
   display: flex;
   flex-direction: row;
   margin-bottom: 60px;
-  background: rgba(124, 0, 0, 0.1);
-  border-radius: 10px;
+  background: rgb(125,0,0);
+  background: -moz-radial-gradient(circle, rgba(125,0,0,1) 0%, rgba(41,41,41,1) 100%);
+  background: -webkit-radial-gradient(circle, rgba(125,0,0,1) 0%, rgba(41,41,41,1) 100%);
+  background: radial-gradient(circle, rgba(125,0,0,1) 0%, rgba(41,41,41,1) 100%);
   padding: 20px;
+  min-height: 100%;
 }
 
 .a-menu {
@@ -72,6 +74,25 @@ body {
 }
 
 .list-group-item:hover {
+  background-color: #444;
+  color: #fff;
+}
+
+.clist-group-item {
+  background-color: #343a40;
+  color: white;
+  border: none;
+}
+
+.clist-group-item.active {
+  background-color: red;
+  border-color: red;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.clist-group-item:hover {
   background-color: #444;
   color: #fff;
 }
@@ -284,6 +305,7 @@ a,
 }
 
 .container {
+  min-height: 100vh; /* L'intera altezza della finestra */
   color: white;
 }
 
@@ -308,8 +330,6 @@ table td {
   text-align: center !important;
 }
 
-
-
 .modal-content {
   height: 100%;
   overflow-y: auto;
@@ -331,7 +351,6 @@ table td {
   margin-left: 5px;
   /* Facoltativo: aggiunge un piccolo margine tra il checkbox e l'etichetta */
 }
-
 
 /* Scurisce il menu a discesa per la selezione delle righe per pagina */
 .dataTables_length select {

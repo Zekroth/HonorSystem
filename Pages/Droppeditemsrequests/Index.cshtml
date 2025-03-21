@@ -39,7 +39,7 @@
         <thead>
             <tr>
                 <th>
-                    #
+                    ID
                 </th>
                 <th>
                     Nome
@@ -53,6 +53,9 @@
                 <th>
                     Motivazione
                 </th>
+                @* <th>
+                    Tot. Punti
+                </th> *@
                 <th></th>
             </tr>
         </thead>
@@ -75,6 +78,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Reason)
                     </td>
+                    @* <td>
+                        @Html.DisplayFor(modelItem => item.IdMemberNavigation.Honorentries)
+                    </td> *@
                     <td>
                         <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.IdDroppedItemsRequests" data-bs-toggle="tooltip"
                            title="Modifica"><i class="bi bi-pencil-square"></i></a>
@@ -85,6 +91,7 @@
                     </td>
                 </tr>
             }
+            
         </tbody>
     </table>
 </div>

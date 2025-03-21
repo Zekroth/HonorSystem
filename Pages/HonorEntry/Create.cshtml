@@ -9,8 +9,7 @@
 <h1>Inserimento Punteggio</h1>
 <hr />
 
-<div class="row">
-    <div class="col-auto">
+<div class="row custom-container-sidebar col-auto">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" style="margin-bottom: 10px;">
@@ -41,43 +40,7 @@
                 <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
             </div>
         </form>
-    </div>
 </div>
-
-<script>
-    var honorEntryTypeList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.HonorEntryTypes)) || [];
-
-    function onChange() {
-        var selectedHonorList = honorEntryTypeList.find((x) => {
-            if (x.IdHonorEntryType == document.getElementById("Honorentry_HonorEntryTypeId").value)
-                return true;
-            return false;
-        });
-
-        if (selectedHonorList == null) {
-            console.log("HonorEntryType " + document.getElementById("Honorentry_HonorEntryTypeId").value + " is undefined");
-            return;
-        }
-
-        document.getElementById("Honorentry_AssignedPoints").value = selectedHonorList.DefaultPoints;
-        document.getElementById("Honorentry_Description").value = selectedHonorList.Description;
-
-        if (selectedHonorList.Expiration == 0) {
-            document.getElementById("Honorentry_ExpirationDate").value = null;
-        } else {
-            var ms = Date.now();
-            if (document.getElementById("Honorentry_ExpirationDate").value == '') {
-                var newDate = addDaysToDate(ms, selectedHonorList.Expiration);
-                document.getElementById("Honorentry_ExpirationDate").value = newDate.toISOString().substr(0, 16);
-            } else {
-                var newDate = addDaysToDate(document.getElementById("Honorentry_ExpirationDate").value, selectedHonorList.Expiration);
-                document.getElementById("Honorentry_ExpirationDate").value = newDate.toISOString().substr(0, 16);
-            }
-        }
-    }
-
-    window.onload = onChange();
-</script>
 
 @section Scripts {
     @{
@@ -88,9 +51,5 @@
         {
             // TODO: Throw error
         }
-
-
     }
-
-    
 }

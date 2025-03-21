@@ -6,40 +6,42 @@
 }
 
 <h1>Elimina</h1>
-<h3>Sei sicuro di voler eliminare @Html.DisplayFor(model => model.Droppeditemsrequest.IdMemberNavigation.Name)?</h3>
+<h3>Sei sicuro di voler eliminare la richiesta?</h3>
 <hr />
 
 <div>
-    <dl class="row">
-        <dt class="col-sm-2">
+    <dl class="row custom-container-sidebar">
+        <dt class="col-md-2 fw-bold">
             @Html.DisplayNameFor(model => model.Droppeditemsrequest.IdMemberNavigation.Name)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-md-10 fw-bold">
             @Html.DisplayFor(model => model.Droppeditemsrequest.IdMemberNavigation.Name)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-md-2 fw-bold">
             @Html.DisplayNameFor(model => model.Droppeditemsrequest.RequestDate)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-md-10 fw-bold">
             @Html.DisplayFor(model => model.Droppeditemsrequest.RequestDate)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Droppeditemsrequest.IdLeftItemInGuildStorageNavigation.IdItemNavigation.ItemName)
+        <dt class="col-md-2 fw-bold">
+            @Html.DisplayNameFor(model =>
+            model.Droppeditemsrequest.IdLeftItemInGuildStorageNavigation.IdItemNavigation.ItemName)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Droppeditemsrequest.IdLeftItemInGuildStorageNavigation.IdItemNavigation.ItemName)
+        <dd class="col-md-10 fw-bold">
+            @Html.DisplayFor(model =>
+                        model.Droppeditemsrequest.IdLeftItemInGuildStorageNavigation.IdItemNavigation.ItemName)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-md-2 fw-bold">
             @Html.DisplayNameFor(model => model.Droppeditemsrequest.Reason)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-md-10 fw-bold">
             @Html.DisplayFor(model => model.Droppeditemsrequest.Reason)
         </dd>
-    </dl>
 
-    <form method="post">
-        <input type="hidden" asp-for="Droppeditemsrequest.IdDroppedItemsRequests" />
-        <input type="submit" value="Elimina" class="btn btn-danger" /> 
-        <a asp-page="Index" class="btn btn-primary"><i class="bi bi-arrow-left"></i></a>
-    </form>
+        <form method="post">
+            <input type="hidden" asp-for="Droppeditemsrequest.IdDroppedItemsRequests" />
+            <input type="submit" value="Elimina" class="btn btn-danger" />
+            <a asp-page="Index" class="btn btn-primary"><i class="bi bi-arrow-left"></i></a>
+        </form>
+    </dl>
 </div>

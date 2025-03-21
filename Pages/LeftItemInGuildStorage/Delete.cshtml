@@ -6,40 +6,38 @@
 }
 
 <h1>Elimina</h1>
-
 <h3>Sei sicuro di voler eliminare l'item?</h3>
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
+<hr />
+
+<div class="row custom-container-sidebar col-auto">
+        <dt class="col-md-3 col-sm-4 fw-bold"> <!-- Spazi più larghi per i titoli -->
             @Html.DisplayNameFor(model => model.Leftiteminguildstorage.DropDate)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-md-9 col-sm-8 fw-bold"> <!-- Spazi più larghi per i valori -->
             @Html.DisplayFor(model => model.Leftiteminguildstorage.DropDate)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-md-3 col-sm-4 fw-bold">
             @Html.DisplayNameFor(model => model.Leftiteminguildstorage.CurrentPriceInLucent)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-md-9 col-sm-8 fw-bold">
             @Html.DisplayFor(model => model.Leftiteminguildstorage.CurrentPriceInLucent)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-md-3 col-sm-4 fw-bold">
             @Html.DisplayNameFor(model => model.Leftiteminguildstorage.IdHonorEntryNavigation)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-md-9 col-sm-8 fw-bold">
             @Html.DisplayFor(model => model.Leftiteminguildstorage.IdHonorEntryNavigation.IdHonorEntry)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-md-3 col-sm-4 fw-bold">
             @Html.DisplayNameFor(model => model.Leftiteminguildstorage.IdItemNavigation)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-md-9 col-sm-8 fw-bold">
             @Html.DisplayFor(model => model.Leftiteminguildstorage.IdItemNavigation.IdItem)
         </dd>
-    </dl>
-    
-    <form method="post">
-        <input type="hidden" asp-for="Leftiteminguildstorage.Id" />
-        <input type="submit" class="btn btn-danger" value="Elimina" class="btn btn-danger" /> 
-        <a asp-page="Index" class="btn btn-primary"><i class="bi bi-arrow-left"></i></a>
-    </form>
+<form method="post">
+    <input type="hidden" asp-for="Leftiteminguildstorage.Id" />
+    <input type="submit" class="btn btn-danger" value="Elimina" />
+    <a asp-page="Index" class="btn btn-primary"><i class="bi bi-arrow-left"></i></a>
+</form>
 </div>
+

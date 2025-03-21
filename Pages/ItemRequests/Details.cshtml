@@ -1,37 +1,41 @@
 ﻿@page
-@model HonorSystem.Pages.ItemRequests.DetailsModel
+@model HonorSystem.Pages.ItemRequests.EditModel
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Dettagli </h1>
+<h4>Richiesta Item (ID @Html.DisplayFor(model => model.Itemrequest.IdItemRequest))</h4>
+<hr />
 
-<div>
-    <h4>Itemrequest</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Itemrequest.IsSupplied)
+<div class="row custom-container-sidebar col-auto">
+        <dt class="col-md-3 col-sm-4">
+            IdItemRequest
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Itemrequest.IsSupplied)
+        <dd class="col-md-9 col-sm-8">
+            @Html.DisplayFor(model => model.Itemrequest.IdItemRequest)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Itemrequest.Item)
+
+        <dt class="col-md-3 col-sm-4">
+            Item ID
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Itemrequest.Item.IdItem)
+        <dd class="col-md-9 col-sm-8">
+            @Html.DisplayFor(model => model.Itemrequest.ItemId)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Itemrequest.Player)
+
+        <dt class="col-md-3 col-sm-4">
+            Distribuito
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Itemrequest.Player.IdMembers)
+        <dd class="col-md-9 col-sm-8">
+            @if (Model.Itemrequest.IsSupplied == 1) { 
+                <span><i class="bi bi-check-circle-fill" style="color: green;"></i></span>
+            } else { 
+                <span><i class="bi bi-x-circle-fill" style="color: red;"></i></span> 
+            }
         </dd>
-    </dl>
-</div>
-<div>
-    <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@Model.Itemrequest?.IdItemRequest">Salva</a>
+    <div>
     <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
+    </div>
 </div>
+

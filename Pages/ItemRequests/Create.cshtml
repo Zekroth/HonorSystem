@@ -8,12 +8,11 @@
 <h4>Inserimento Richiesta Item</h4>
 <hr />
 
-<div class="row">
-    <div class="col-auto">
+<div class="row custom-container-sidebar col-auto">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Itemrequest.IsSupplied" class="control-label">Disponibile</label>
+                <label asp-for="Itemrequest.IsSupplied" class="control-label">Richiesta Evasa</label>
                 <input asp-for="Itemrequest.IsSupplied" class="form-control bg-dark" />
                 <span asp-validation-for="Itemrequest.IsSupplied" class="text-danger"></span>
             </div>
@@ -30,7 +29,6 @@
                 <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
             </div>
         </form>
-    </div>
 </div>
 
 @section Scripts {

@@ -6,22 +6,22 @@
 }
 
 <h1>Dettagli Boss</h1>
+<hr />
 
 <div>
-    <hr />
     <dl class="row">
-    <dt class="col-md-4 fw-bold">Boss</dt>
-    <dd class="col-md-8">@Html.DisplayFor(model => model.Boss.BossName)</dd>
+        <dt class="col-md-4 fw-bold">Boss</dt>
+        <dd class="col-md-8">@Html.DisplayFor(model => model.Boss.BossName)</dd>
 
-    <dt class="col-md-4 fw-bold">Field Boss</dt>
-    <dd class="col-md-8">@(Model.Boss.IsField == 1 ? "Sì" : "No")</dd>
+        <dt class="col-md-4 fw-bold">Field Boss</dt>
+        <dd class="col-md-8">@(Model.Boss.IsField == 1 ? "Sì" : "No")</dd>
 
-    <dt class="col-md-4 fw-bold">Arch Boss</dt>
-    <dd class="col-md-8">@(Model.Boss.IsArch == 1 ? "Sì" : "No")</dd>
+        <dt class="col-md-4 fw-bold">Arch Boss</dt>
+        <dd class="col-md-8">@(Model.Boss.IsArch == 1 ? "Sì" : "No")</dd>
 
-    <dt class="col-md-4 fw-bold">Guild Boss</dt>
-    <dd class="col-md-8">@(Model.Boss.IsGuild == 1 ? "Sì" : "No")</dd>
-</dl>
+        <dt class="col-md-4 fw-bold">Guild Boss</dt>
+        <dd class="col-md-8">@(Model.Boss.IsGuild == 1 ? "Sì" : "No")</dd>
+    </dl>
 
 </div>
 <div>

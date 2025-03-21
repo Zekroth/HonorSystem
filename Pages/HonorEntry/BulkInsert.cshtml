@@ -6,6 +6,7 @@
     ViewData["Title"] = "BulkInsert";
 }
 
+<!-- Datatable + script selectAll-->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Inizializzazione DataTable
@@ -13,7 +14,7 @@
             "paging": true,
             "searching": true,
             "ordering": true,
-            "pageLength": 25,
+            "pageLength": 100,
             "language": {
                 "lengthMenu": "Mostra _MENU_ righe per pagina",
                 "search": "Cerca:",
@@ -100,17 +101,14 @@
     window.onload = onChange;
 </script>
 
-
 <h1>Inserimento Punti</h1>
 <hr />
 
-<div class="row">
-    <div class="col-auto">
+<div class="row custom-container-sidebar col-auto">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" style="margin-bottom: 10px;">
-                <label asp-for="BulkInsertViewModel.AssignedPoints" class="control-label bg-dark">Punti
-                    Assegnati</label>
+                <label asp-for="BulkInsertViewModel.AssignedPoints" class="control-label">Punti Assegnati</label>
                 <input asp-for="BulkInsertViewModel.AssignedPoints" class="form-control bg-dark" />
                 <span asp-validation-for="BulkInsertViewModel.AssignedPoints" class="text-danger"></span>
             </div>
@@ -170,7 +168,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
         </form>
     </div>
 </div>

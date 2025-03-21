@@ -8,8 +8,7 @@
 <h1>Modifica Punti</h1>
 <hr />
 
-<div class="row">
-    <div class="col-auto">
+<div class="row custom-container-sidebar col-auto">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Honorentry.IdHonorEntry" />
@@ -49,7 +48,6 @@
                 <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
             </div>
         </form>
-    </div>
 </div>
 
 @section Scripts {
