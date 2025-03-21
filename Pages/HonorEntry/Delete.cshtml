@@ -10,7 +10,7 @@
 <hr />
 
 <div>
-    <dl class="row">
+    <dl class="row custom-container-sidebar col-auto">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Honorentry.EntryDate)
         </dt>
@@ -44,14 +44,14 @@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Honorentry.Player)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10" style="margin-bottom: 50px;">
             @Html.DisplayFor(model => model.Honorentry.Player.IdMembers)
         </dd>
-    </dl>
 
     <form method="post">
         <input type="hidden" asp-for="Honorentry.IdHonorEntry" />
         <input type="submit" value="Elimina" class="btn btn-danger" />
         <a asp-page="Index" class="btn btn-primary"><i class="bi bi-arrow-left"></i></a>
     </form>
+    </dl>
 </div>

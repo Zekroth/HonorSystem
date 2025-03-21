@@ -9,23 +9,24 @@
 
 <h4>Itemrequest</h4>
 <hr />
-<div class="row">
-    <div class="col-auto">
+<div class="row custom-container-sidebar col-auto">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Itemrequest.IdItemRequest" />
             <div class="form-group">
-                <label asp-for="Itemrequest.IsSupplied" class="control-label"></label>
-                <input asp-for="Itemrequest.IsSupplied" class="form-control bg-dark" />
-                <span asp-validation-for="Itemrequest.IsSupplied" class="text-danger"></span>
-            </div>
+                <label asp-for="Itemrequest.IsSupplied" class="control-label">Distribuito</label>
+                <select asp-for="Itemrequest.IsSupplied" class="form-control bg-dark">
+                    <option value="1">Sì</option>
+                    <option value="0">No</option>
+                </select>
+                <span as
             <div class="form-group">
-                <label asp-for="Itemrequest.ItemId" class="control-label"></label>
+                <label asp-for="Itemrequest.ItemId" class="control-label">Item</label>
                 <select asp-for="Itemrequest.ItemId" class="form-control bg-dark" asp-items="ViewBag.ItemId"></select>
                 <span asp-validation-for="Itemrequest.ItemId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Itemrequest.PlayerId" class="control-label"></label>
+                <label asp-for="Itemrequest.PlayerId" class="control-label">Player</label>
                 <select asp-for="Itemrequest.PlayerId" class="form-control bg-dark" asp-items="ViewBag.PlayerId"></select>
                 <span asp-validation-for="Itemrequest.PlayerId" class="text-danger"></span>
             </div>
@@ -34,7 +35,6 @@
                 <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
             </div>
         </form>
-    </div>
 </div>
 
 @section Scripts {

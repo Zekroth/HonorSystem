@@ -310,6 +310,7 @@ select:disabled {
 }
 
 [list]::-webkit-calendar-picker-indicator {
+  color:#fff;
   display: none;
 }
 

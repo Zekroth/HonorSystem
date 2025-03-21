@@ -5,14 +5,13 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Dettagli Punteggio</h1>
+<hr />
 
 <div>
-    <h4>Honorentry</h4>
-    <hr />
-    <dl class="row">
+    <dl class="row custom-container-sidebar col-auto">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Honorentry.EntryDate)
+            Data Inserimento Punti
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Honorentry.EntryDate)
@@ -42,14 +41,13 @@
             @Html.DisplayFor(model => model.Honorentry.HonorEntryType.IdHonorEntryType)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Honorentry.Player)
+            @Html.DisplayNameFor(model => model.Honorentry.Player.Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Honorentry.Player.IdMembers)
+            @Html.DisplayFor(model => model.Honorentry.Player.Name)
         </dd>
+        <div>
+            <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
+        </div>
     </dl>
-</div>
-<div>
-    <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@Model.Honorentry?.IdHonorEntry">Salva</a> 
-    <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
 </div>

@@ -19,6 +19,8 @@ namespace HonorSystem.Pages.Droppeditemsrequests
         }
 
         public IList<Droppeditemsrequest> DIRequest { get;set; }
+        public IList<HonorSystem.sakila.Classifica> Classificas { get;set; } = default!;
+
 
         public async Task OnGetAsync()
         {
@@ -27,6 +29,11 @@ namespace HonorSystem.Pages.Droppeditemsrequests
                 .Include(d => d.IdMemberNavigation)
                 .Include(d => d.IdLeftItemInGuildStorageNavigation.IdItemNavigation)
                 .ToListAsync();
+
+                if (_context.Classificas != null)
+            {
+                Classificas = await _context.Classificas.ToListAsync();
+            }
         }
     }
 }

@@ -10,7 +10,7 @@
 <hr />
 
 <div>
-    <dl class="row">
+    <dl class="row custom-container-sidebar">
         <dt class="col-sm-2">
             Nome
         </dt>
@@ -55,11 +55,10 @@
                 <span><i class="bi bi-x-circle-fill" style="color: red;"></i></span> 
             }
         </dd>
-    </dl>
-
-    <form method="post">
+        <form method="post">
         <input type="hidden" asp-for="Member.IdMembers" />
         <input type="submit" value="Elimina" class="btn btn-danger" />
         <a asp-page="Index" class="btn btn-primary"><i class="bi bi-arrow-left"></i></a>
     </form>
+    </dl>
 </div>

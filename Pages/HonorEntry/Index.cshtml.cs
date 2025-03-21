@@ -19,6 +19,7 @@ namespace HonorSystem.Pages.HonorEntry
         }
 
         public IList<Honorentry> Honorentry { get;set; } = default!;
+        public IList<HonorSystem.sakila.Classifica> Classificas { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
@@ -27,6 +28,11 @@ namespace HonorSystem.Pages.HonorEntry
                 Honorentry = await _context.Honorentries
                     .Include(h => h.HonorEntryType)
                     .Include(h => h.Player).ToListAsync();
+            }
+
+            if (_context.Classificas != null)
+            {
+                Classificas = await _context.Classificas.ToListAsync();
             }
         }
     }
