@@ -38,11 +38,11 @@
                     asp-items="ViewBag.HonorEntryTypeId"></select>
                 <span asp-validation-for="Honorentry.HonorEntryTypeId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="Honorentry.PlayerId" class="control-label">Player</label>
                 <select asp-for="Honorentry.PlayerId" class="form-control bg-dark" asp-items="ViewBag.PlayerId"></select>
                 <span asp-validation-for="Honorentry.PlayerId" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
                 <input type="submit" value="Salva" class="btn btn-primary" />
                 <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>

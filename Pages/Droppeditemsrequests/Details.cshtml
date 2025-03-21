@@ -9,35 +9,34 @@
 <h4>Droppeditemsrequest</h4>
 <hr />
 
-<div>
-    <dl class="row">
-        <dt class = "col-sm-2">
+<div class="row custom-container-sidebar col-md-auto">
+    <dl>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IdMemberNavigation.CharacterName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RequestDate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Reason)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Reason)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IdLeftItemInGuildStorageNavigation)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IdLeftItemInGuildStorageNavigation.Id)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.IdMemberNavigation)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.IdMemberNavigation.IdMembers)
         </dd>
-    </dl>
-</div>
 
-<div>
-    <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
+        <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
+    </dl>
+
 </div>
