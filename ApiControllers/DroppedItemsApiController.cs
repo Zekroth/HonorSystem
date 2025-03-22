@@ -72,6 +72,7 @@ namespace HonorSystem.ApiControllers
                 items = await _context.Leftiteminguildstorages
                     .Include(x => x.IdHonorEntryNavigation)
                     .Include(x => x.IdItemNavigation)
+                    .Where(x => x.DistributedDate == null)
                     .ToListAsync();
             }
             else
