@@ -24,30 +24,26 @@ namespace HonorSystem.Pages.DroppedItemsRequests
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Droppeditemsrequests == null)
-            {
+            if (id == null || id == 0)
                 return NotFound();
-            }
 
-            var droppeditemrequest = await _context.Droppeditemsrequests
+            Droppeditemsrequest = _context.Droppeditemsrequests
+                .Include(x => x.IdMemberNavigation)
                 .Include(x => x.IdLeftItemInGuildStorageNavigation)
-                .ThenInclude(x => x.IdItemNavigation)  // Include anche la navigazione verso 'IdItemNavigation' se necessario
-                .FirstOrDefaultAsync(m => m.IdDroppedItemsRequests == id);
+                .Where(x => x.IdDroppedItemsRequests == id)
+                .FirstOrDefault() ?? new();
 
-            if (droppeditemrequest == null)
-            {
-                return NotFound();
-            }
+            Droppeditemsrequest.IdDroppedItemsRequests = id ?? 0;
 
-            if (droppeditemrequest.IdLeftItemInGuildStorageNavigation == null)
-            {
-                return NotFound();
-            }
+            var memberid = _context.Members.ToList();  
+            ViewData["MemberId"] = new SelectList(memberid, "IdMembers", "Name"); ;
+            
+            var itemid = _context.Leftiteminguildstorages
+                .Include(x => x.IdItemNavigation)
+                .Where(x => x.DistributedTo == null)
+                .ToList();
+            ViewData["ItemId"] = new SelectList(itemid, "Id", "DropDate");
 
-            Droppeditemsrequest = droppeditemrequest;
-
-            ViewData["IdItem"] = new SelectList(_context.Items, "IdItem", "IdItem", droppeditemrequest.IdLeftItemInGuildStorageNavigation.IdItem);
-            ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "Name");
             return Page();
         }
 
@@ -60,7 +56,7 @@ namespace HonorSystem.Pages.DroppedItemsRequests
                 return Page();
             }
 
-            _context.Attach(Droppeditemsrequest).State = EntityState.Modified;
+            _context.Entry(Droppeditemsrequest).State = EntityState.Modified;
 
             try
             {
