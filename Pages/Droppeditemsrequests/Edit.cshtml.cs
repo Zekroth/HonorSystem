@@ -29,15 +29,24 @@ namespace HonorSystem.Pages.DroppedItemsRequests
                 return NotFound();
             }
 
-            var droppeditemrequest =  await _context.Droppeditemsrequests.FirstOrDefaultAsync(m => m.IdDroppedItemsRequests == id);
+            var droppeditemrequest = await _context.Droppeditemsrequests
+                .Include(x => x.IdLeftItemInGuildStorageNavigation)
+                .ThenInclude(x => x.IdItemNavigation)  // Include anche la navigazione verso 'IdItemNavigation' se necessario
+                .FirstOrDefaultAsync(m => m.IdDroppedItemsRequests == id);
+
             if (droppeditemrequest == null)
+            {
+                return NotFound();
+            }
+
+            if (droppeditemrequest.IdLeftItemInGuildStorageNavigation == null)
             {
                 return NotFound();
             }
 
             Droppeditemsrequest = droppeditemrequest;
 
-            ViewData["ItemId"] = new SelectList(_context.Items, "IdItem", "ItemName");
+            ViewData["IdItem"] = new SelectList(_context.Items, "IdItem", "IdItem", droppeditemrequest.IdLeftItemInGuildStorageNavigation.IdItem);
             ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "Name");
             return Page();
         }
@@ -74,7 +83,7 @@ namespace HonorSystem.Pages.DroppedItemsRequests
 
         private bool ItemrequestExists(int id)
         {
-          return (_context.Droppeditemsrequests?.Any(e => e.IdDroppedItemsRequests == id)).GetValueOrDefault();
+            return (_context.Droppeditemsrequests?.Any(e => e.IdDroppedItemsRequests == id)).GetValueOrDefault();
         }
     }
 }

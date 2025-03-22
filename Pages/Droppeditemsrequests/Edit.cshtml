@@ -9,36 +9,52 @@
 <hr />
 
 <div class="row custom-container-sidebar col-auto">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Droppeditemsrequest.IdDroppedItemsRequests" />
-            <div class="form-group">
-                <label asp-for="Droppeditemsrequest.RequestDate" class="control-label"></label>
-                <input asp-for="Droppeditemsrequest.RequestDate" class="form-control bg-dark" />
-                <span asp-validation-for="Droppeditemsrequest.RequestDate" class="text-danger"></span>
+
+    <form asp-action="Edit">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Droppeditemsrequest.IdDroppedItemsRequests" />
+        <input type="hidden" asp-for="Droppeditemsrequest.IdMember" />
+
+        @* <div class="form-group">
+            <label asp-for="Droppeditemsrequest.RequestDate" class="control-label"></label>
+            <input asp-for="Droppeditemsrequest.RequestDate" class="form-control bg-dark" type="datetime-local"
+                value="@Model.Droppeditemsrequest.RequestDate.ToString("yyyy-MM-ddTHH:mm")" />
+            <span asp-validation-for="Droppeditemsrequest.RequestDate" class="text-danger"></span>
+        </div> *@
+        <div class="form-group">
+                <label asp-for="Droppeditemsrequest.IdMemberNavigation" class="control-label"></label>
+                <select asp-for="Droppeditemsrequest.IdMemberNavigation" class="form-control bg-dark" asp-items="ViewBag.IdMemberNavigation"></select>
+                <span asp-validation-for="Droppeditemsrequest.IdMemberNavigation" class="text-danger"></span>
             </div>
-            @* <div class="form-group">
-                <label asp-for="Droppeditemsrequest.IdMemberNavigation.IdMembers" class="control-label"></label>
-                <select asp-for="Droppeditemsrequest.IdMemberNavigation.IdMembers" class="form-control bg-dark" asp-items="ViewBag.IdMemberNavigation.IdMembers"></select>
-                <span asp-validation-for="Droppeditemsrequest.IdMemberNavigation.IdMembers" class="text-danger"></span>
-            </div> *@
-            <div class="form-group">
-                <label asp-for="Droppeditemsrequest.IdLeftItemInGuildStorageNavigation" class="control-label"></label>
-                <select asp-for="Droppeditemsrequest.IdLeftItemInGuildStorageNavigation" class="form-control bg-dark" asp-items="ViewBag.IdLeftInGuildStorage"></select>
-                <span asp-validation-for="Droppeditemsrequest.IdLeftItemInGuildStorageNavigation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Droppeditemsrequest.Reason" class="control-label"></label>
-                <input asp-for="Droppeditemsrequest.Reason" class="form-control bg-dark" />
-                <span asp-validation-for="Droppeditemsrequest.Reason" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Salva" class="btn btn-primary" />
-                <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
-            </div>
-        </form>
+        <div class="form-group">
+            <label asp-for="Droppeditemsrequest.IdLeftItemInGuildStorageNavigation.IdItem"class="control-label"></label>
+            <select asp-for="Droppeditemsrequest.IdLeftItemInGuildStorageNavigation.IdItemNavigation" class="form-control bg-dark" asp-items="ViewBag.ItemId"></select>
+            <span asp-validation-for="Droppeditemsrequest.IdLeftItemInGuildStorageNavigation.IdItem" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Droppeditemsrequest.RequestDate" class="control-label"></label>
+            <input asp-for="Droppeditemsrequest.RequestDate" class="form-control bg-dark" type="date" />
+            <span asp-validation-for="Droppeditemsrequest.RequestDate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Droppeditemsrequest.Reason" class="control-label"></label>
+            <input asp-for="Droppeditemsrequest.Reason" class="form-control bg-dark" />
+            <span asp-validation-for="Droppeditemsrequest.Reason" class="text-danger"></span>
+        </div>
+
+        <!-- Bottoni -->
+        <div class="form-group">
+            <input type="submit" value="Salva" class="btn btn-primary" />
+            <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -34,6 +34,11 @@ namespace HonorSystem.Pages.Droppeditemsrequests
             {
                 Classificas = await _context.Classificas.ToListAsync();
             }
+
+            if (_context.Classificas != null)
+            {
+                Classificas = await _context.Classificas.ToListAsync();
+            }
         }
     }
 }
