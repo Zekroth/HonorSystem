@@ -5,9 +5,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Leftiteminguildstorage</h4>
+<h1>Modifica Item</h1>
 <hr />
 
 <div class="row custom-container-sidebar col-auto">
@@ -15,12 +13,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Leftiteminguildstorage.Id" />
             <div class="form-group">
-                <label asp-for="Leftiteminguildstorage.DropDate" class="control-label"></label>
+                <label asp-for="Leftiteminguildstorage.DropDate" class="control-label">Droppato il</label>
                 <input asp-for="Leftiteminguildstorage.DropDate" class="form-control bg-dark" />
                 <span asp-validation-for="Leftiteminguildstorage.DropDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Leftiteminguildstorage.CurrentPriceInLucent" class="control-label"></label>
+                <label asp-for="Leftiteminguildstorage.CurrentPriceInLucent" class="control-label">Prezzo Corrente</label>
                 <input asp-for="Leftiteminguildstorage.CurrentPriceInLucent" class="form-control bg-dark" />
                 <span asp-validation-for="Leftiteminguildstorage.CurrentPriceInLucent" class="text-danger"></span>
             </div>
@@ -34,6 +32,12 @@
                 <select asp-for="Leftiteminguildstorage.IdHonorEntry" class="form-control bg-dark" asp-items="ViewBag.IdHonorEntry"></select>
                 <span asp-validation-for="Leftiteminguildstorage.IdHonorEntry" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Leftiteminguildstorage.DistributedDate" class="control-label">Distribuito il</label>
+                <input asp-for="Leftiteminguildstorage.DistributedDate" class="form-control bg-dark" />
+                <span asp-validation-for="Leftiteminguildstorage.DistributedDate" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Salva" class="btn btn-primary" />
                 <a asp-page="Index" class="btn btn-danger"><i class="bi bi-arrow-left"></i></a>

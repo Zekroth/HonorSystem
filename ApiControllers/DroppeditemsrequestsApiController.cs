@@ -52,7 +52,7 @@ namespace HonorSystem.ApiControllers
 
         // PUT: api/DroppeditemsrequestsApi/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("id")]
         public async Task<IActionResult> PutDroppeditemsrequest(int id, Droppeditemsrequest droppeditemsrequest)
         {
             if (id != droppeditemsrequest.IdDroppedItemsRequests)
@@ -60,21 +60,36 @@ namespace HonorSystem.ApiControllers
                 return BadRequest();
             }
 
-            _context.Entry(droppeditemsrequest).State = EntityState.Modified;
+            // Aggiorna la data di richiesta se è stata modificata
+            var existingRequest = await _context.Droppeditemsrequests
+                .FirstOrDefaultAsync(x => x.IdDroppedItemsRequests == id);
 
-            try
+            if (existingRequest != null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DroppeditemsrequestExists(id))
+                // Verifica se la data è stata modificata
+                if (droppeditemsrequest.RequestDate != existingRequest.RequestDate)
                 {
-                    return NotFound();
+                    // Se modificata, aggiorna la data
+                    existingRequest.RequestDate = droppeditemsrequest.RequestDate;
                 }
-                else
+
+                // Imposta lo stato modificato per l'entità
+                _context.Entry(existingRequest).State = EntityState.Modified;
+
+                try
                 {
-                    throw;
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!DroppeditemsrequestExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
 

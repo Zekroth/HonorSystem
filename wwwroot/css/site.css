@@ -53,16 +53,16 @@ body {
   table-layout: fixed;
   overflow-x: hidden;
   overflow-y: hidden;
-  background-color: #1e1e1e;
+  background-color: rgb(46, 1, 1);
   color: white;
   border-color: #444;
   text-align: center;
 }
 
 .list-group-item {
-  background-color: #343a40;
+  background-color: rgb(63, 0, 0);
   color: white;
-  border: none;
+  border-color: black;
 }
 
 .list-group-item.active {
@@ -128,6 +128,7 @@ body {
   color: white;
 }
 
+/*----------------------------------------------- Datatables ------------------------------------------------------------*/
 table.dataTable>thead .sorting::before,
 table.dataTable>thead .sorting_asc::before,
 table.dataTable>thead .sorting_desc::before,
@@ -148,12 +149,6 @@ table.dataTable>thead>tr>th,
 table.dataTable>thead>tr>td {
   padding-right: 0px !important;
   padding-left: 0px !important;
-}
-
-#sidebarMenu {
-  height: auto;
-  background-color: white;
-  padding-top: 10px;
 }
 
 .footer-text {
@@ -217,17 +212,25 @@ table tbody tr:hover td {
   background-color: #555 !important;
 }
 
+table.dataTable.stripe>tbody>tr:nth-child(odd)>*, table.dataTable.display>tbody>tr:nth-child(odd)>* {
+  background-color: rgb(53, 0, 0) !important;
+}
+
 .table,
 .table th,
 .table td {
-  background-color: #1e1e1e !important;
+  background-color: rgb(33, 0, 0) !important;
   color: white !important;
   border-color: #444 !important;
   text-align: center;
 }
 
+table.dataTable thead>tr>th.dt-orderable-asc, table.dataTable thead>tr>th.dt-orderable-desc, table.dataTable thead>tr>td.dt-orderable-asc, table.dataTable thead>tr>td.dt-orderable-desc{
+  padding: 20px;
+}
+
 .table thead th {
-  background-color: #292929 !important;
+  background-color: rgb(88, 0, 0) !important;
 }
 
 .table-bordered {
@@ -235,7 +238,10 @@ table tbody tr:hover td {
 }
 
 #sidebarMenu {
-  background-color: #222222 !important;
+  background: rgb(125,0,0);
+  background: -moz-radial-gradient(circle, rgba(125,0,0,1) 0%, rgba(41,41,41,1) 100%);
+  background: -webkit-radial-gradient(circle, rgba(125,0,0,1) 0%, rgba(41,41,41,1) 100%);
+  background: radial-gradient(circle, rgba(125,0,0,1) 0%, rgba(41,41,41,1) 100%);
   color: white !important;
 }
 

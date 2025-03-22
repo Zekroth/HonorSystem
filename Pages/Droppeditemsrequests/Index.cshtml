@@ -35,7 +35,7 @@
 </div>
 
 <div class="table-responsive" style="padding-left: 10px; padding-right: 10px;">
-    <table id="droppedItemsTable" class="table">
+    <table id="droppedItemsTable" class="display table table-striped table-bordered">
         <thead>
             <tr>
                 <th>
@@ -60,8 +60,9 @@
                     Distribuito
                 </th>
                 <th>
-
+                    Tot. Punti Player
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -84,18 +85,28 @@
                         @Html.DisplayFor(modelItem => item.Reason)
                     </td>
                     <td>
-                        @if (item.IdLeftItemInGuildStorageNavigation.DistributedDate != null)
+                        @if (item.RequestDate < DateTime.Now.AddDays(-7)) // Se la richiesta è più vecchia di 7 giorni
                         {
-                            <i class="bi bi-check-circle-fill" style="color: green;"></i>
+                            <i class="bi bi-hourglass-split fs-5" style="color: orange;"></i>
+                        }
+                        else if (item.IdLeftItemInGuildStorageNavigation.DistributedDate != null)
+                        {
+                            <i class="bi bi-check-circle-fill fs-5" style="color: green;"></i>
                         }
                         else
                         {
-                            <i class="bi bi-x-circle-fill" style="color: red;"></i>
+                            <i class="bi bi-x-circle-fill fs-5" style="color: red;"></i>
                         }
                     </td>
-                    @* <td>
-                        @Html.DisplayFor(modelItem => item.IdMemberNavigation.Honorentries)
-                    </td> *@
+
+                    <td>
+                        @foreach (var x in Model.Classificas.Where(c => c.Name == item.IdMemberNavigation.Name))
+                        {
+                            @x.TotalePunti
+                        }
+                    </td>
+
+                    <!-- Bottoni -->
                     <td>
                         <a asp-page="./Edit" class="btn btn-primary" asp-route-id="@item.IdDroppedItemsRequests"
                             data-bs-toggle="tooltip" title="Modifica"><i class="bi bi-pencil-square"></i></a>

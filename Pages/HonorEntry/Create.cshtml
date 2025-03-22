@@ -6,6 +6,52 @@
     ViewData["Title"] = "Create";
 }
 
+<!-- Datatable + script selectAll-->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Inizializzazione DataTable
+        $('#players').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "pageLength": 100,
+            "language": {
+                "lengthMenu": "Mostra _MENU_ righe per pagina",
+                "search": "Cerca:",
+                "info": "Mostra da _START_ a _END_ di _TOTAL_ righe",
+                "infoEmpty": "Nessuna riga disponibile",
+                "paginate": {
+                    "next": "Avanti",
+                    "previous": "Indietro"
+                }
+            },
+        });
+    });
+
+    // Gestione del cambio tipo di punteggio
+    function onChange() {
+        var honorEntryTypeList = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.HonorEntryTypes)) || [];
+        var selectedHonorList = honorEntryTypeList.find(x => x.IdHonorEntryType == document.getElementById("Honorentry_HonorEntryTypeId").value);
+
+        if (!selectedHonorList) {
+            console.log("HonorEntryType non definito.");
+            return;
+        }
+
+        document.getElementById("Honorentry_AssignedPoints").value = selectedHonorList.DefaultPoints;
+        document.getElementById("Honorentry_Description").value = selectedHonorList.Description;
+
+        if (selectedHonorList.Expiration == 0) {
+            document.getElementById("Honorentry_ExpirationDate").value = null;
+        } else {
+            var newDate = addDaysToDate(Date.now(), selectedHonorList.Expiration);
+            document.getElementById("Honorentry_ExpirationDate").value = newDate.toISOString().substr(0, 16);
+        }
+    }
+
+    window.onload = onChange;
+</script>
+
 <h1>Inserimento Punteggio</h1>
 <hr />
 
@@ -27,9 +73,10 @@
                 <input asp-for="Honorentry.ExpirationDate" class="form-control bg-dark"/>
                 <span asp-validation-for="Honorentry.ExpirationDate" class="text-danger"></span>
             </div>
-            <div class="form-group" style="margin-bottom: 10px;">
+           <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="Honorentry.HonorEntryTypeId" class="control-label">Tipo di Punteggio</label>
-                <select asp-for="Honorentry.HonorEntryTypeId" class ="form-control" asp-items="ViewBag.HonorEntryTypeId" onchange="onChange()"></select>
+                <select asp-for="Honorentry.HonorEntryTypeId" class="form-control bg-dark"
+                    asp-items="ViewBag.HonorEntryTypeId" onchange="onChange()"></select>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="Honorentry.PlayerId" class="control-label">Player</label>

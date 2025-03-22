@@ -39,6 +39,9 @@
         <thead>
             <tr>
                 <th>
+                    ID
+                </th>
+                <th>
                     Item
                 </th>
                 <th>
@@ -51,8 +54,9 @@
                     @Html.DisplayNameFor(model => model.Leftiteminguildstorage[0].IdHonorEntryNavigation)
                 </th>
                 <th>
-
-                </th>                
+                    Distribuito
+                </th>          
+                <th></th>      
             </tr>
         </thead>
         <tbody>
@@ -60,10 +64,13 @@
             {
                 <tr>
                     <td>
+                        @Html.DisplayFor(modelItem => item.IdItemNavigation.IdItem)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.IdItemNavigation.ItemName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.DropDate)
+                        @item.DropDate.ToString("dd/MM/yyyy alle HH:mm")
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.CurrentPriceInLucent)
@@ -74,6 +81,16 @@
                                 @Html.DisplayFor(modelItem => item.IdHonorEntryNavigation.IdHonorEntry)
                             else
                                 @Html.Raw(" - ")
+                        }
+                    </td>
+                    <td>
+                        @if (item.DistributedDate != null)
+                        {
+                            <i class="bi bi-check-circle-fill fs-5" style="color: green;"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-x-circle-fill fs-5" style="color: red;"></i>
                         }
                     </td>
                     <td style="width: auto;">

@@ -36,11 +36,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Leftiteminguildstorage.IdHonorEntry" class="control-label"></label>
-                <input asp-for="Leftiteminguildstorage.IdHonorEntry" class="form-control bg-dark" />
+                <select asp-for="Leftiteminguildstorage.IdHonorEntry" class="form-control bg-dark" />
+                <span asp-validation-for="Leftiteminguildstorage.IdHonorEntry" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
                 <label asp-for="Leftiteminguildstorage.DropDate" class="control-label">Data</label>
-                <input asp-for="Leftiteminguildstorage.DropDate" id="=datepicker" class="form-control bg-dark"/>
+                <input asp-for="Leftiteminguildstorage.DropDate" id="datepicker" class="form-control bg-dark"/>
                 <span asp-validation-for="Leftiteminguildstorage.DropDate" class="text-danger"></span>
             </div>
             <div class="form-group" style="margin-bottom: 10px;">
