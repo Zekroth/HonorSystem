@@ -38,7 +38,10 @@ namespace HonorSystem.Pages.ItemRequests
             }
 
             _context.Itemrequests.Add(Itemrequest);
+
             await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Richiesta Item inserita con successo";
 
             return RedirectToPage("./Index");
         }

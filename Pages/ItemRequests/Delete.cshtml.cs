@@ -56,6 +56,8 @@ namespace HonorSystem.Pages.ItemRequests
                 await _context.SaveChangesAsync();
             }
 
+            TempData["SuccessMessage"] = "Richiesta Item eliminata con successo";
+
             return RedirectToPage("./Index");
         }
     }

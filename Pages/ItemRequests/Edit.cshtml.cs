@@ -67,6 +67,8 @@ namespace HonorSystem.Pages.ItemRequests
                 }
             }
 
+            TempData["SuccessMessage"] = "Richiesta Item modificata con successo";
+
             return RedirectToPage("./Index");
         }
 

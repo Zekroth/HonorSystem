@@ -36,7 +36,10 @@ namespace HonorSystem.Pages.Members
             }
 
             _context.Members.Add(Member);
+
             await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Membro inserito con successo!";
 
             return RedirectToPage("./Index");
         }

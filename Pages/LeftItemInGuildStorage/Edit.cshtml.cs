@@ -67,6 +67,8 @@ namespace HonorSystem.Pages.LeftItemInGuildStorage
                 }
             }
 
+            TempData["SuccessMessage"] = "Item modificato con successo";
+
             return RedirectToPage("./Index");
         }
 

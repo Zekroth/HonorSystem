@@ -54,7 +54,8 @@ namespace HonorSystem.Pages.Members
                 Member = member;
                 _context.Members.Remove(Member);
                 await _context.SaveChangesAsync();
-            }
+            }   
+            TempData["SuccessMessage"] = "Membro eliminato con successo";
 
             return RedirectToPage("./Index");
         }

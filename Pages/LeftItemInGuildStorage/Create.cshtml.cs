@@ -38,7 +38,10 @@ namespace HonorSystem.Pages.LeftItemInGuildStorage
             }
 
             _context.Leftiteminguildstorages.Add(Leftiteminguildstorage);
+
             await _context.SaveChangesAsync();
+
+            TempData["SuccessMessage"] = "Item inserito con successo";
 
             return RedirectToPage("./Index");
         }

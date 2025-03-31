@@ -65,6 +65,7 @@ namespace HonorSystem.Pages.Members
                 }
             }
 
+            TempData["SuccessMessage"] = "Membro modificato con successo";
             return RedirectToPage("./Index");
         }
 

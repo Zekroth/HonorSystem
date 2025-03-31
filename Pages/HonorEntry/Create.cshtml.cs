@@ -21,7 +21,7 @@ namespace HonorSystem.Pages.HonorEntry
         public IActionResult OnGet()
         {
             ViewData["HonorEntryTypeId"] = new SelectList(_context.Honorentrytypes, "IdHonorEntryType", "Type");
-            ViewData["PlayerId"] = new SelectList(_context.Members, "IdMembers", "Name");
+            ViewData["PlayerId"] = new SelectList(_context.Members.OrderBy(p => p.Name), "IdMembers", "Name");
             ViewData["HonorEntryTypes"] = _context.Honorentrytypes.ToList() ;
             return Page();
         }
@@ -39,9 +39,13 @@ namespace HonorSystem.Pages.HonorEntry
             }
 
             _context.Honorentries.Add(Honorentry);
+            
             await _context.SaveChangesAsync();
 
+            TempData["SuccessMessage"] = "Punti inseriti con successo";
+
             return RedirectToPage("./Index");
+            
         }
     }
 }

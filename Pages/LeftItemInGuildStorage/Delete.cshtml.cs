@@ -56,6 +56,8 @@ namespace HonorSystem.Pages.LeftItemInGuildStorage
                 await _context.SaveChangesAsync();
             }
 
+            TempData["SuccessMessage"] = "Item eliminato con successo";
+
             return RedirectToPage("./Index");
         }
     }

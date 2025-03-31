@@ -27,19 +27,6 @@
     };
 </script>
 
-<script>
-    var deleteModal = document.getElementById('deleteModal');
-    deleteModal.addEventListener('show.bs.modal', function (event) {
-        var button = event.relatedTarget; // Bottone che ha aperto il modale
-        var memberId = button.getAttribute('data-id');
-        var memberName = button.getAttribute('data-name');
-
-        // Aggiorna il modale con i dati corretti
-        document.getElementById("deleteMemberId").value = memberId;
-        document.getElementById("memberName").textContent = memberName;
-    });
-</script>
-
 <h1>Membri di Gilda</h1>
 <hr />
 
@@ -106,3 +93,5 @@
         </tbody>
     </table>
 </div>
+
+

@@ -63,6 +63,8 @@ namespace HonorSystem.Pages.HonorEntry
                 }
             }
 
+            TempData["SuccessMessage"] = "Modifica effettuata con successo";
+
             return RedirectToPage("./Index");
         }
 

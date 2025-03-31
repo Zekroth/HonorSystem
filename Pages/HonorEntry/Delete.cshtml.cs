@@ -59,6 +59,7 @@ namespace HonorSystem.Pages.HonorEntry
                 _context.Honorentries.Remove(Honorentry);
                 await _context.SaveChangesAsync();
             }
+            TempData["SuccessMessage"] = "Punti eliminati con successo";
 
             return RedirectToPage("./Index");
         }

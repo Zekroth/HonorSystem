@@ -63,6 +63,8 @@ namespace HonorSystem.Pages.HonorEntry
             }
 
             await _context.SaveChangesAsync();
+            
+            TempData["SuccessMessage"] = "Punti inseriti con successo";
 
             return RedirectToPage("./Index"); // Redirect to the index page
         }
